@@ -52,18 +52,18 @@
 
 
 <meta name="description" content="想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 GitHub 和 Hexo 在 Mac 下搭建属于自己的博客.
-GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是托管在 GitHub 上的.你需要创建一个仓库 + New repository,名称为 ```1&amp;#10;### Homeb">
+GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是托管在 GitHub 上的.你需要创建一个仓库 + New repository,名称为 GitHub用户名.github.i">
 <meta property="og:type" content="article">
 <meta property="og:title" content="用 GitHub & Hexo 在 Mac 上搭建博客">
 <meta property="og:url" content="http://yoursite.com/2015/12/08/GitHub&Hexo-Blog/index.html">
 <meta property="og:site_name" content="一朵西兰花">
 <meta property="og:description" content="想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 GitHub 和 Hexo 在 Mac 下搭建属于自己的博客.
-GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是托管在 GitHub 上的.你需要创建一个仓库 + New repository,名称为 ```1&amp;#10;### Homeb">
-<meta property="og:updated_time" content="2015-12-09T09:03:04.000Z">
+GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是托管在 GitHub 上的.你需要创建一个仓库 + New repository,名称为 GitHub用户名.github.i">
+<meta property="og:updated_time" content="2015-12-09T09:12:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用 GitHub & Hexo 在 Mac 上搭建博客">
 <meta name="twitter:description" content="想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 GitHub 和 Hexo 在 Mac 下搭建属于自己的博客.
-GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是托管在 GitHub 上的.你需要创建一个仓库 + New repository,名称为 ```1&amp;#10;### Homeb">
+GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是托管在 GitHub 上的.你需要创建一个仓库 + New repository,名称为 GitHub用户名.github.i">
 
 
 
@@ -246,10 +246,13 @@ GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是�
 
       
         <span itemprop="articleBody"><p>想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 <a href="https://github.com" target="_blank" rel="external">GitHub</a> 和 <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a> 在 Mac 下搭建属于自己的博客.</p>
-<h3 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h3><p>在搭建之前你需要一个 <a href="https://github.com" target="_blank" rel="external">GitHub</a> 账号,因为 blog 的文件都是托管在 GitHub 上的.你需要创建一个仓库 <code>+ New repository</code>,名称为 <figure class="highlight"><figcaption><span>```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;### Homebrew&#10;&#25509;&#19979;&#26469;&#25105;&#20204;&#20250;&#22810;&#27425;&#20351;&#29992;&#21040; ``` Homebrew</span><br></pre></td></tr></table></figure></p>
-<p>安装 <figure class="highlight"><figcaption><span>``` 直接使用 Mac 自带的``` ruby ``` 脚本</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;</span><br></pre></td></tr></table></figure></p>
-<pre><code>$ ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
-</code></pre><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="header">### Git</span></span><br><span class="line">我们需要安装 <span class="code">```</span>Git<span class="code">```</span> 用来提交本地文件到 GitHub 的仓库中</span><br><span class="line"></span><br><span class="line">推荐使用 [<span class="link_label">homebrew</span>](<span class="link_url">http://brew.sh</span>) 来安装</span><br><span class="line"></span><br><span class="line"><span class="code">```</span>bash</span><br><span class="line"> $ brew install git</span><br></pre></td></tr></table></figure>
+<h3 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h3><p>在搭建之前你需要一个 <a href="https://github.com" target="_blank" rel="external">GitHub</a> 账号,因为 blog 的文件都是托管在 GitHub 上的.你需要创建一个仓库 <code>+ New repository</code>,名称为 <code>GitHub用户名.github.io</code></p>
+<h3 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h3><p>接下来我们会多次使用到 <code>Homebrew</code></p>
+<p>安装 <code>Homebrew</code> 直接使用 Mac 自带的<code>ruby</code> 脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ruby <span class="operator">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
+<h3 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h3><p>我们需要安装 <code>Git</code> 用来提交本地文件到 GitHub 的仓库中</p>
+<p>推荐使用 <a href="http://brew.sh" target="_blank" rel="external">homebrew</a> 来安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install git</span><br></pre></td></tr></table></figure>
 <h3 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h3><p>因为<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;&#32487;&#32493;&#25512;&#33616;&#20351;&#29992; [homebrew](http://brew.sh) &#26469;&#23433;&#35013;&#10;&#10;```bash&#10;$ brew install node</span><br></pre></td></tr></table></figure></p>
 <p>如果你因为各种原因安装失败,又找不到解决办法.可以试一下直接下载安装包.</p>
 <p><a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a>官网下载<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;### Hexo&#10;```Hexo``` &#26159;&#22522;&#20110; ```Node.js``` &#23454;&#29616;&#30340;&#19968;&#27454;&#24555;&#36895;&#12289;&#31616;&#27905;&#19988;&#39640;&#25928;&#30340;&#21338;&#23458;&#26694;&#26550;.&#10;&#10;&#30452;&#25509;&#20351;&#29992; ```Node.js``` &#33258;&#24102;&#30340;&#21253;&#31649;&#29702;&#24037;&#20855; ```npm``` &#36827;&#34892;&#23433;&#35013;&#10;&#10;```bash&#10;$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure></p>
@@ -405,7 +408,7 @@ GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#GitHub"><span class="nav-number">1.</span> <span class="nav-text">GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-js"><span class="nav-number">2.</span> <span class="nav-text">Node.js</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#GitHub"><span class="nav-number">1.</span> <span class="nav-text">GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Homebrew"><span class="nav-number">2.</span> <span class="nav-text">Homebrew</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git"><span class="nav-number">3.</span> <span class="nav-text">Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-js"><span class="nav-number">4.</span> <span class="nav-text">Node.js</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
