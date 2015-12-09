@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="GitHub Hexo Blog," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -59,7 +59,7 @@ GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是�
 <meta property="og:site_name" content="一朵西兰花">
 <meta property="og:description" content="想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 GitHub 和 Hexo 在 Mac 下搭建属于自己的博客.
 GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是托管在 GitHub 上的.你需要创建一个仓库 + New repository,名称为 GitHub用户名.github.i">
-<meta property="og:updated_time" content="2015-12-09T13:45:43.000Z">
+<meta property="og:updated_time" content="2015-12-09T13:48:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用 GitHub & Hexo 在 Mac 上搭建博客">
 <meta name="twitter:description" content="想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 GitHub 和 Hexo 在 Mac 下搭建属于自己的博客.
@@ -269,10 +269,8 @@ GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是�
 <p>1.#新建博客目录 </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;blog 的本地目录名&gt;</span><br></pre></td></tr></table></figure>
 <p>2.#根据当前目录下的文件生成静态网页</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line">``` </span><br><span class="line">	</span><br><span class="line"><span class="number">3</span>.<span class="comment">#初始化依赖</span></span><br><span class="line">	</span><br><span class="line">```bash</span><br><span class="line">$ npm install</span><br><span class="line">``` </span><br><span class="line">	</span><br><span class="line"><span class="number">4</span>.<span class="comment">#启动服务</span></span><br><span class="line">	</span><br><span class="line">```bash</span><br><span class="line">$ hexo server</span><br><span class="line">``` </span><br><span class="line">操作到这里时,可以在浏览器中 [http://localhost:<span class="number">4000</span>](http://localhost:<span class="number">4000</span>) 看到生成的好的 blog</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#### 托管到 GitHub 上</span></span><br><span class="line">打开 `_config.yml`, 配置 `GitHub` 信息</span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">deploy:</span><br><span class="line">    <span class="built_in">type</span>: git    		          <span class="comment">#部署类型, 本文使用Github</span></span><br><span class="line">    repository: &lt;GitHub用户名.github.io 所在的路径&gt;       <span class="comment">#部署的仓库的链接</span></span><br><span class="line">    branch: master   		        <span class="comment">#部署分支,一般使用master主分支</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line">``` </span><br><span class="line">	</span><br><span class="line"><span class="number">3</span>.<span class="comment">#初始化依赖</span></span><br><span class="line">	</span><br><span class="line">```bash</span><br><span class="line">$ npm install</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line"><span class="number">4</span>.<span class="comment">#启动服务</span></span><br><span class="line">	</span><br><span class="line">```bash</span><br><span class="line">$ hexo server</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">操作到这里时,可以在浏览器中 [http://localhost:<span class="number">4000</span>](http://localhost:<span class="number">4000</span>) 看到生成的好的 blog</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#### 托管到 GitHub 上</span></span><br><span class="line">打开 ` _config.yml `, 配置 ` GitHub ` 信息</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">deploy:</span><br><span class="line">    <span class="built_in">type</span>: git    		          <span class="comment">#部署类型, 本文使用Github</span></span><br><span class="line">    repository: &lt;GitHub用户名.github.io 所在的路径&gt;       <span class="comment">#部署的仓库的链接</span></span><br><span class="line">    branch: master   		        <span class="comment">#部署分支,一般使用master主分支</span></span><br></pre></td></tr></table></figure>
 <p>使用命令:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
-<p>或者</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>将网页发布到 GitHub 上,然后可以在 <a href="http://GitHub用户名.github.io" target="_blank" rel="external">http://GitHub用户名.github.io</a> 看到发布成功的 Blog</p>
 </span>
@@ -280,12 +278,6 @@ GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是�
     </div>
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/GitHub-Hexo-Blog/" rel="tag">#GitHub Hexo Blog</a>
-          
-        </div>
       
 
       
@@ -384,7 +376,7 @@ GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是�
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">0</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
