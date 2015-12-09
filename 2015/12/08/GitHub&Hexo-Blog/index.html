@@ -59,7 +59,7 @@ GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是�
 <meta property="og:site_name" content="一朵西兰花">
 <meta property="og:description" content="想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 GitHub 和 Hexo 在 Mac 下搭建属于自己的博客.
 GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是托管在 GitHub 上的.你需要创建一个仓库 + New repository,名称为 GitHub用户名.github.i">
-<meta property="og:updated_time" content="2015-12-09T13:08:12.000Z">
+<meta property="og:updated_time" content="2015-12-09T13:15:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用 GitHub & Hexo 在 Mac 上搭建博客">
 <meta name="twitter:description" content="想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 GitHub 和 Hexo 在 Mac 下搭建属于自己的博客.
@@ -257,24 +257,16 @@ GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是�
 <p>继续推荐使用 <a href="http://brew.sh" target="_blank" rel="external">homebrew</a> 来安装</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install node</span><br></pre></td></tr></table></figure>
 <p>如果你因为各种原因安装失败,又找不到解决办法.可以试一下直接下载安装包.<a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a>官网下载 <code>.pkg</code> 安装包,双击安装.</p>
-<h1 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h1><h2 id="Hexo__u5B89_u88C5"><a href="#Hexo__u5B89_u88C5" class="headerlink" title="Hexo 安装"></a>Hexo 安装</h2><p><code>Hexo</code> 是基于 <code>Node.js</code> 实现的一款快速、简洁且高效的博客框架.</p>
+<h1 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h1><h4 id="Hexo__u5B89_u88C5"><a href="#Hexo__u5B89_u88C5" class="headerlink" title="Hexo 安装"></a>Hexo 安装</h4><p><code>Hexo</code> 是基于 <code>Node.js</code> 实现的一款快速、简洁且高效的博客框架.</p>
 <p>直接使用 <code>Node.js</code> 自带的包管理工具 <code>npm</code> 进行安装</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 <p>如果因为权限问题可以使用</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<h3 id="Hexo__u8BBE_u7F6E"><a href="#Hexo__u8BBE_u7F6E" class="headerlink" title="Hexo 设置"></a>Hexo 设置</h3><p>以下操作需要在你希望 blog 生成的路径下进行</p>
+<h4 id="Hexo__u8BBE_u7F6E"><a href="#Hexo__u8BBE_u7F6E" class="headerlink" title="Hexo 设置"></a>Hexo 设置</h4><p>以下操作需要在你希望 blog 生成的路径下进行</p>
 <p>1.#新建博客目录 </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;blog 的本地目录名&gt;</span><br></pre></td></tr></table></figure>
 <p>2.#根据当前目录下的文件生成静态网页</p>
-<pre><code class="bash">$ hexo g
-</code></pre>
-<p>3.#初始化依赖</p>
-<pre><code class="bash">$ npm install
-</code></pre>
-<p>4.#启动服务</p>
-<pre><code class="bash">$ hexo s
-</code></pre>
-<p>操作到这里时,可以在浏览器中 <a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a> 看到生成的好的 blog</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br><span class="line">``` </span><br><span class="line">	</span><br><span class="line"><span class="number">3</span>.<span class="comment">#初始化依赖</span></span><br><span class="line">	</span><br><span class="line">```bash</span><br><span class="line">$ npm install</span><br><span class="line">``` </span><br><span class="line">	</span><br><span class="line"><span class="number">4</span>.<span class="comment">#启动服务</span></span><br><span class="line">	</span><br><span class="line">```bash</span><br><span class="line">$ hexo s</span><br><span class="line">``` </span><br><span class="line">	</span><br><span class="line">操作到这里时,可以在浏览器中 [http://localhost:<span class="number">4000</span>](http://localhost:<span class="number">4000</span>) 看到生成的好的 blog</span><br><span class="line"></span><br><span class="line"><span class="comment">#### 托管到 GitHub 上</span></span><br><span class="line">打开 `_config.yml`, 配置 `GitHub` 信息</span><br><span class="line"></span><br><span class="line">```bash   </span><br><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git    					                     <span class="comment">#部署类型, 本文使用Github</span></span><br><span class="line">  repository: &lt;GitHub用户名.github.io 所在的路径&gt;       <span class="comment">#部署的仓库的链接</span></span><br><span class="line">  branch: master   				                     <span class="comment">#部署分支,一般使用master主分支</span></span><br></pre></td></tr></table></figure>
 </span>
       
     </div>
@@ -424,7 +416,7 @@ GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#GitHub"><span class="nav-number">1.</span> <span class="nav-text">GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Homebrew"><span class="nav-number">2.</span> <span class="nav-text">Homebrew</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git"><span class="nav-number">3.</span> <span class="nav-text">Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-js"><span class="nav-number">4.</span> <span class="nav-text">Node.js</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo"><span class="nav-number"></span> <span class="nav-text">Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo__u5B89_u88C5"><span class="nav-number"></span> <span class="nav-text">Hexo 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hexo__u8BBE_u7F6E"><span class="nav-number">1.</span> <span class="nav-text">Hexo 设置</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#GitHub"><span class="nav-number">1.</span> <span class="nav-text">GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Homebrew"><span class="nav-number">2.</span> <span class="nav-text">Homebrew</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git"><span class="nav-number">3.</span> <span class="nav-text">Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-js"><span class="nav-number">4.</span> <span class="nav-text">Node.js</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo"><span class="nav-number"></span> <span class="nav-text">Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hexo__u5B89_u88C5"><span class="nav-number">0.1.</span> <span class="nav-text">Hexo 安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hexo__u8BBE_u7F6E"><span class="nav-number">0.2.</span> <span class="nav-text">Hexo 设置</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
