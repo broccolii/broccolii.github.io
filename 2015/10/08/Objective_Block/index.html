@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Block," />
 
 
 
@@ -51,19 +51,25 @@
 
 
 
-<meta name="description" content="想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 GitHub 和 Hexo 在 Mac 下搭建属于自己的博客.
-GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是托管在 GitHub 上的.你需要创建一个仓库 + New repository,名称为 GitHub用户名.github.i">
+<meta name="description" content="Objective-C 中的 Block
+###什么是 BlockBlock 翻译成中文就是块,顾名思义指的是代码块.与函数类似,有参数,有返回值.只不过是直接实现在另一个函数里的,同时可以获取该函数的局部变量. Block 只是 Objective-C 对闭包的实现.
+
+讲人话:  Block 就是一段能够在将来被执行的代码. Block 本身就是一个普通的 Objective-C 对象.正因为">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Objective-C 中的 Block">
 <meta property="og:url" content="http://yoursite.com/2015/10/08/Objective_Block/index.html">
 <meta property="og:site_name" content="一朵西兰花">
-<meta property="og:description" content="想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 GitHub 和 Hexo 在 Mac 下搭建属于自己的博客.
-GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是托管在 GitHub 上的.你需要创建一个仓库 + New repository,名称为 GitHub用户名.github.i">
-<meta property="og:updated_time" content="2015-12-28T09:52:21.000Z">
+<meta property="og:description" content="Objective-C 中的 Block
+###什么是 BlockBlock 翻译成中文就是块,顾名思义指的是代码块.与函数类似,有参数,有返回值.只不过是直接实现在另一个函数里的,同时可以获取该函数的局部变量. Block 只是 Objective-C 对闭包的实现.
+
+讲人话:  Block 就是一段能够在将来被执行的代码. Block 本身就是一个普通的 Objective-C 对象.正因为">
+<meta property="og:updated_time" content="2015-12-28T12:36:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objective-C 中的 Block">
-<meta name="twitter:description" content="想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 GitHub 和 Hexo 在 Mac 下搭建属于自己的博客.
-GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是托管在 GitHub 上的.你需要创建一个仓库 + New repository,名称为 GitHub用户名.github.i">
+<meta name="twitter:description" content="Objective-C 中的 Block
+###什么是 BlockBlock 翻译成中文就是块,顾名思义指的是代码块.与函数类似,有参数,有返回值.只不过是直接实现在另一个函数里的,同时可以获取该函数的局部变量. Block 只是 Objective-C 对闭包的实现.
+
+讲人话:  Block 就是一段能够在将来被执行的代码. Block 本身就是一个普通的 Objective-C 对象.正因为">
 
 
 
@@ -245,70 +251,59 @@ GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是�
       
 
       
-        <span itemprop="articleBody"><p>想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 <a href="https://github.com" target="_blank" rel="external">GitHub</a> 和 <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a> 在 Mac 下搭建属于自己的博客.</p>
-<h3 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h3><p>在搭建之前你需要一个 <a href="https://github.com" target="_blank" rel="external">GitHub</a> 账号,因为 blog 的文件都是托管在 GitHub 上的.你需要创建一个仓库 <code>+ New repository</code>,名称为 <code>GitHub用户名.github.io</code></p>
-<h3 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h3><p>接下来我们会多次使用到 <a href="http://brew.sh" target="_blank" rel="external">homebrew</a></p>
-<p>安装 <code>Homebrew</code> 直接使用 Mac 自带的 <code>ruby</code> 脚本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ruby <span class="operator">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
-<h3 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h3><p>我们需要安装 <code>Git</code> 用来提交本地文件到 GitHub 的仓库中</p>
-<p>推荐使用 <a href="http://brew.sh" target="_blank" rel="external">homebrew</a> 来安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install git</span><br></pre></td></tr></table></figure>
-<h3 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h3><p>因为 <code>Hexo</code> 是基于 <code>Node.js</code> 的，所以必须安装 <code>Node.js</code> </p>
-<p>继续推荐使用 <a href="http://brew.sh" target="_blank" rel="external">homebrew</a> 来安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install node</span><br></pre></td></tr></table></figure>
-<p>如果你因为各种原因安装失败,又找不到解决办法.可以试一下直接下载安装包.<a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a>官网下载 <code>.pkg</code> 安装包,双击安装.</p>
-<p>使用以下命令输出版本号来验证是否安装成功:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ node -v</span><br><span class="line">$ npm -v</span><br></pre></td></tr></table></figure>
-<hr>
-<h1 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h1><h4 id="Hexo__u5B89_u88C5"><a href="#Hexo__u5B89_u88C5" class="headerlink" title="Hexo 安装"></a>Hexo 安装</h4><p><code>Hexo</code> 是基于 <code>Node.js</code> 实现的一款快速、简洁且高效的博客框架.</p>
-<p>直接使用 <code>Node.js</code> 自带的包管理工具 <code>npm</code> 进行安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<p>如果因为权限问题可以使用</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<h4 id="Hexo__u8BBE_u7F6E"><a href="#Hexo__u8BBE_u7F6E" class="headerlink" title="Hexo 设置"></a>Hexo 设置</h4><p>以下操作需要在你希望 blog 生成的路径下进行</p>
-<p>1.#新建博客目录 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;blog 的本地目录名&gt;</span><br></pre></td></tr></table></figure>
-<p>2.#根据当前目录下的文件生成静态网页</p>
-<pre><code class="bash">$ hexo generate
-</code></pre>
-<p>3.#初始化依赖</p>
-<pre><code class="bash">$ npm install
-</code></pre>
-<p>4.#启动服务</p>
-<pre><code class="bash">$ hexo server
-</code></pre>
-<p>操作到这里时,可以在浏览器中 <a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a> 看到生成的好的 blog</p>
-<h4 id="u6258_u7BA1_u5230_GitHub__u4E0A"><a href="#u6258_u7BA1_u5230_GitHub__u4E0A" class="headerlink" title="托管到 GitHub 上"></a>托管到 GitHub 上</h4><p>打开 <code>_config.yml</code>, 配置 <code>GitHub</code> 信息</p>
-<pre><code class="bash">deploy:
-      <span class="comment">#部署类型, 本文使用Github</span>
-    <span class="built_in">type</span>: git            
-    <span class="comment">#部署的仓库的链接         </span>
-    repository: &lt;GitHub用户名.github.io 所在的路径&gt;
-    <span class="comment">#部署分支,一般使用master主分支      </span>
-    branch: master
-</code></pre>
-<p>使用命令:</p>
-<pre><code class="bash">$ hexo deploy
-</code></pre>
-<p>将网页发布到 GitHub 上,然后可以在 <a href="http://GitHub用户名.github.io" target="_blank" rel="external">http://GitHub用户名.github.io</a> 看到发布成功的 Blog</p>
+        <span itemprop="articleBody"><p>Objective-C 中的 Block</p>
+<p>###什么是 Block<br>Block 翻译成中文就是块,顾名思义指的是代码块.与函数类似,有参数,有返回值.只不过是直接实现在另一个函数里的,同时可以获取该函数的局部变量. Block 只是 Objective-C 对闭包的实现.</p>
+<blockquote>
+<p>讲人话:  Block 就是一段能够在将来被执行的代码. Block 本身就是一个普通的 Objective-C 对象.正因为它是对象，Block 可以被作为参数传递，可以作为返回值从一个方法返回，可以用来给变量赋值</p>
+</blockquote>
+<p>###Block 的申明定义<br>可以先看一下 <a href="http://fuckingblocksyntax.com" target="_blank" rel="external">How Do I Declare A Block in Objective-C?</a><br>Block 的声明格式如下：</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">returnType (^blockName)(parameterTypes) = ^returnType(parameters) <span class="decorator">&#123;...&#125;</span>;</span><br></pre></td></tr></table></figure>
+<p>我们实现一个加法功能的 Block</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> (^addBlock)(<span class="keyword">int</span> a, <span class="keyword">int</span> b) = ^(<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</span><br><span class="line">   <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>然后像函数一样调用这个 Block </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> add = addBlock(<span class="number">1</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>###Block 的变量<br>还记得我们刚刚说过 Block 会获取实现它的函数内的局部变量,并且对这些栈变量进行一次只读拷贝，然后在  Block 块内使用该只读拷贝.</p>
+<ol>
+<li>只读: 不能被修改值</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)foo &#123;</span><br><span class="line">    <span class="keyword">int</span> stackVariables = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> (^addBlock)(<span class="keyword">int</span> a, <span class="keyword">int</span> b) = ^ <span class="keyword">int</span> (<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</span><br><span class="line">        stackVariables++; <span class="comment">// 编译不通过</span></span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> add = addBlock(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>copy: 在定义完 Block 后 修改了 stackVariables 的值, 但是 Block 并不受影响</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)foo &#123;</span><br><span class="line">    <span class="keyword">int</span> stackVariables = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> (^addBlock)(<span class="keyword">int</span> a, <span class="keyword">int</span> b) = ^ <span class="keyword">int</span> (<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</span><br><span class="line">        NSLog(@<span class="string">"stack variable = %ld"</span>, (<span class="keyword">long</span>)stackVariables);</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 修改 stackVariables 的值</span></span><br><span class="line">    stackVariables = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> add = addBlock(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果需要在 Block 中修改局部变量的值, 我们可以使用 <strong>block 关键字来修饰变量,这样就可以在 Block 中修改变量了.对于用 </strong>block 修饰的局部变量，Block 为其生成了一个 Struct 来存储引用地址.具体细节可以看唐巧大神写的<a href="http://blog.devtang.com/blog/2013/07/28/a-look-inside-blocks/" target="_blank" rel="external">谈Objective-C Block的实现</a></p>
+<p>###retain cycle<br>Block 使用时,不仔细思量,就很容易出现循环引用,导致内存泄露.那到底什么时候会发生循环引用呢?<br>我们来修改一下刚刚的 Block 将他定义成 当前类的一个属性,同时在 Block 定义时,打印当前类的一个属性</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> (^AddBlock)(<span class="keyword">int</span> a, <span class="keyword">int</span> b);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) AddBlock addBlock;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">NSString</span> *memberVariable;</span><br><span class="line">...</span><br><span class="line">- (<span class="keyword">void</span>)foo &#123;</span><br><span class="line">    <span class="keyword">int</span> stackVariables = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">  	 _addBlock = ^ <span class="keyword">int</span> (<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</span><br><span class="line">      	<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, _memberVariable);</span><br><span class="line">     </span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 修改 stackVariables 的值</span></span><br><span class="line">    stackVariables = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> add = addBlock(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们在 foo 中定义了一个 栈 Block 然后把它复制到 _addBlock 中去, 由于是从栈 copy 到堆,  Block 会持有 Block 中的变量.在 ARC 中, Block 中如果引用了 <strong>strong 修饰符的自动变量,则相当于 Block 对该变量的引用计数+1. 由于 self 是 </strong>strong 修饰.因此 self 持有了 Block, 同时 Block 也持有了 self.当 self 释放的时候,需要 Block 释放后才会对 self 进行释放,但是 Block 的释放又需要等 self 的 dealloc 方法中才会释放.如此一来变形成了循环引用，导致内存泄露.</p>
+<p>你可能要问了,我这里并没有出现 self ?为什么 self 会被 Block 持有?</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">其实 <span class="constant">_memberVariable </span>等价于 <span class="keyword">self</span>-&gt;memberVariable</span><br></pre></td></tr></table></figure>
+<p>为了打破循环,我们需要取消引用可以将 self 用 __weak 所修饰</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> (^AddBlock)(<span class="keyword">int</span> a, <span class="keyword">int</span> b);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) AddBlock addBlock;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">NSString</span> *memberVariable;</span><br><span class="line">...</span><br><span class="line">- (<span class="keyword">void</span>)foo &#123;</span><br><span class="line">    <span class="keyword">int</span> stackVariables = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">	 __<span class="keyword">weak</span> <span class="keyword">typeof</span>(<span class="keyword">self</span>) weakSelf = <span class="keyword">self</span>;</span><br><span class="line">  	 _addBlock = ^ <span class="keyword">int</span> (<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</span><br><span class="line">      	<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, weakSelf<span class="variable">.memberVariable</span>);</span><br><span class="line">     </span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 修改 stackVariables 的值</span></span><br><span class="line">    stackVariables = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> add = addBlock(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>weak 变量有一个特性就是它不会影响所指向对象的生命周期,因此可以使用它来生成一个对自身对象的弱引用. 应该没有人的项目现在还不支持 ARC, 如果有, 那可以使用 </strong>block 来打破循环. 那么__block typeof(self) weakSelf = self 就表示 Block 别再对 self 对象 retain 啦,这就打破了循环引用.</p>
 </span>
       
     </div>
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Block/" rel="tag">#Block</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2015/01/08/GitHub&Hexo-Blog/" rel="next" title="用 GitHub & Hexo 在 Mac 上搭建博客">
+                <i class="fa fa-chevron-left"></i> 用 GitHub & Hexo 在 Mac 上搭建博客
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/12/08/GitHub&Hexo-Blog/" rel="prev" title="用 GitHub & Hexo 在 Mac 上搭建博客">
-                用 GitHub & Hexo 在 Mac 上搭建博客 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -394,7 +389,7 @@ GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是�
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-count">1</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
@@ -436,7 +431,7 @@ GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#GitHub"><span class="nav-number">1.</span> <span class="nav-text">GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Homebrew"><span class="nav-number">2.</span> <span class="nav-text">Homebrew</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git"><span class="nav-number">3.</span> <span class="nav-text">Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-js"><span class="nav-number">4.</span> <span class="nav-text">Node.js</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo"><span class="nav-number"></span> <span class="nav-text">Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hexo__u5B89_u88C5"><span class="nav-number">0.1.</span> <span class="nav-text">Hexo 安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hexo__u8BBE_u7F6E"><span class="nav-number">0.2.</span> <span class="nav-text">Hexo 设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6258_u7BA1_u5230_GitHub__u4E0A"><span class="nav-number">0.3.</span> <span class="nav-text">托管到 GitHub 上</span></a></li></ol></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
