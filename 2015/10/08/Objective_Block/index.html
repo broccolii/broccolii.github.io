@@ -52,24 +52,24 @@
 
 
 <meta name="description" content="Objective-C 中的 Block
-###什么是 BlockBlock 翻译成中文就是块,顾名思义指的是代码块.与函数类似,有参数,有返回值.只不过是直接实现在另一个函数里的,同时可以获取该函数的局部变量. Block 只是 Objective-C 对闭包的实现.
+什么是 BlockBlock 翻译成中文就是块,顾名思义指的是代码块.与函数类似,有参数,有返回值.只不过是直接实现在另一个函数里的,同时可以获取该函数的局部变量. Block 只是 Objective-C 对闭包的实现.
 
-讲人话:  Block 就是一段能够在将来被执行的代码. Block 本身就是一个普通的 Objective-C 对象.正因为">
+讲人话:  Block 就是一段能够在将来被执行的代码. Block 本身就是一个普通的 Objective-C 对象.正因为它是对">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Objective-C 中的 Block">
 <meta property="og:url" content="http://yoursite.com/2015/10/08/Objective_Block/index.html">
 <meta property="og:site_name" content="一朵西兰花">
 <meta property="og:description" content="Objective-C 中的 Block
-###什么是 BlockBlock 翻译成中文就是块,顾名思义指的是代码块.与函数类似,有参数,有返回值.只不过是直接实现在另一个函数里的,同时可以获取该函数的局部变量. Block 只是 Objective-C 对闭包的实现.
+什么是 BlockBlock 翻译成中文就是块,顾名思义指的是代码块.与函数类似,有参数,有返回值.只不过是直接实现在另一个函数里的,同时可以获取该函数的局部变量. Block 只是 Objective-C 对闭包的实现.
 
-讲人话:  Block 就是一段能够在将来被执行的代码. Block 本身就是一个普通的 Objective-C 对象.正因为">
-<meta property="og:updated_time" content="2015-12-28T12:36:43.000Z">
+讲人话:  Block 就是一段能够在将来被执行的代码. Block 本身就是一个普通的 Objective-C 对象.正因为它是对">
+<meta property="og:updated_time" content="2015-12-28T12:38:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objective-C 中的 Block">
 <meta name="twitter:description" content="Objective-C 中的 Block
-###什么是 BlockBlock 翻译成中文就是块,顾名思义指的是代码块.与函数类似,有参数,有返回值.只不过是直接实现在另一个函数里的,同时可以获取该函数的局部变量. Block 只是 Objective-C 对闭包的实现.
+什么是 BlockBlock 翻译成中文就是块,顾名思义指的是代码块.与函数类似,有参数,有返回值.只不过是直接实现在另一个函数里的,同时可以获取该函数的局部变量. Block 只是 Objective-C 对闭包的实现.
 
-讲人话:  Block 就是一段能够在将来被执行的代码. Block 本身就是一个普通的 Objective-C 对象.正因为">
+讲人话:  Block 就是一段能够在将来被执行的代码. Block 本身就是一个普通的 Objective-C 对象.正因为它是对">
 
 
 
@@ -252,17 +252,17 @@
 
       
         <span itemprop="articleBody"><p>Objective-C 中的 Block</p>
-<p>###什么是 Block<br>Block 翻译成中文就是块,顾名思义指的是代码块.与函数类似,有参数,有返回值.只不过是直接实现在另一个函数里的,同时可以获取该函数的局部变量. Block 只是 Objective-C 对闭包的实现.</p>
+<h3 id="u4EC0_u4E48_u662F_Block"><a href="#u4EC0_u4E48_u662F_Block" class="headerlink" title="什么是 Block"></a>什么是 Block</h3><p>Block 翻译成中文就是块,顾名思义指的是代码块.与函数类似,有参数,有返回值.只不过是直接实现在另一个函数里的,同时可以获取该函数的局部变量. Block 只是 Objective-C 对闭包的实现.</p>
 <blockquote>
 <p>讲人话:  Block 就是一段能够在将来被执行的代码. Block 本身就是一个普通的 Objective-C 对象.正因为它是对象，Block 可以被作为参数传递，可以作为返回值从一个方法返回，可以用来给变量赋值</p>
 </blockquote>
-<p>###Block 的申明定义<br>可以先看一下 <a href="http://fuckingblocksyntax.com" target="_blank" rel="external">How Do I Declare A Block in Objective-C?</a><br>Block 的声明格式如下：</p>
+<h3 id="Block__u7684_u7533_u660E_u5B9A_u4E49"><a href="#Block__u7684_u7533_u660E_u5B9A_u4E49" class="headerlink" title="Block 的申明定义"></a>Block 的申明定义</h3><p>可以先看一下 <a href="http://fuckingblocksyntax.com" target="_blank" rel="external">How Do I Declare A Block in Objective-C?</a><br>Block 的声明格式如下：</p>
 <figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">returnType (^blockName)(parameterTypes) = ^returnType(parameters) <span class="decorator">&#123;...&#125;</span>;</span><br></pre></td></tr></table></figure>
 <p>我们实现一个加法功能的 Block</p>
 <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> (^addBlock)(<span class="keyword">int</span> a, <span class="keyword">int</span> b) = ^(<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</span><br><span class="line">   <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>然后像函数一样调用这个 Block </p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> add = addBlock(<span class="number">1</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-<p>###Block 的变量<br>还记得我们刚刚说过 Block 会获取实现它的函数内的局部变量,并且对这些栈变量进行一次只读拷贝，然后在  Block 块内使用该只读拷贝.</p>
+<h3 id="Block__u7684_u53D8_u91CF"><a href="#Block__u7684_u53D8_u91CF" class="headerlink" title="Block 的变量"></a>Block 的变量</h3><p>还记得我们刚刚说过 Block 会获取实现它的函数内的局部变量,并且对这些栈变量进行一次只读拷贝，然后在  Block 块内使用该只读拷贝.</p>
 <ol>
 <li>只读: 不能被修改值</li>
 </ol>
@@ -272,7 +272,7 @@
 </ol>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)foo &#123;</span><br><span class="line">    <span class="keyword">int</span> stackVariables = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> (^addBlock)(<span class="keyword">int</span> a, <span class="keyword">int</span> b) = ^ <span class="keyword">int</span> (<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</span><br><span class="line">        NSLog(@<span class="string">"stack variable = %ld"</span>, (<span class="keyword">long</span>)stackVariables);</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 修改 stackVariables 的值</span></span><br><span class="line">    stackVariables = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> add = addBlock(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果需要在 Block 中修改局部变量的值, 我们可以使用 <strong>block 关键字来修饰变量,这样就可以在 Block 中修改变量了.对于用 </strong>block 修饰的局部变量，Block 为其生成了一个 Struct 来存储引用地址.具体细节可以看唐巧大神写的<a href="http://blog.devtang.com/blog/2013/07/28/a-look-inside-blocks/" target="_blank" rel="external">谈Objective-C Block的实现</a></p>
-<p>###retain cycle<br>Block 使用时,不仔细思量,就很容易出现循环引用,导致内存泄露.那到底什么时候会发生循环引用呢?<br>我们来修改一下刚刚的 Block 将他定义成 当前类的一个属性,同时在 Block 定义时,打印当前类的一个属性</p>
+<h3 id="retain_cycle"><a href="#retain_cycle" class="headerlink" title="retain cycle"></a>retain cycle</h3><p>Block 使用时,不仔细思量,就很容易出现循环引用,导致内存泄露.那到底什么时候会发生循环引用呢?<br>我们来修改一下刚刚的 Block 将他定义成 当前类的一个属性,同时在 Block 定义时,打印当前类的一个属性</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> (^AddBlock)(<span class="keyword">int</span> a, <span class="keyword">int</span> b);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) AddBlock addBlock;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">NSString</span> *memberVariable;</span><br><span class="line">...</span><br><span class="line">- (<span class="keyword">void</span>)foo &#123;</span><br><span class="line">    <span class="keyword">int</span> stackVariables = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">  	 _addBlock = ^ <span class="keyword">int</span> (<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</span><br><span class="line">      	<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, _memberVariable);</span><br><span class="line">     </span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 修改 stackVariables 的值</span></span><br><span class="line">    stackVariables = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> add = addBlock(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>我们在 foo 中定义了一个 栈 Block 然后把它复制到 _addBlock 中去, 由于是从栈 copy 到堆,  Block 会持有 Block 中的变量.在 ARC 中, Block 中如果引用了 <strong>strong 修饰符的自动变量,则相当于 Block 对该变量的引用计数+1. 由于 self 是 </strong>strong 修饰.因此 self 持有了 Block, 同时 Block 也持有了 self.当 self 释放的时候,需要 Block 释放后才会对 self 进行释放,但是 Block 的释放又需要等 self 的 dealloc 方法中才会释放.如此一来变形成了循环引用，导致内存泄露.</p>
 <p>你可能要问了,我这里并没有出现 self ?为什么 self 会被 Block 持有?</p>
@@ -431,7 +431,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u4EC0_u4E48_u662F_Block"><span class="nav-number">1.</span> <span class="nav-text">什么是 Block</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Block__u7684_u7533_u660E_u5B9A_u4E49"><span class="nav-number">2.</span> <span class="nav-text">Block 的申明定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Block__u7684_u53D8_u91CF"><span class="nav-number">3.</span> <span class="nav-text">Block 的变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#retain_cycle"><span class="nav-number">4.</span> <span class="nav-text">retain cycle</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
