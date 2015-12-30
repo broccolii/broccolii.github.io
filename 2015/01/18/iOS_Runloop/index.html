@@ -35,7 +35,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="RunLoop," />
 
 
 
@@ -51,19 +51,20 @@
 
 
 
-<meta name="description" content="想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 GitHub 和 Hexo 在 Mac 下搭建属于自己的博客.
-GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是托管在 GitHub 上的.你需要创建一个仓库 + New repository,名称为 GitHub用户名.github.i">
+<meta name="description" content="最近听了 sunnyxx 大神关于 RunLoop 的分享会,总结一下 iOS 中的 RunLoop.
+什么是 RunLoopRunLoop 顾名思义指的是运行的循环,指一个事件处理的循环,用来不停地调动工作以及处理输入事件.通俗点说RunLoop 好比一个 While 循环,不停地在监听事件,处理事件.不过 Apple 在此基础上进行了大量优化,使得大大减少了 CPU 的占用.比如给 RunLo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="用 GitHub & Hexo 在 Mac 上搭建博客">
-<meta property="og:url" content="http://yoursite.com/2015/01/08/GitHub&Hexo-Blog/index.html">
+<meta property="og:title" content="iOS 中的 RunLoop">
+<meta property="og:url" content="http://yoursite.com/2015/01/18/iOS_Runloop/index.html">
 <meta property="og:site_name" content="一朵西兰花">
-<meta property="og:description" content="想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 GitHub 和 Hexo 在 Mac 下搭建属于自己的博客.
-GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是托管在 GitHub 上的.你需要创建一个仓库 + New repository,名称为 GitHub用户名.github.i">
-<meta property="og:updated_time" content="2015-12-28T09:58:04.000Z">
+<meta property="og:description" content="最近听了 sunnyxx 大神关于 RunLoop 的分享会,总结一下 iOS 中的 RunLoop.
+什么是 RunLoopRunLoop 顾名思义指的是运行的循环,指一个事件处理的循环,用来不停地调动工作以及处理输入事件.通俗点说RunLoop 好比一个 While 循环,不停地在监听事件,处理事件.不过 Apple 在此基础上进行了大量优化,使得大大减少了 CPU 的占用.比如给 RunLo">
+<meta property="og:image" content="https://github.com/broccolii/broccolii.github.io/blob/master/images/iOS_Runloop/runloop.jpg">
+<meta property="og:updated_time" content="2015-12-30T06:12:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="用 GitHub & Hexo 在 Mac 上搭建博客">
-<meta name="twitter:description" content="想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 GitHub 和 Hexo 在 Mac 下搭建属于自己的博客.
-GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是托管在 GitHub 上的.你需要创建一个仓库 + New repository,名称为 GitHub用户名.github.i">
+<meta name="twitter:title" content="iOS 中的 RunLoop">
+<meta name="twitter:description" content="最近听了 sunnyxx 大神关于 RunLoop 的分享会,总结一下 iOS 中的 RunLoop.
+什么是 RunLoopRunLoop 顾名思义指的是运行的循环,指一个事件处理的循环,用来不停地调动工作以及处理输入事件.通俗点说RunLoop 好比一个 While 循环,不停地在监听事件,处理事件.不过 Apple 在此基础上进行了大量优化,使得大大减少了 CPU 的占用.比如给 RunLo">
 
 
 
@@ -75,7 +76,7 @@ GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是�
   };
 </script>
 
-  <title> 用 GitHub & Hexo 在 Mac 上搭建博客 | 一朵西兰花 </title>
+  <title> iOS 中的 RunLoop | 一朵西兰花 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -205,7 +206,7 @@ GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是�
             
             
               
-                用 GitHub & Hexo 在 Mac 上搭建博客
+                iOS 中的 RunLoop
               
             
           </h1>
@@ -214,8 +215,8 @@ GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是�
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-01-08T23:22:12+08:00" content="2015-01-08">
-              2015-01-08
+            <time itemprop="dateCreated" datetime="2015-01-18T22:22:02+08:00" content="2015-01-18">
+              2015-01-18
             </time>
           </span>
 
@@ -225,8 +226,8 @@ GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是�
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/01/08/GitHub&Hexo-Blog/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/01/08/GitHub&Hexo-Blog/" itemprop="commentsCount"></span>
+                <a href="/2015/01/18/iOS_Runloop/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/01/18/iOS_Runloop/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -245,74 +246,34 @@ GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是�
       
 
       
-        <span itemprop="articleBody"><p>想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 <a href="https://github.com" target="_blank" rel="external">GitHub</a> 和 <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a> 在 Mac 下搭建属于自己的博客.</p>
-<h3 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h3><p>在搭建之前你需要一个 <a href="https://github.com" target="_blank" rel="external">GitHub</a> 账号,因为 blog 的文件都是托管在 GitHub 上的.你需要创建一个仓库 <code>+ New repository</code>,名称为 <code>GitHub用户名.github.io</code></p>
-<h3 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h3><p>接下来我们会多次使用到 <a href="http://brew.sh" target="_blank" rel="external">homebrew</a></p>
-<p>安装 <code>Homebrew</code> 直接使用 Mac 自带的 <code>ruby</code> 脚本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ruby <span class="operator">-e</span> <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br></pre></td></tr></table></figure>
-<h3 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h3><p>我们需要安装 <code>Git</code> 用来提交本地文件到 GitHub 的仓库中</p>
-<p>推荐使用 <a href="http://brew.sh" target="_blank" rel="external">homebrew</a> 来安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install git</span><br></pre></td></tr></table></figure>
-<h3 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h3><p>因为 <code>Hexo</code> 是基于 <code>Node.js</code> 的，所以必须安装 <code>Node.js</code> </p>
-<p>继续推荐使用 <a href="http://brew.sh" target="_blank" rel="external">homebrew</a> 来安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install node</span><br></pre></td></tr></table></figure>
-<p>如果你因为各种原因安装失败,又找不到解决办法.可以试一下直接下载安装包.<a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a>官网下载 <code>.pkg</code> 安装包,双击安装.</p>
-<p>使用以下命令输出版本号来验证是否安装成功:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ node -v</span><br><span class="line">$ npm -v</span><br></pre></td></tr></table></figure>
-<hr>
-<h1 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h1><h4 id="Hexo__u5B89_u88C5"><a href="#Hexo__u5B89_u88C5" class="headerlink" title="Hexo 安装"></a>Hexo 安装</h4><p><code>Hexo</code> 是基于 <code>Node.js</code> 实现的一款快速、简洁且高效的博客框架.</p>
-<p>直接使用 <code>Node.js</code> 自带的包管理工具 <code>npm</code> 进行安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<p>如果因为权限问题可以使用</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<h4 id="Hexo__u8BBE_u7F6E"><a href="#Hexo__u8BBE_u7F6E" class="headerlink" title="Hexo 设置"></a>Hexo 设置</h4><p>以下操作需要在你希望 blog 生成的路径下进行</p>
-<p>1.#新建博客目录 </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo init &lt;blog 的本地目录名&gt;</span><br></pre></td></tr></table></figure>
-<p>2.#根据当前目录下的文件生成静态网页</p>
-<pre><code class="bash">$ hexo generate
-</code></pre>
-<p>3.#初始化依赖</p>
-<pre><code class="bash">$ npm install
-</code></pre>
-<p>4.#启动服务</p>
-<pre><code class="bash">$ hexo server
-</code></pre>
-<p>操作到这里时,可以在浏览器中 <a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a> 看到生成的好的 blog</p>
-<h4 id="u6258_u7BA1_u5230_GitHub__u4E0A"><a href="#u6258_u7BA1_u5230_GitHub__u4E0A" class="headerlink" title="托管到 GitHub 上"></a>托管到 GitHub 上</h4><p>打开 <code>_config.yml</code>, 配置 <code>GitHub</code> 信息</p>
-<pre><code class="bash">deploy:
-      <span class="comment">#部署类型, 本文使用Github</span>
-    <span class="built_in">type</span>: git            
-    <span class="comment">#部署的仓库的链接         </span>
-    repository: &lt;GitHub用户名.github.io 所在的路径&gt;
-    <span class="comment">#部署分支,一般使用master主分支      </span>
-    branch: master
-</code></pre>
-<p>使用命令:</p>
-<pre><code class="bash">$ hexo deploy
-</code></pre>
-<p>将网页发布到 GitHub 上,然后可以在 <a href="http://GitHub用户名.github.io" target="_blank" rel="external">http://GitHub用户名.github.io</a> 看到发布成功的 Blog</p>
-</span>
+        <span itemprop="articleBody"><p>最近听了 <a href="http://blog.sunnyxx.com/" target="_blank" rel="external">sunnyxx</a> 大神关于 RunLoop 的分享会,总结一下 iOS 中的 RunLoop.</p>
+<h3 id="u4EC0_u4E48_u662F_RunLoop"><a href="#u4EC0_u4E48_u662F_RunLoop" class="headerlink" title="什么是 RunLoop"></a>什么是 RunLoop</h3><p>RunLoop 顾名思义指的是运行的循环,指一个事件处理的循环,用来不停地调动工作以及处理输入事件.通俗点说RunLoop 好比一个 While 循环,不停地在监听事件,处理事件.不过 Apple 在此基础上进行了大量优化,使得大大减少了 CPU 的占用.比如给 RunLoop 添加了不同事件源,不同的 mode,使其在不工作时休眠等.不过 RunLoop 并不是 iOS / OS X 所特有的,在任何平台的多线程编程中,为了处理异步消息,都有这样一个类似消息队列的概念,比如 Android 中的 Looper.</p>
+<h3 id="RunLoop__u548C_u7EBF_u7A0B_u7684_u5173_u7CFB"><a href="#RunLoop__u548C_u7EBF_u7A0B_u7684_u5173_u7CFB" class="headerlink" title="RunLoop 和线程的关系"></a>RunLoop 和线程的关系</h3><p>RunLoop 和 iOS 的线程是紧密相连的,在 iOS 中任何线程,如果要监听处理一些事件都需要产生一个 RunLoop 的对象.主线程中的 RunLoop 在 App 启动时产生并运行,子线程中需要手动创建并运行([NSRunLoop currentRunLoop]; 会判断是否有 RunLoop ,而自动创建).也就是说每一个线程中都可以获取 RunLoop 对象，但是并不是每一个线程中都有 RunLoop 的实例对象.</p>
+<h3 id="RunLoop_input"><a href="#RunLoop_input" class="headerlink" title="RunLoop input"></a>RunLoop input</h3><p><img src="https://github.com/broccolii/broccolii.github.io/blob/master/images/iOS_Runloop/runloop.jpg" alt=""></p>
+<h3 id="RunLoop_mode"><a href="#RunLoop_mode" class="headerlink" title="RunLoop mode"></a>RunLoop mode</h3></span>
       
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/RunLoop/" rel="tag">#RunLoop</a>
+          
+        </div>
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/01/08/Objective_Block/" rel="next" title="Objective-C 中的 Block">
-                <i class="fa fa-chevron-left"></i> Objective-C 中的 Block
+              <a href="/2015/01/08/GitHub&Hexo-Blog/" rel="next" title="用 GitHub & Hexo 在 Mac 上搭建博客">
+                <i class="fa fa-chevron-left"></i> 用 GitHub & Hexo 在 Mac 上搭建博客
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/01/18/iOS_Runloop/" rel="prev" title="iOS 中的 RunLoop">
-                iOS 中的 RunLoop <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -339,8 +300,8 @@ GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是�
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/01/08/GitHub&Hexo-Blog/"
-           data-title="用 GitHub & Hexo 在 Mac 上搭建博客" data-url="http://yoursite.com/2015/01/08/GitHub&Hexo-Blog/">
+      <div class="ds-thread" data-thread-key="2015/01/18/iOS_Runloop/"
+           data-title="iOS 中的 RunLoop" data-url="http://yoursite.com/2015/01/18/iOS_Runloop/">
       </div>
     
   </div>
@@ -440,7 +401,7 @@ GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#GitHub"><span class="nav-number">1.</span> <span class="nav-text">GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Homebrew"><span class="nav-number">2.</span> <span class="nav-text">Homebrew</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Git"><span class="nav-number">3.</span> <span class="nav-text">Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-js"><span class="nav-number">4.</span> <span class="nav-text">Node.js</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo"><span class="nav-number"></span> <span class="nav-text">Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hexo__u5B89_u88C5"><span class="nav-number">0.1.</span> <span class="nav-text">Hexo 安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hexo__u8BBE_u7F6E"><span class="nav-number">0.2.</span> <span class="nav-text">Hexo 设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6258_u7BA1_u5230_GitHub__u4E0A"><span class="nav-number">0.3.</span> <span class="nav-text">托管到 GitHub 上</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u4EC0_u4E48_u662F_RunLoop"><span class="nav-number">1.</span> <span class="nav-text">什么是 RunLoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RunLoop__u548C_u7EBF_u7A0B_u7684_u5173_u7CFB"><span class="nav-number">2.</span> <span class="nav-text">RunLoop 和线程的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RunLoop_input"><span class="nav-number">3.</span> <span class="nav-text">RunLoop input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RunLoop_mode"><span class="nav-number">4.</span> <span class="nav-text">RunLoop mode</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
