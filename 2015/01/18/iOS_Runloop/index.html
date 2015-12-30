@@ -59,8 +59,8 @@
 <meta property="og:site_name" content="一朵西兰花">
 <meta property="og:description" content="最近听了 sunnyxx 大神关于 RunLoop 的分享会,总结一下 iOS 中的 RunLoop.
 什么是 RunLoopRunLoop 顾名思义指的是运行的循环,指一个事件处理的循环,用来不停地调动工作以及处理输入事件.通俗点说RunLoop 好比一个 While 循环,不停地在监听事件,处理事件.不过 Apple 在此基础上进行了大量优化,使得大大减少了 CPU 的占用.比如给 RunLo">
-<meta property="og:image" content="https://github.com/broccolii/broccolii.github.io/blob/master/images/iOS_Runloop/runloop.jpg">
-<meta property="og:updated_time" content="2015-12-30T06:12:53.000Z">
+<meta property="og:image" content="http://yoursite.com/images/iOS_Runloop/runloop.jpgg">
+<meta property="og:updated_time" content="2015-12-30T06:33:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 中的 RunLoop">
 <meta name="twitter:description" content="最近听了 sunnyxx 大神关于 RunLoop 的分享会,总结一下 iOS 中的 RunLoop.
@@ -249,7 +249,7 @@
         <span itemprop="articleBody"><p>最近听了 <a href="http://blog.sunnyxx.com/" target="_blank" rel="external">sunnyxx</a> 大神关于 RunLoop 的分享会,总结一下 iOS 中的 RunLoop.</p>
 <h3 id="u4EC0_u4E48_u662F_RunLoop"><a href="#u4EC0_u4E48_u662F_RunLoop" class="headerlink" title="什么是 RunLoop"></a>什么是 RunLoop</h3><p>RunLoop 顾名思义指的是运行的循环,指一个事件处理的循环,用来不停地调动工作以及处理输入事件.通俗点说RunLoop 好比一个 While 循环,不停地在监听事件,处理事件.不过 Apple 在此基础上进行了大量优化,使得大大减少了 CPU 的占用.比如给 RunLoop 添加了不同事件源,不同的 mode,使其在不工作时休眠等.不过 RunLoop 并不是 iOS / OS X 所特有的,在任何平台的多线程编程中,为了处理异步消息,都有这样一个类似消息队列的概念,比如 Android 中的 Looper.</p>
 <h3 id="RunLoop__u548C_u7EBF_u7A0B_u7684_u5173_u7CFB"><a href="#RunLoop__u548C_u7EBF_u7A0B_u7684_u5173_u7CFB" class="headerlink" title="RunLoop 和线程的关系"></a>RunLoop 和线程的关系</h3><p>RunLoop 和 iOS 的线程是紧密相连的,在 iOS 中任何线程,如果要监听处理一些事件都需要产生一个 RunLoop 的对象.主线程中的 RunLoop 在 App 启动时产生并运行,子线程中需要手动创建并运行([NSRunLoop currentRunLoop]; 会判断是否有 RunLoop ,而自动创建).也就是说每一个线程中都可以获取 RunLoop 对象，但是并不是每一个线程中都有 RunLoop 的实例对象.</p>
-<h3 id="RunLoop_input"><a href="#RunLoop_input" class="headerlink" title="RunLoop input"></a>RunLoop input</h3><p><img src="https://github.com/broccolii/broccolii.github.io/blob/master/images/iOS_Runloop/runloop.jpg" alt=""></p>
+<h3 id="RunLoop_input"><a href="#RunLoop_input" class="headerlink" title="RunLoop input"></a>RunLoop input</h3><p><img src="images/iOS_Runloop/runloop.jpgg" alt=""></p>
 <h3 id="RunLoop_mode"><a href="#RunLoop_mode" class="headerlink" title="RunLoop mode"></a>RunLoop mode</h3></span>
       
     </div>
