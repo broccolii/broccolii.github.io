@@ -58,7 +58,8 @@
 <meta property="og:site_name" content="一朵西兰花">
 <meta property="og:description" content="Runtime 是什么Objective-C 是基于 C 语言加入了面向对象特性和消息转发机制的动态语言,因此它尽可能地将一些工作从编译链接推迟到运行时.这意味着仅仅有编译器是不够的,还需要一套运行时系统来执行编译后的代码.这个运行时系统就是一个用 C 和汇编写的 Runtime 库,它是 Objective-C 作为一门动态语言的是基础.虽然这些特性在开发中使用的较少，但是理解 Objectiv">
 <meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Objective-C_Runtime/class-diagram.jpg">
-<meta property="og:updated_time" content="2015-12-31T07:23:28.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Objective-C_Runtime/messaging.png">
+<meta property="og:updated_time" content="2015-12-31T07:45:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objective-C Runtime">
 <meta name="twitter:description" content="Runtime 是什么Objective-C 是基于 C 语言加入了面向对象特性和消息转发机制的动态语言,因此它尽可能地将一些工作从编译链接推迟到运行时.这意味着仅仅有编译器是不够的,还需要一套运行时系统来执行编译后的代码.这个运行时系统就是一个用 C 和汇编写的 Runtime 库,它是 Objective-C 作为一门动态语言的是基础.虽然这些特性在开发中使用的较少，但是理解 Objectiv">
@@ -259,7 +260,7 @@
 <p><em>Method</em> 表示类的方法</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> objc_method &#123;</span><br><span class="line">    <span class="comment">// 方法名</span></span><br><span class="line">    SEL method_name                                          OBJC2_UN<span class="built_in">AVAILABLE</span>;</span><br><span class="line">    <span class="comment">// 静态方法 / 实例方法</span></span><br><span class="line">    <span class="keyword">char</span> *method_types                                       OBJC2_UN<span class="built_in">AVAILABLE</span>;</span><br><span class="line">    <span class="comment">// 方法实现 (函数指针)</span></span><br><span class="line">    IMP method_imp                                           OBJC2_UN<span class="built_in">AVAILABLE</span>;</span><br><span class="line">&#125;                                                            OBJC2_UN<span class="built_in">AVAILABLE</span>;</span><br></pre></td></tr></table></figure>
 <p><em>IMP</em> 其实就是 <code>objc_sendMsg(receiver, selector, arg1, arg2, ...)</code> 的指针</p>
-<h3 id="Runtime__u6D88_u606F_u5904_u7406_u673A_u5236"><a href="#Runtime__u6D88_u606F_u5904_u7406_u673A_u5236" class="headerlink" title="Runtime 消息处理机制"></a>Runtime 消息处理机制</h3><p>你是否想过 Objective-C 为什么把对象调用方法称作 <code>消息传递</code>(或 <code>发送消息</code>) (pass a message).其实编译器会将我们的 [receiver selector] 翻译成一个 C 函数调用</p>
+<h3 id="Runtime__u6D88_u606F_u5904_u7406_u673A_u5236"><a href="#Runtime__u6D88_u606F_u5904_u7406_u673A_u5236" class="headerlink" title="Runtime 消息处理机制"></a>Runtime 消息处理机制</h3><p>你是否想过 Objective-C 为什么把对象调用方法称作 <code>消息传递</code>(或 <code>发送消息</code>) (pass a message).其实编译器会将我们的 <code>[receiver selector]</code> 翻译成一个 C 函数调用</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">objc_msgSend</span><span class="params">(receiver, selector)</span></span></span><br></pre></td></tr></table></figure>
 <p>也可以添上参数</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">objc_sendMsg</span><span class="params">(receiver, selector, arg1, arg2, ...)</span></span></span><br></pre></td></tr></table></figure>
@@ -268,8 +269,15 @@
 <li>通过 receiver 的 isa 指针找到它的 Class </li>
 <li>在 Class 的 method list 找 selector </li>
 <li>如果 Class 中没到 foo,继续往它的 superclass 中找 </li>
-<li>一旦找到 selector 这个函数，就去执行它的实现IMP </li>
+<li>一旦找到 selector 这个函数，就去执行它的实现IMP<br>下图展示了一个方法查找的流程图:<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Objective-C_Runtime/messaging.png" alt=""></li>
 </ol>
+<p>如果每一个消息都经过这样一个传递链,其实效率是很低.因为 class 往往只有 20% 的函数会被经常调用,如果把经常被调用的函数缓存下来,那可以大大提高函数查询的效率.这也就是 objc_class 中另一个重要成员 objc_cache 做的事情,当再次收到 selector 消息的时候，可以直接在 cache 里找到，避免去遍历 objc_method_list.</p>
+<p>如果走完所有步骤,如果 selector 还是没有被找到会发生什么?程序会在运行时挂掉并抛出 unrecognized selector 的异常?其实在异常抛出前,Runtime 会给你三次拯救程序的机会：</p>
+<ul>
+<li>Method resolution  //动态方法解析</li>
+<li>Fast forwarding</li>
+<li>Normal forwarding</li>
+</ul>
 <h3 id="u52A8_u6001_u65B9_u6CD5_u89E3_u6790"><a href="#u52A8_u6001_u65B9_u6CD5_u89E3_u6790" class="headerlink" title="动态方法解析"></a>动态方法解析</h3><h3 id="u6D88_u606F_u8F6C_u53D1"><a href="#u6D88_u606F_u8F6C_u53D1" class="headerlink" title="消息转发"></a>消息转发</h3><p><a href="http://onevcat.com/2012/04/objective-c-runtime/" target="_blank" rel="external"></a></p>
 <h3 id="u6D88_u606F_u673A_u5236"><a href="#u6D88_u606F_u673A_u5236" class="headerlink" title="消息机制"></a>消息机制</h3><h3 id="Objective-C_u5BF9_u8C61_u6A21_u578B"><a href="#Objective-C_u5BF9_u8C61_u6A21_u578B" class="headerlink" title="Objective-C对象模型"></a>Objective-C对象模型</h3><h3 id="u52A8_u6001_u7C7B_u578B_28Dynamic_typing_29"><a href="#u52A8_u6001_u7C7B_u578B_28Dynamic_typing_29" class="headerlink" title="动态类型(Dynamic typing)"></a>动态类型(Dynamic typing)</h3><h3 id="u52A8_u6001_u7ED1_u5B9A__28Dynamic_binding_29"><a href="#u52A8_u6001_u7ED1_u5B9A__28Dynamic_binding_29" class="headerlink" title="动态绑定 (Dynamic binding)"></a>动态绑定 (Dynamic binding)</h3><h3 id="u52A8_u6001_u52A0_u8F7D__28Dynamic_loading_29"><a href="#u52A8_u6001_u52A0_u8F7D__28Dynamic_loading_29" class="headerlink" title="动态加载 (Dynamic loading)"></a>动态加载 (Dynamic loading)</h3><ol>
 <li>Runtime术语<br>4.1. SEL<br>4.2. id<br>4.3. Class<br>4.3.1. Method<br>4.3.2. Ivar<br>4.4. IMP<br>4.5. Cache<br>4.6. Property</li>
