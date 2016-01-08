@@ -63,7 +63,7 @@ iOS 中的多线程编程iOS 中的多线程分为以下三种: NSThread, NSOper
 iOS 中的多线程编程iOS 中的多线程分为以下三种: NSThread, NSOperation/NSOperationQueue, GCD. 其中 NSOperation/NSOperationQueue 是对 GCD 的面向对象封装.
 基本概念线程 / 进程
 进程(Process):操作系统进行资源分配和调度的基本单位,计算机中已运行程序的实">
-<meta property="og:updated_time" content="2016-01-08T11:06:51.000Z">
+<meta property="og:updated_time" content="2016-01-08T11:08:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 中的多线程">
 <meta name="twitter:description" content="我整理了一下 iOS 开发中会遇到的几种多线程.
@@ -262,10 +262,7 @@ iOS 中的多线程编程iOS 中的多线程分为以下三种: NSThread, NSOper
 <li>异步:异步操作在调用后立即返回,不会等待操作的执行结果.(不会堵塞当前线程)</li>
 </ul>
 <h4 id="u4E32_u884C_u961F_u5217_/__u5E76_u884C_u961F_u5217"><a href="#u4E32_u884C_u961F_u5217_/__u5E76_u884C_u961F_u5217" class="headerlink" title="串行队列 / 并行队列"></a>串行队列 / 并行队列</h4><ul>
-<li><p>队列:</p>
-<blockquote>
-<p>队列 (queue)，是先进先出（FIFO, First-In-First-Out）的线性表。  –  来自 <a href="https://zh.wikipedia.org/wiki/队列" target="_blank" rel="external">wiki</a></p>
-</blockquote>
+<li><p>队列: 队列 (queue)，是先进先出（FIFO, First-In-First-Out）的线性表。  –  来自 <a href="https://zh.wikipedia.org/wiki/队列" target="_blank" rel="external">wiki</a></p>
 </li>
 <li><p>串行队列: 串行队列是指队列中的任务是按照先后顺序一个接一个地执行的,队首的任务执行后才会执行其后的任务,直至执行到队尾的任务.</p>
 </li>
