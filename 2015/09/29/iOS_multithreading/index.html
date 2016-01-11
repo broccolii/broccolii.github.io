@@ -57,13 +57,13 @@ iOS 中的多线程编程iOS 中的多线程分为以下三种: NSThread, NSOper
 进程(Process):操作系统进行资源分配和调度的基本单位,计算机中已运行程序的实体">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS 中的多线程">
-<meta property="og:url" content="http://yoursite.com/2015/09/29/iOS_ multithreading/index.html">
+<meta property="og:url" content="http://yoursite.com/2015/09/29/iOS_multithreading/index.html">
 <meta property="og:site_name" content="一朵西兰花">
 <meta property="og:description" content="整理了一下 iOS 开发中会遇到的几种多线程.
 iOS 中的多线程编程iOS 中的多线程分为以下三种: NSThread, NSOperation/NSOperationQueue, GCD. 其中 NSOperation/NSOperationQueue 是对 GCD 的面向对象封装.
 基本概念线程 / 进程
 进程(Process):操作系统进行资源分配和调度的基本单位,计算机中已运行程序的实体">
-<meta property="og:updated_time" content="2016-01-08T11:13:46.000Z">
+<meta property="og:updated_time" content="2016-01-11T06:28:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 中的多线程">
 <meta name="twitter:description" content="整理了一下 iOS 开发中会遇到的几种多线程.
@@ -231,8 +231,8 @@ iOS 中的多线程编程iOS 中的多线程分为以下三种: NSThread, NSOper
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2015/09/29/iOS_ multithreading/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/29/iOS_ multithreading/" itemprop="commentsCount"></span>
+                <a href="/2015/09/29/iOS_multithreading/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/09/29/iOS_multithreading/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -274,8 +274,7 @@ iOS 中的多线程编程iOS 中的多线程分为以下三种: NSThread, NSOper
 </ol>
 </blockquote>
 <p><strong>在并行队列中进行同步操作,会发生什么?</strong><br>直接堵塞当前线程,直至同步操作执行完.</p>
-<p>详细细节请看<a href="http://www.cnblogs.com/dsxniubility/p/4296937.html" target="_blank" rel="external">董铂然的Blog</a></p>
-<p>下图表<a href="https://github.com/ChenYilong/ParseSourceCodeStudy/blob/master/01_Parse的多线程处理思路/GCD扫盲篇.md" target="_blank" rel="external">引用自 ChenYilong 的 GCD 扫盲篇</a></p>
+<p>详细细节请看<a href="http://www.cnblogs.com/dsxniubility/p/4296937.html" target="_blank" rel="external">董铂然的Blog</a><br>下图表<a href="https://github.com/ChenYilong/ParseSourceCodeStudy/blob/master/01_Parse的多线程处理思路/GCD扫盲篇.md" target="_blank" rel="external">引用自 ChenYilong 的 GCD 扫盲篇</a></p>
 <table>
 <thead>
 <tr>
@@ -298,11 +297,11 @@ iOS 中的多线程编程iOS 中的多线程分为以下三种: NSThread, NSOper
 </tbody>
 </table>
 <h3 id="NSThread"><a href="#NSThread" class="headerlink" title="NSThread"></a>NSThread</h3><p>在 iOS 中使用 NSThread 对象建立一个线程非常方便,但是线程的生命周期需要程序员手动管理,也不便于管理多个线程.<br><strong>创建&amp;启动</strong><br><em>两种显式调用</em><br>1.实例方法</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSThread *thread = [[NSThread alloc] <span class="string">initWithTarget:</span>self <span class="string">selector:</span><span class="annotation">@selector</span>(<span class="string">doSomeThing:</span>) <span class="string">object:</span>nil];</span><br><span class="line">[thread start];</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSThread *thread = [[NSThread alloc] <span class="string">initWithTarget:</span>self <span class="string">selector:</span><span class="annotation">@selector</span>(<span class="string">doSomething:</span>) <span class="string">object:</span>nil];</span><br><span class="line">[thread start];</span><br></pre></td></tr></table></figure>
 <p>2.类方法</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[NSThread <span class="string">detachNewThreadSelector:</span><span class="annotation">@selector</span>(<span class="string">doSomeThing:</span>) <span class="string">toTarget:</span>self <span class="string">withObject:</span>nil];</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[NSThread <span class="string">detachNewThreadSelector:</span><span class="annotation">@selector</span>(<span class="string">doSomething:</span>) <span class="string">toTarget:</span>self <span class="string">withObject:</span>nil];</span><br></pre></td></tr></table></figure>
 <p><em>隐式调用</em></p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[self <span class="string">performSelectorInBackground:</span><span class="annotation">@selector</span>(<span class="string">doSomeThing:</span>) <span class="string">withObject:</span>nil];</span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[self <span class="string">performSelectorInBackground:</span><span class="annotation">@selector</span>(<span class="string">doSomething:</span>) <span class="string">withObject:</span>nil];</span><br></pre></td></tr></table></figure>
 <p><strong>一些常用的方法</strong></p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获得当前线程</span></span><br><span class="line">+ (<span class="built_in">NSThread</span> *)currentThread;</span><br><span class="line"><span class="comment">// 线程休眠</span></span><br><span class="line">+ (<span class="keyword">void</span>)sleepForTimeInterval:(<span class="built_in">NSTimeInterval</span>)ti;</span><br><span class="line"><span class="comment">// 获取主线程</span></span><br><span class="line">+ (<span class="built_in">NSThread</span> *)mainThread;</span><br><span class="line"><span class="comment">// 判断当前线程是否主线程</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)isMainThread;</span><br><span class="line">+ (<span class="built_in">BOOL</span>)isMainThread;</span><br><span class="line"><span class="comment">// 判断线程是否正在运行</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)isExecuting;</span><br><span class="line"><span class="comment">// 判断线程是否已结束</span></span><br><span class="line">- (<span class="built_in">BOOL</span>)isFinished;</span><br></pre></td></tr></table></figure>
 <h3 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h3><p>GCD 指的是 Grand Central Dispatch, 是 Apple 提供的一个多核编程的解决方案.GCD 是基于 C 语言的框架,可以充分利用多核,是 Apple 推荐使用的多线程技术.他不需要像 NSThread 一样需要手动管理线程的生命周期,它会自动管理.<br><strong>GCD 中的队列</strong></p>
@@ -347,7 +346,28 @@ iOS 中的多线程编程iOS 中的多线程分为以下三种: NSThread, NSOper
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2016</span>-<span class="number">01</span>-<span class="number">08</span> <span class="number">18</span>:<span class="number">07</span>:<span class="number">35.923</span> MultithreadingDemo[<span class="number">5626</span>:<span class="number">397563</span>] <span class="number">0</span></span><br><span class="line"><span class="number">2016</span>-<span class="number">01</span>-<span class="number">08</span> <span class="number">18</span>:<span class="number">07</span>:<span class="number">35.923</span> MultithreadingDemo[<span class="number">5626</span>:<span class="number">397617</span>] <span class="number">1</span></span><br><span class="line"><span class="number">2016</span>-<span class="number">01</span>-<span class="number">08</span> <span class="number">18</span>:<span class="number">07</span>:<span class="number">35.923</span> MultithreadingDemo[<span class="number">5626</span>:<span class="number">397831</span>] <span class="number">2</span></span><br></pre></td></tr></table></figure>
 <p><strong>dispatch_suspend &amp; dispatch_resume</strong><br><code>dispatch_suspend</code> 用于暂停队列<br><code>dispatch_resume</code> 用于恢复队列</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">dispatch_queue_t</span> <span class="built_in">queue</span> = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);</span><br><span class="line"><span class="comment">// 挂起指定的队列</span></span><br><span class="line">dispatch_suspend(<span class="built_in">queue</span>);</span><br><span class="line"><span class="comment">// 恢复指定队列</span></span><br><span class="line">dispatch_resume(<span class="built_in">queue</span>);</span><br></pre></td></tr></table></figure>
-<h3 id="NSOperation/NSOperationQueue"><a href="#NSOperation/NSOperationQueue" class="headerlink" title="NSOperation/NSOperationQueue"></a>NSOperation/NSOperationQueue</h3><p>未完待续</p>
+<h3 id="NSOperation/NSOperationQueue"><a href="#NSOperation/NSOperationQueue" class="headerlink" title="NSOperation/NSOperationQueue"></a>NSOperation/NSOperationQueue</h3><p>NSOperation/NSOperationQueue 是 Apple 对 GCD 的封装,一个建立在 GCD 的基础之上的,面向对象的解决方案.相对 GCD 来说,使用 NSOperation/NSOperationQueue 会增加一点点额外的开销,与此同时也也获得了更好的灵活性.我们可以指定各个 NSOperation 之间的依赖关系,也可以继承 NSOperation 实现可复用的逻辑模块.</p>
+<p><strong>NSOperation</strong><br>NSOperation 用来表示一个需要执行的任务.NSOperation 本身是一个抽象类,不能直接实例化,但是系统提供了两个子类用于封装任务.分别是: NSInvocationOperation 和 NSBlockOperation,同时也可以自定义子类.创建一个 NSOperation 对象后,需要调用 start 方法来启动任务,需要注意的是它会默认在当前队列同步执行.</p>
+<ul>
+<li>NSInvocationOperation<br>通过一个 object 和 selector 我们可以非常方便地创建一个 NSInvocationOperation.</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSInvocationOperation</span> *operation = [[<span class="built_in">NSInvocationOperation</span> alloc] initWithTarget:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(doSomething) object:<span class="literal">nil</span>];</span><br><span class="line">[operation start];</span><br></pre></td></tr></table></figure>
+<ul>
+<li>NSBlockOperation<br>我们可以使用  NSBlockOperation 来并发执行一个或多个 block. 可以通过NSBlockOperation的实例方法 <code>addExecutionBlock</code> 实现类似 GCD 中的 <code>dispatch_group</code> 的功能.</li>
+</ul>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSBlockOperation</span> *operation = [<span class="built_in">NSBlockOperation</span> blockOperationWithBlock:^&#123;</span><br><span class="line">   <span class="comment">// do something</span></span><br><span class="line">&#125;];</span><br><span class="line">[operation start];</span><br></pre></td></tr></table></figure>
+<p><em>使用有 NSOperation 有什么灵活性呢?</em><br>1.依赖关系<br>NSOperation 有一个非常实用的功能,那就是添加依赖.它可以让一个 operation 只有在它依赖的所有 operation 都执行完成后才能开始执行.</p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="pp">- <span class="params">(void)</span>addDependency:<span class="params">(<span class="variable">NSOperation</span> *)</span>op;</span></span><br></pre></td></tr></table></figure>
+<p>2.队列中的优先级<br>对于被添加到 queue 中的 operation 来说，在 isReady(取决于依赖关系) 状态下,决定它们执行顺序他们在队列中的优先级.默认情况下都是 normal 的,但是我们可以根据需要通过 <code>setQueuePriority:</code> 方法来提高或降低 operation 的队列优先级.有以下几种优先级给我们选择.</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">NS_ENUM</span>(<span class="built_in">NSInteger</span>, <span class="built_in">NSOperationQueuePriority</span>) &#123;</span><br><span class="line">	<span class="built_in">NSOperationQueuePriorityVeryLow</span> = -<span class="number">8</span>L,</span><br><span class="line">	<span class="built_in">NSOperationQueuePriorityLow</span> = -<span class="number">4</span>L,</span><br><span class="line">	<span class="built_in">NSOperationQueuePriorityNormal</span> = <span class="number">0</span>,</span><br><span class="line">	<span class="built_in">NSOperationQueuePriorityHigh</span> = <span class="number">4</span>,</span><br><span class="line">	<span class="built_in">NSOperationQueuePriorityVeryHigh</span> = <span class="number">8</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>3.可以在任务执行完进行回调</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[operation1 <span class="built_in">set</span>CompletionBlock:^&#123;</span><br><span class="line">    // <span class="keyword">do</span> something  </span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<p><strong>NSOperationQueue</strong><br>NSOperationQueue 并不像 GCD 中的队列那么复杂.默认都是并行的,通过设置 NSOperationQueue 的 <code>maxConcurrentOperationCount</code> 属性为一.那么它就变成了串行队列.NSOperationQueue 提供了获取 main 队列的方法.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+ (NSOperationQueue *)<span class="function">mainQueue <span class="title">NS_AVAILABLE</span><span class="params">(<span class="number">10</span>_6, <span class="number">4</span>_0)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>不过一般情况下我们会使用 </p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSOperationQueue *queue = <span class="comment">[<span class="comment">[NSOperationQueue alloc]</span> init]</span>;</span><br></pre></td></tr></table></figure>
+<p>进行初始化创建,然后通过以下三种方法添加任务,如果使用了下面三个方法,那么自动执行了 NSOperation 的 <code>start</code> 方法</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加一个NSOperation</span></span><br><span class="line">- (<span class="keyword">void</span>)addOperation:(NSOperation *)op;</span><br><span class="line"><span class="comment">// 添加一组NSOperation</span></span><br><span class="line">- (<span class="keyword">void</span>)addOperations:(NSArray&lt;NSOperation *&gt; *)ops waitUntilFinished:(BOOL)<span class="function">wait <span class="title">NS_AVAILABLE</span><span class="params">(<span class="number">10</span>_6, <span class="number">4</span>_0)</span></span>;</span><br><span class="line"><span class="comment">// 以 block 的形式 添加任务(代替 NSBlockOperation)</span></span><br><span class="line">- (<span class="keyword">void</span>)addOperationWithBlock:(<span class="keyword">void</span> (^)(<span class="keyword">void</span>))<span class="function">block <span class="title">NS_AVAILABLE</span><span class="params">(<span class="number">10</span>_6, <span class="number">4</span>_0)</span></span>;</span><br></pre></td></tr></table></figure>
 </span>
       
     </div>
@@ -398,8 +418,8 @@ iOS 中的多线程编程iOS 中的多线程分为以下三种: NSThread, NSOper
         
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2015/09/29/iOS_ multithreading/"
-           data-title="iOS 中的多线程" data-url="http://yoursite.com/2015/09/29/iOS_ multithreading/">
+      <div class="ds-thread" data-thread-key="2015/09/29/iOS_multithreading/"
+           data-title="iOS 中的多线程" data-url="http://yoursite.com/2015/09/29/iOS_multithreading/">
       </div>
     
   </div>
