@@ -265,7 +265,7 @@
           <span itemprop="articleBody">
             
             最近听了 sunnyxx 大神关于 RunLoop 的分享会,总结一下 iOS 中的 RunLoop.
-什么是 RunLoopRunLoop 顾名思义指的是运行的循环,指一个事件处理的循环,用来不停地调动工作以及处理输入事件.通俗点说RunLoop 好比一个 While 循环,不停地在监听事件,处理
+什么是 RunLoopRunLoop 顾名思义指的是运行的循环,指一个事件处理的循环,用来不停地调动工作以及处理输入事件.通俗点说RunLoop 好比一个 While 循环,不停地在监听事件,处理事件.不过 Apple 在此基础上进行了大量优化,使得大大减少了 CPU 的占用.比如给 RunLoop 添加了不同事件源,不同的 mode,使其在不工作时休眠等.不过 RunLoop 并不是 iOS / OS X 所特有的,在任何平台的多线程编程中,为了处理异步消息,都有这样一个类似消息队列的概念
             ...
           </span>
           <div class="post-more-link text-center">
@@ -359,7 +359,12 @@
             
             整理了一下 iOS 开发中会遇到的几种多线程.
 iOS 中的多线程编程iOS 中的多线程分为以下三种: NSThread, NSOperation/NSOperationQueue, GCD. 其中 NSOperation/NSOperationQueue 是对 GCD 的面向对象封装.
-基本概念线
+基本概念线程 / 进程
+进程(Process):操作系统进行资源分配和调度的基本单位,计算机中已运行程序的实体.
+线程(thread):操作系统进行运算调度的最小单位,它被包含在进程之中,是进程中的实际运作单位.一个进程中至少包含一条线程,即主线程.
+
+同步 / 异步
+同步:同步操作会等待操作执行完成后,再继
             ...
           </span>
           <div class="post-more-link text-center">
@@ -451,7 +456,8 @@ iOS 中的多线程编程iOS 中的多线程分为以下三种: NSThread, NSOper
         
           <span itemprop="articleBody">
             
-            Runtime 是什么Objective-C 是基于 C 语言加入了面向对象特性和消息转发机制的动态语言,因此它尽可能地将一些工作从编译链接推迟到运行时.这意味着仅仅有编译器是不够的,还需要一套运行时系统来执行编译后的代码.这个运行时系统就是一个用 C 和汇编写的 Runtime 库,它是 Obje
+            Runtime 是什么Objective-C 是基于 C 语言加入了面向对象特性和消息转发机制的动态语言,因此它尽可能地将一些工作从编译链接推迟到运行时.这意味着仅仅有编译器是不够的,还需要一套运行时系统来执行编译后的代码.这个运行时系统就是一个用 C 和汇编写的 Runtime 库,它是 Objective-C 作为一门动态语言的是基础.虽然这些特性在开发中使用的较少，但是理解 Objective-C 的 Runtime 机制可以帮我们更好的了解这个语言,合理的运用还能在系统层面上解决一些技术问题.你可以这里在下载到 Apple 维护的 Runtime 源码,开始我们的探索.
+Runtime
             ...
           </span>
           <div class="post-more-link text-center">
@@ -545,7 +551,10 @@ iOS 中的多线程编程iOS 中的多线程分为以下三种: NSThread, NSOper
             
             什么是 BlockBlock 翻译成中文就是块,顾名思义指的是代码块.与函数类似,有参数,有返回值.只不过是直接实现在另一个函数里的,同时可以获取该函数的局部变量. Block 只是 Objective-C 对闭包的实现.
 
-讲人话:  Block 就是一段能够在将来被执行的代码. Block 本身
+讲人话:  Block 就是一段能够在将来被执行的代码. Block 本身就是一个普通的 Objective-C 对象.正因为它是对象，Block 可以被作为参数传递，可以作为返回值从一个方法返回，可以用来给变量赋值
+
+Block 的申明定义可以先看一下 How Do I Declare A Block in Objective-C?Block 的声明格式如下：
+1ret
             ...
           </span>
           <div class="post-more-link text-center">
@@ -638,7 +647,10 @@ iOS 中的多线程编程iOS 中的多线程分为以下三种: NSThread, NSOper
           <span itemprop="articleBody">
             
             想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 GitHub 和 Hexo 在 Mac 下搭建属于自己的博客.
-GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是托管在 GitHub 上的
+GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是托管在 GitHub 上的.你需要创建一个仓库 + New repository,名称为 GitHub用户名.github.io
+Homebrew接下来我们会多次使用到 homebrew
+安装 Homebrew 直接使用 Mac 自带的 ruby 脚本
+1$ ruby -e "$(curl -fsSL https://raw
             ...
           </span>
           <div class="post-more-link text-center">
