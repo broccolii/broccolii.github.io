@@ -62,7 +62,7 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
 <meta property="og:description" content="ReactiveCocoa 是什么ReactiveCocoa（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.
 ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件,并作出反应,例如对 UIButton 的点击事件使用 TA 模式,对 UIScrollView 的滚动事件使用 delegate,对属">
 <meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/ReactiveCocoa_exploration/RACSignal.jpg">
-<meta property="og:updated_time" content="2016-01-12T11:28:59.000Z">
+<meta property="og:updated_time" content="2016-01-12T11:32:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ReactiveCocoa 初探">
 <meta name="twitter:description" content="ReactiveCocoa 是什么ReactiveCocoa（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.
@@ -300,8 +300,7 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
 <p>序列与Clojure中的序列（特别是lazy-seq）以及Haskell中的List类型相似。</p>
 <p>RAC给大多数Cocoa的集合类添加了-rac_sequence方法，允许它们使用作为RACSequences。<br><strong>RACScheduler</strong><br>Scheduler是信号执行工作以及返回它们的结果的一个串行执行队列。它由RACScheduler类描述。</p>
 <p>Scheduler类似于GCD的队列(queue)，但是scheduler支持取消操作，并且始终串行执行。唯一的例外是+immediateScheduler，schedulers不提供同步执行。这有助于避免死锁，并促使(encourages)用信号操作来替代block。</p>
-<p>RACScheduler有时候也像NSOperationQueue，但是schedulers不允许任务重新排序与相互依赖<br><strong>RACSequence</strong><br><strong>RACSequence</strong><br><strong>Commands</strong></p>
-<p>command创建并订阅一个信号以响应一些动作(action)。这使得它很容易处理UI与应用之间的side-effecting work。</p>
+<p>RACScheduler有时候也像NSOperationQueue，但是schedulers不允许任务重新排序与相互依赖<br><strong>RACSequence</strong><br><strong>RACSequence</strong><br><strong>RACCommands</strong><br><strong>RACChannelTerminal</strong><br>command创建并订阅一个信号以响应一些动作(action)。这使得它很容易处理UI与应用之间的side-effecting work。</p>
 <p>通常触发command的动作是由UI驱动的，比如按钮的点击。命令也可以根据信号被自动禁用，并且这种禁用状态能过通过禁用任何与command相关的控件来表现在UI上。</p>
 <p>在OS X上，RAC为NSButton增加了一个rac_command属性来自动设置上述行为(behaviors)。</p>
 <p><strong>Connections</strong></p>
@@ -325,8 +324,9 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
 </ul>
 <figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="collection">[<span class="collection">[<span class="collection">[NSNotificationCenter defaultCenter]</span> rac_addObserverForName:UIApplicationDidEnterBackgroundNotification object:nil]</span> subscribeNext:^<span class="list">(<span class="keyword">NSNotification</span> * notification)</span> <span class="collection">&#123;</span><br><span class="line">	// 收到通知 </span><br><span class="line">&#125;</span>]</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>定时器<br>1.延迟一段时间后再做某件事</li>
+<li>定时器</li>
 </ul>
+<p>1.延迟一段时间后再做某件事</p>
 <figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr_selector">[[RACScheduler mainThreadScheduler]</span> <span class="tag">afterDelay</span><span class="pseudo">:2</span> <span class="tag">schedule</span>:^&#123;</span><br><span class="line"><span class="comment">// do something</span></span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
 <p>2.每个一定长度时间做一件事</p>
 <figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="collection">[<span class="collection">[RACSignal interval:1 onScheduler:<span class="collection">[RACScheduler mainThreadScheduler]</span>]</span>subscribeNext:^<span class="list">(<span class="keyword">NSDate</span> * date)</span> <span class="collection">&#123;</span><br><span class="line">// do something</span><br><span class="line">&#125;</span>]</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
@@ -432,7 +432,7 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
 <ul>
 <li>throttle 节流,当某个信号发送比较频繁时可以隔一段时间获取信号的最新内容</li>
 </ul>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">RACSubject *signal = [RACSubject subject];</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 在十秒内不接受任何信号内容,十秒后获取最后发送的信号内容</span></span><br><span class="line">[[signal <span class="string">throttle:</span><span class="number">10</span>] <span class="string">subscribeNext:</span>^(id x) &#123;</span><br><span class="line">   </span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在十秒内不接受任何信号内容,十秒后获取最后发送的信号内容</span></span><br><span class="line"><span class="attr_selector">[[[RACSubject subject]</span> <span class="tag">throttle</span><span class="pseudo">:10</span>] <span class="tag">subscribeNext</span>:^(id x) &#123;</span><br><span class="line">   </span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
 <ul>
 <li>repeat<h3 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h3><h3 id="u6CE8_u610F_u4E8B_u9879"><a href="#u6CE8_u610F_u4E8B_u9879" class="headerlink" title="注意事项"></a>注意事项</h3></li>
 </ul>
