@@ -62,7 +62,7 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
 <meta property="og:description" content="ReactiveCocoa 是什么ReactiveCocoa（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.
 ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件,并作出反应,例如对 UIButton 的点击事件使用 TA 模式,对 UIScrollView 的滚动事件使用 delegate,对属">
 <meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/ReactiveCocoa_exploration/RACSignal.jpg">
-<meta property="og:updated_time" content="2016-01-12T12:56:06.000Z">
+<meta property="og:updated_time" content="2016-01-12T14:25:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ReactiveCocoa 初探">
 <meta name="twitter:description" content="ReactiveCocoa 是什么ReactiveCocoa（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.
@@ -274,7 +274,9 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
 <h3 id="u7F16_u7A0B_u8303_u5F0F_3A__u51FD_u6570_u5F0F_u7F16_u7A0B_/__u54CD_u5E94_u5F0F_u7F16_u7A0B"><a href="#u7F16_u7A0B_u8303_u5F0F_3A__u51FD_u6570_u5F0F_u7F16_u7A0B_/__u54CD_u5E94_u5F0F_u7F16_u7A0B" class="headerlink" title="编程范式: 函数式编程 / 响应式编程"></a>编程范式: 函数式编程 / 响应式编程</h3><p><em>ReactiveCocoa被描述为函数响应式编程（FRP）框架,使用 FRP 有两个好处: 直观和灵活.</em><br>1.函数式编程（Functional Programming）<br>函数式编程(functional programming)简单的来说就是一种编程范型,主要思想是把运算过程尽量写成一系列嵌套的函数调用.函数编程语言最重要的基础是 λ 演算(lambda calculus),而且 λ 演算的函数可以接受函数当作输入和输出.函数式编程更加强调程序执行的结果而非执行的过程,倡导利用若干简单的执行单元让计算结果不断渐进,逐层推导复杂的运算,而不是设计一个复杂的执行过程.<br>阮一峰老师有一个关于<a href="http://www.ruanyifeng.com/blog/2012/04/functional_programming.html" target="_blank" rel="external">函数式编程</a>的例子,如下:</p>
 <blockquote>
 <p>举例来说，现在有这样一个数学表达式：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; (<span class="number">1</span> + <span class="number">2</span>) * <span class="number">3</span> - <span class="number">4</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+ <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">1</span> + <span class="number">2</span>) * <span class="number">3</span> - <span class="number">4</span></span><br></pre></td></tr></table></figure>
+<blockquote>
 <p>我们可能会这样写:</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="variable"><span class="keyword">var</span> a</span> = <span class="number">1</span> + <span class="number">2</span></span><br><span class="line">&gt; <span class="variable"><span class="keyword">var</span> b</span> = a * <span class="number">3</span>　　</span><br><span class="line">&gt; <span class="variable"><span class="keyword">var</span> c</span> = b - <span class="number">4</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 <p>函数式编程要求使用函数，我们可以把运算过程定义为不同的函数，然后写成下面这样：</p>
