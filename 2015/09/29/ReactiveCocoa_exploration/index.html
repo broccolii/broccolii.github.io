@@ -62,7 +62,7 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
 <meta property="og:description" content="ReactiveCocoa 是什么ReactiveCocoa（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.
 ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件,并作出反应,例如对 UIButton 的点击事件使用 TA 模式,对 UIScrollView 的滚动事件使用 delegate,对属">
 <meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/ReactiveCocoa_exploration/RACSignal.jpg">
-<meta property="og:updated_time" content="2016-01-12T11:12:25.000Z">
+<meta property="og:updated_time" content="2016-01-12T11:18:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ReactiveCocoa 初探">
 <meta name="twitter:description" content="ReactiveCocoa 是什么ReactiveCocoa（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.
@@ -371,7 +371,8 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
 <li>reduce 把信号发出元组的值聚合成一个值</li>
 </ul>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">RACSignal *signalA = [RACSignal <span class="string">createSignal:</span>^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">   [subscriber <span class="string">sendNext:</span>@<span class="string">"signalA"</span>];</span><br><span class="line">   <span class="keyword">return</span> nil;</span><br><span class="line">&#125;];</span><br><span class="line">RACSignal *signalB = [RACSignal <span class="string">createSignal:</span>^RACDisposable *(id&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">   [subscriber <span class="string">sendNext:</span>@<span class="string">"signalB"</span>];</span><br><span class="line">   <span class="keyword">return</span> nil;</span><br><span class="line">&#125;];</span><br><span class="line">[[RACSignal <span class="string">combineLatest:</span>@[sugarSignal, waterSignal] <span class="string">reduce:</span>^id (NSString *str1, NSString *str2)&#123;</span><br><span class="line">   <span class="keyword">return</span> [str1 <span class="string">stringByAppendingString:</span>str2];</span><br><span class="line">&#125;] <span class="string">subscribeNext:</span>^(id x) &#123;</span><br><span class="line">	<span class="comment">// 输出 "str1str2"</span></span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
-<h4 id="u8FC7_u6EE4"><a href="#u8FC7_u6EE4" class="headerlink" title="过滤"></a>过滤</h4><ul>
+<ul>
+<li>combineLatest<h4 id="u8FC7_u6EE4"><a href="#u8FC7_u6EE4" class="headerlink" title="过滤"></a>过滤</h4></li>
 <li>filter 过滤信号</li>
 </ul>
 <figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="collection">[<span class="collection">[<span class="collection">[textField rac_textSignal]</span> filter:<span class="comment">^BOOL</span><span class="list">(<span class="keyword">id</span> value)</span> <span class="collection">&#123;</span><br><span class="line">   return textField.text.length &gt; <span class="number">6</span> ? YES : NO;</span><br><span class="line">&#125;</span>]</span> subscribeNext:^<span class="list">(<span class="keyword">id</span> x)</span> <span class="collection">&#123;</span><br><span class="line">  // 之后当 textField.text 的长度大于六位才会接收到信号</span><br><span class="line">&#125;</span>]</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
@@ -392,14 +393,18 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
 </ul>
 <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">RACSubject *signal = <span class="comment">[RACSubject subject]</span>;</span><br><span class="line"><span class="comment">[<span class="comment">[signal takeLast:1]</span> subscribeNext:^(id x) &#123;</span><br><span class="line">	// 只会接受最后一次信号</span><br><span class="line">&#125;]</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">[signal sendNext:@1]</span>;</span><br><span class="line"><span class="comment">[signal sendNext:@2]</span>;</span><br><span class="line"><span class="comment">[signal sendCompleted]</span>;</span><br></pre></td></tr></table></figure>
 <ul>
+<li>takeUntil 监听信号直到某个信号执行完成</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr_selector">[[textField rac_textSignal]</span> <span class="tag">takeUntil</span><span class="pseudo">:self</span><span class="class">.rac_willDeallocSignal</span>];</span><br></pre></td></tr></table></figure>
+<ul>
 <li>skip 跳过 N 个信号</li>
 </ul>
 <figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="collection">[<span class="collection">[<span class="collection">[textField rac_textSignal]</span> skip:1]</span> subscribeNext:^<span class="list">(<span class="keyword">id</span> x)</span> <span class="collection">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span>]</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>takeUntil 监听信号直到某个信号执行完成</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr_selector">[[textField rac_textSignal]</span> <span class="tag">takeUntil</span><span class="pseudo">:self</span><span class="class">.rac_willDeallocSignal</span>];</span><br></pre></td></tr></table></figure>
-<h4 id="u79E9_u5E8F"><a href="#u79E9_u5E8F" class="headerlink" title="秩序"></a>秩序</h4><ul>
+<li>takeWhileBlock:</li>
+<li>skipWhileBlock:</li>
+<li>skipUntilBlock:</li>
+<li>switchToLatest<h4 id="u79E9_u5E8F"><a href="#u79E9_u5E8F" class="headerlink" title="秩序"></a>秩序</h4></li>
 <li>doNext 执行 Next 之前，会先执行这个Block</li>
 <li>doCompleted 执行 sendCompleted 之前，会先执行这个Block</li>
 </ul>
@@ -425,10 +430,13 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
 </ul>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">RACSignal *signal = [[RACSignal createSignal:^RACDisposable *(<span class="keyword">id</span>&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line"> 	<span class="keyword">static</span> <span class="keyword">int</span> a = <span class="number">1</span>; </span><br><span class="line">	[subscriber sendNext:@(a)];</span><br><span class="line">	a ++;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">nil</span>;</span><br><span class="line">&#125;] replay];</span><br><span class="line">    </span><br><span class="line">[signal subscribeNext:^(<span class="keyword">id</span> x) &#123;</span><br><span class="line">   <span class="built_in">NSLog</span>(<span class="string">@"第一个订阅者%@"</span>,x);</span><br><span class="line">&#125;];</span><br><span class="line">    </span><br><span class="line">[signal subscribeNext:^(<span class="keyword">id</span> x) &#123;</span><br><span class="line">   <span class="built_in">NSLog</span>(<span class="string">@"第二个订阅者%@"</span>,x);</span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 两个输出都为 1</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>throttle 节流,当某个信号发送比较频繁时可以隔一段时间获取信号的最新内容<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">RACSubject *signal = [RACSubject subject];</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 在十秒内不接受任何信号内容,十秒后获取最后发送的信号内容</span></span><br><span class="line">[[signal <span class="string">throttle:</span><span class="number">10</span>] <span class="string">subscribeNext:</span>^(id x) &#123;</span><br><span class="line">   </span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<li><p>throttle 节流,当某个信号发送比较频繁时可以隔一段时间获取信号的最新内容</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">RACSubject *signal = [RACSubject subject];</span><br><span class="line">    </span><br><span class="line"><span class="comment">// 在十秒内不接受任何信号内容,十秒后获取最后发送的信号内容</span></span><br><span class="line">[[signal <span class="string">throttle:</span><span class="number">10</span>] <span class="string">subscribeNext:</span>^(id x) &#123;</span><br><span class="line">   </span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
 </li>
+<li><p>repeat</p>
+<h3 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h3><h3 id="u6CE8_u610F_u4E8B_u9879"><a href="#u6CE8_u610F_u4E8B_u9879" class="headerlink" title="注意事项"></a>注意事项</h3></li>
 </ul>
-<h3 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h3><h3 id="u6CE8_u610F_u4E8B_u9879"><a href="#u6CE8_u610F_u4E8B_u9879" class="headerlink" title="注意事项"></a>注意事项</h3></span>
+</span>
       
     </div>
 
