@@ -62,7 +62,7 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
 <meta property="og:description" content="ReactiveCocoa 是什么ReactiveCocoa（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.
 ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件,并作出反应,例如对 UIButton 的点击事件使用 TA 模式,对 UIScrollView 的滚动事件使用 delegate,对属">
 <meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/ReactiveCocoa_exploration/RACSignal.jpg">
-<meta property="og:updated_time" content="2016-01-12T14:28:45.000Z">
+<meta property="og:updated_time" content="2016-01-12T14:42:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ReactiveCocoa 初探">
 <meta name="twitter:description" content="ReactiveCocoa 是什么ReactiveCocoa（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.
@@ -404,7 +404,9 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
 <li>takeUntilBlock:(BOOL (^)(id x)) 对于每个信号的值，运行block，当block返回YES时停止.</li>
 <li>takeWhileBlock:(BOOL (^)(id x)) 对于每个信号的值，运行block，当block返回NO时停止.</li>
 <li>skipUntilBlock:(BOOL (^)(id x)) 对于每个信号的值，运行block，当block返回YES时停止跳过.</li>
-<li>skipWhileBlock:(BOOL (^)(id x)) 对于每个信号的值，运行block，当block返回NO时停止跳过.<h4 id="u79E9_u5E8F"><a href="#u79E9_u5E8F" class="headerlink" title="秩序"></a>秩序</h4></li>
+<li>skipWhileBlock:(BOOL (^)(id x)) 对于每个信号的值，运行block，当block返回NO时停止跳过.</li>
+</ul>
+<h4 id="u79E9_u5E8F"><a href="#u79E9_u5E8F" class="headerlink" title="秩序"></a>秩序</h4><ul>
 <li>doNext 执行 Next 之前，会先执行这个Block</li>
 <li>doCompleted 执行 sendCompleted 之前，会先执行这个Block</li>
 </ul>
