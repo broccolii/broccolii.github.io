@@ -62,7 +62,7 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
 <meta property="og:description" content="ReactiveCocoa 是什么ReactiveCocoa（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.
 ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件,并作出反应,例如对 UIButton 的点击事件使用 TA 模式,对 UIScrollView 的滚动事件使用 delegate,对属">
 <meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/ReactiveCocoa_exploration/RACSignal.jpg">
-<meta property="og:updated_time" content="2016-01-12T14:25:41.000Z">
+<meta property="og:updated_time" content="2016-01-12T14:28:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ReactiveCocoa 初探">
 <meta name="twitter:description" content="ReactiveCocoa 是什么ReactiveCocoa（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.
@@ -275,12 +275,16 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
 <blockquote>
 <p>举例来说，现在有这样一个数学表达式：</p>
 </blockquote>
- <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">1</span> + <span class="number">2</span>) * <span class="number">3</span> - <span class="number">4</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">1</span> + <span class="number">2</span>) * <span class="number">3</span> - <span class="number">4</span></span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>我们可能会这样写:</p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="variable"><span class="keyword">var</span> a</span> = <span class="number">1</span> + <span class="number">2</span></span><br><span class="line">&gt; <span class="variable"><span class="keyword">var</span> b</span> = a * <span class="number">3</span>　　</span><br><span class="line">&gt; <span class="variable"><span class="keyword">var</span> c</span> = b - <span class="number">4</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> a</span> = <span class="number">1</span> + <span class="number">2</span></span><br><span class="line"><span class="variable"><span class="keyword">var</span> b</span> = a * <span class="number">3</span>　　</span><br><span class="line"><span class="variable"><span class="keyword">var</span> c</span> = b - <span class="number">4</span></span><br></pre></td></tr></table></figure>
+<blockquote>
 <p>函数式编程要求使用函数，我们可以把运算过程定义为不同的函数，然后写成下面这样：</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">var</span> <span class="literal">result</span> = subtract(multiply(add(<span class="number">1</span>,<span class="number">2</span>), <span class="number">3</span>), <span class="number">4</span>)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> <span class="literal">result</span> = subtract(multiply(add(<span class="number">1</span>,<span class="number">2</span>), <span class="number">3</span>), <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
 <p>这就是函数式编程</p>
 </blockquote>
 <p>2.响应式编程（Reactive Programming)<br>响应式编程是一种面向数据流和变化传播的编程范式.这意味着可以在编程语言中很方便地表达静态或动态的数据流,而相关的计算模型会自动将变化的值通过数据流进行传播.我们看一下刚刚阮老师的代码 <code>var b = a * 3</code> 如果 <code>a</code> 的值从 3 变成了 5, 那么 <code>b</code> 的值会随着 <code>a</code> 的变化而变化. <code>b</code> 的值就从 9 变为了 15.</p>
@@ -307,7 +311,7 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
 <h3 id="ReactiveCocoa__u4E2D_u7684_u5E38_u7528_u5F02_u6B65_u5904_u7406"><a href="#ReactiveCocoa__u4E2D_u7684_u5E38_u7528_u5F02_u6B65_u5904_u7406" class="headerlink" title="ReactiveCocoa 中的常用异步处理"></a>ReactiveCocoa 中的常用异步处理</h3><ul>
 <li>Delegate (有局限,只能取代没有返回值的代理方法)</li>
 </ul>
-<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="collection">[<span class="collection">[self rac_signalForSelector:@selector<span class="list">(<span class="keyword">textFieldDidBeginEditing:</span>)</span></span><br><span class="line"> fromProtocol:@protocol<span class="list">(<span class="keyword">UITextFieldDelegate</span>)</span>]</span></span><br><span class="line"> subscribeNext:^<span class="list">(<span class="keyword">id</span> x)</span> <span class="collection">&#123;</span><br><span class="line">// 代理方法</span><br><span class="line">&#125;</span>]</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[[<span class="keyword">self</span> rac_signalForSelector:<span class="keyword">@selector</span>(textFieldDidBeginEditing:)</span><br><span class="line"> fromProtocol:<span class="class"><span class="keyword">@protocol</span>(<span class="title">UITextFieldDelegate</span>)]</span></span><br><span class="line"> subscribeNext:^(<span class="keyword">id</span> x) &#123;</span><br><span class="line"><span class="comment">// 代理方法</span></span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
 <ul>
 <li>Target-Action</li>
 </ul>
