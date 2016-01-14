@@ -62,7 +62,7 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
 <meta property="og:description" content="ReactiveCocoa 是什么ReactiveCocoa（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.(注: 文本例子使用 ReactiveCocoa 2.5)
 ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件,并作出反应,例如对 UIButton 的点击事件使用 TA 模式,对 UIS">
 <meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/ReactiveCocoa_exploration/RACSignal.jpg">
-<meta property="og:updated_time" content="2016-01-14T05:43:11.000Z">
+<meta property="og:updated_time" content="2016-01-14T05:56:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ReactiveCocoa 初探">
 <meta name="twitter:description" content="ReactiveCocoa 是什么ReactiveCocoa（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.(注: 文本例子使用 ReactiveCocoa 2.5)
@@ -343,6 +343,11 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
 <figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RAC(self.labelView,<span class="keyword">text</span>) = <span class="keyword">textField</span>.rac_textSignal;</span><br></pre></td></tr></table></figure>
 <p><strong>RACObserve()</strong> 新建一个 <code>RACSignal</code> 并对对象的属性的值进行观察</p>
 <figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="collection">[RACObserve<span class="list">(<span class="keyword">textField</span>, text)</span> subscribeNext:^<span class="list">(<span class="keyword">id</span> x)</span> <span class="collection">&#123;</span><br><span class="line">// 当 text 发生改变时,会接收到信号</span><br><span class="line">&#125;</span>]</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p><strong>RACTuplePack</strong> 把数据包装成 RACTuple 类型</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RACTuple *tuple = RACTuplePack(<span class="constant">@10</span>,<span class="constant">@20</span>)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p><strong>RACTupleUnpack</strong> 把 RACTuple 类型解包</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// num1 = 10, num2 = 20</span></span><br><span class="line">RACTupleUnpack(<span class="built_in">NSNumber</span> *num1,<span class="built_in">NSNumber</span> *num2) = tuple;</span><br></pre></td></tr></table></figure>
+<p><strong>@weakify(Obj) / @strongify(Obj)</strong><br>用来生成 <code>__weak的self_weak_变量</code> 和 <code>__strong的self指针指向self_weak</code> 用来处理 block 调用中的 循环引用.实现细节可以参考 <a href="http://blog.sunnyxx.com/2014/03/06/rac_1_macros/" target="_blank" rel="external">sunnyxx 大神的 神奇的Macros</a></p>
 <h3 id="u5E38_u7528_u64CD_u4F5C"><a href="#u5E38_u7528_u64CD_u4F5C" class="headerlink" title="常用操作"></a>常用操作</h3><p>例子摘自<a href="http://www.jianshu.com/p/e10e5ca413b7" target="_blank" rel="external">最快让你上手ReactiveCocoa之进阶篇</a> 和 <a href="http://ios.jobbole.com/82356/" target="_blank" rel="external">这样好用的ReactiveCocoa,根本停不下来</a>(PS: 如果知道原文地址请告知 :) )</p>
 <h5 id="u6620_u5C04"><a href="#u6620_u5C04" class="headerlink" title="映射"></a>映射</h5><ul>
 <li>map 将信号的值映射成一个新值</li>
