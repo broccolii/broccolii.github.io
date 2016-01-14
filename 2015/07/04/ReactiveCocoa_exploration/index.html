@@ -53,20 +53,20 @@
 
 
 
-<meta name="description" content="ReactiveCocoa 是什么ReactiveCocoa（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.
-ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件,并作出反应,例如对 UIButton 的点击事件使用 TA 模式,对 UIScrollView 的滚动事件使用 delegate,对属">
+<meta name="description" content="ReactiveCocoa 是什么ReactiveCocoa（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.(注: 文本例子使用 ReactiveCocoa 2.5)
+ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件,并作出反应,例如对 UIButton 的点击事件使用 TA 模式,对 UIS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ReactiveCocoa 初探">
-<meta property="og:url" content="http://yoursite.com/2015/09/29/ReactiveCocoa_exploration/index.html">
+<meta property="og:url" content="http://yoursite.com/2015/07/04/ReactiveCocoa_exploration/index.html">
 <meta property="og:site_name" content="一朵西兰花">
-<meta property="og:description" content="ReactiveCocoa 是什么ReactiveCocoa（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.
-ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件,并作出反应,例如对 UIButton 的点击事件使用 TA 模式,对 UIScrollView 的滚动事件使用 delegate,对属">
+<meta property="og:description" content="ReactiveCocoa 是什么ReactiveCocoa（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.(注: 文本例子使用 ReactiveCocoa 2.5)
+ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件,并作出反应,例如对 UIButton 的点击事件使用 TA 模式,对 UIS">
 <meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/ReactiveCocoa_exploration/RACSignal.jpg">
-<meta property="og:updated_time" content="2016-01-13T03:44:57.000Z">
+<meta property="og:updated_time" content="2016-01-14T02:42:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ReactiveCocoa 初探">
-<meta name="twitter:description" content="ReactiveCocoa 是什么ReactiveCocoa（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.
-ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件,并作出反应,例如对 UIButton 的点击事件使用 TA 模式,对 UIScrollView 的滚动事件使用 delegate,对属">
+<meta name="twitter:description" content="ReactiveCocoa 是什么ReactiveCocoa（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.(注: 文本例子使用 ReactiveCocoa 2.5)
+ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件,并作出反应,例如对 UIButton 的点击事件使用 TA 模式,对 UIS">
 
 
 
@@ -238,8 +238,8 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-09-29T04:12:01+08:00" content="2015-09-29">
-              2015-09-29
+            <time itemprop="dateCreated" datetime="2015-07-04T03:52:39+08:00" content="2015-07-04">
+              2015-07-04
             </time>
           </span>
 
@@ -249,8 +249,8 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
             
               <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/09/29/ReactiveCocoa_exploration/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/09/29/ReactiveCocoa_exploration/" itemprop="commentsCount"></span>
+              <a href="/2015/07/04/ReactiveCocoa_exploration/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/07/04/ReactiveCocoa_exploration/" itemprop="commentsCount"></span>
               </a>
             </span>
             
@@ -269,7 +269,7 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
       
 
       
-        <span itemprop="articleBody"><h3 id="ReactiveCocoa__u662F_u4EC0_u4E48"><a href="#ReactiveCocoa__u662F_u4EC0_u4E48" class="headerlink" title="ReactiveCocoa 是什么"></a>ReactiveCocoa 是什么</h3><p><a href="https://github.com/ReactiveCocoa/ReactiveCocoa" target="_blank" rel="external">ReactiveCocoa</a>（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.</p>
+        <span itemprop="articleBody"><h3 id="ReactiveCocoa__u662F_u4EC0_u4E48"><a href="#ReactiveCocoa__u662F_u4EC0_u4E48" class="headerlink" title="ReactiveCocoa 是什么"></a>ReactiveCocoa 是什么</h3><p><a href="https://github.com/ReactiveCocoa/ReactiveCocoa" target="_blank" rel="external">ReactiveCocoa</a>（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.(注: 文本例子使用 ReactiveCocoa 2.5)</p>
 <h3 id="ReactiveCocoa__u7684_u4F5C_u7528"><a href="#ReactiveCocoa__u7684_u4F5C_u7528" class="headerlink" title="ReactiveCocoa 的作用"></a>ReactiveCocoa 的作用</h3><p>在 iOS 开发过程中,我们需要监听不同的事件,并作出反应,例如对 <code>UIButton</code> 的点击事件使用 <code>TA</code> 模式,对 <code>UIScrollView</code> 的滚动事件使用 <code>delegate</code>,对属性变化监听使用 <code>KVO</code>.那么我们可能会想能不能使用同一的标准? <code>ReactiveCocoa</code> 为我们提供了一个单独的、统一的方法来这些行为.它可以把要处理的事情,和监听的事情的代码放在一起,便于我们管理代码,非常符合我们开发中<code>高聚合,低耦合</code>的思想.</p>
 <h3 id="u7F16_u7A0B_u8303_u5F0F_3A__u51FD_u6570_u5F0F_u7F16_u7A0B_/__u54CD_u5E94_u5F0F_u7F16_u7A0B"><a href="#u7F16_u7A0B_u8303_u5F0F_3A__u51FD_u6570_u5F0F_u7F16_u7A0B_/__u54CD_u5E94_u5F0F_u7F16_u7A0B" class="headerlink" title="编程范式: 函数式编程 / 响应式编程"></a>编程范式: 函数式编程 / 响应式编程</h3><p><em>ReactiveCocoa被描述为函数响应式编程（FRP）框架,使用 FRP 有两个好处: 直观和灵活.</em><br><strong>函数式编程(Functional Programming)</strong><br>函数式编程(functional programming)简单的来说就是一种编程范型,主要思想是把运算过程尽量写成一系列嵌套的函数调用.函数编程语言最重要的基础是 λ 演算(lambda calculus),而且 λ 演算的函数可以接受函数当作输入和输出.函数式编程更加强调程序执行的结果而非执行的过程,倡导利用若干简单的执行单元让计算结果不断渐进,逐层推导复杂的运算,而不是设计一个复杂的执行过程.<br>阮一峰老师有一个关于<a href="http://www.ruanyifeng.com/blog/2012/04/functional_programming.html" target="_blank" rel="external">函数式编程</a>的例子,如下:</p>
 <blockquote>
@@ -341,7 +341,7 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
 <figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="collection">[<span class="collection">[textField rac_textSignal]</span> subscribeNext:^<span class="list">(<span class="keyword">id</span> x)</span> <span class="collection">&#123;</span><br><span class="line">   </span><br><span class="line">&#125;</span>]</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
 <h3 id="u5B8F_u5B9A_u4E49"><a href="#u5B8F_u5B9A_u4E49" class="headerlink" title="宏定义"></a>宏定义</h3><p><strong>RAC()</strong> 可以将 RACSignal 发出事件的值赋给某个对象的某个属性</p>
 <figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RAC(self.labelView,<span class="keyword">text</span>) = <span class="keyword">textField</span>.rac_textSignal;</span><br></pre></td></tr></table></figure>
-<p><strong>ACObserve()</strong> 新建一个 <code>RACSignal</code> 并对对象的属性的值进行观察</p>
+<p><strong>RACObserve()</strong> 新建一个 <code>RACSignal</code> 并对对象的属性的值进行观察</p>
 <figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="collection">[RACObserve<span class="list">(<span class="keyword">textField</span>, text)</span> subscribeNext:^<span class="list">(<span class="keyword">id</span> x)</span> <span class="collection">&#123;</span><br><span class="line">// 当 text 发生改变时,会接收到信号</span><br><span class="line">&#125;</span>]</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
 <h3 id="u5E38_u7528_u64CD_u4F5C"><a href="#u5E38_u7528_u64CD_u4F5C" class="headerlink" title="常用操作"></a>常用操作</h3><p>例子摘自<a href="http://www.jianshu.com/p/e10e5ca413b7" target="_blank" rel="external">最快让你上手ReactiveCocoa之进阶篇</a> 和 <a href="http://ios.jobbole.com/82356/" target="_blank" rel="external">这样好用的ReactiveCocoa,根本停不下来</a>(PS: 如果知道原文地址请告知 :) )</p>
 <h5 id="u6620_u5C04"><a href="#u6620_u5C04" class="headerlink" title="映射"></a>映射</h5><ul>
@@ -396,6 +396,10 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
 <li>takeUntil 监听信号直到某个信号执行完成</li>
 </ul>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr_selector">[[textField rac_textSignal]</span> <span class="tag">takeUntil</span><span class="pseudo">:self</span><span class="class">.rac_willDeallocSignal</span>];</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>引用<a href="http://limboy.me/ios/2014/06/06/deep-into-reactivecocoa2.html" target="_blank" rel="external">limboy 大神的一个例子</a><br>它的常用场景之一是处理cell的button的点击事件,比如点击Cell的详情按钮,需要push一个VC,就可以这样:</p>
+</blockquote>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="collection">[<span class="collection">[<span class="collection">[cell.detailButton</span><br><span class="line">    rac_signalForControlEvents:UIControlEventTouchUpInside]</span></span><br><span class="line">    takeUntil:cell.rac_prepareForReuseSignal]</span></span><br><span class="line">    subscribeNext:^<span class="list">(<span class="keyword">id</span> x)</span> <span class="collection">&#123;</span><br><span class="line">        // generate and push ViewController</span><br><span class="line">&#125;</span>]</span><span class="comment">;</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>skip 跳过 N 个信号</li>
 </ul>
@@ -663,9 +667,9 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
 
     <script type="text/javascript">
       var disqus_shortname = 'broccoliii';
-      var disqus_identifier = '2015/09/29/ReactiveCocoa_exploration/';
+      var disqus_identifier = '2015/07/04/ReactiveCocoa_exploration/';
       var disqus_title = 'ReactiveCocoa 初探';
-      var disqus_url = 'http://yoursite.com/2015/09/29/ReactiveCocoa_exploration/';
+      var disqus_url = 'http://yoursite.com/2015/07/04/ReactiveCocoa_exploration/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
