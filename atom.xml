@@ -3,9 +3,9 @@
   <title><![CDATA[一朵西兰花]]></title>
   
   <link href="/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
+  <link href="http://broccolii.github.io/"/>
   <updated>2016-01-15T10:44:08.000Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://broccolii.github.io/</id>
   
   <author>
     <name><![CDATA[Broccoliii]]></name>
@@ -16,8 +16,8 @@
   
   <entry>
     <title><![CDATA[ReactiveCocoa 整理]]></title>
-    <link href="http://yoursite.com/2015/12/31/ReactiveCocoa_exploration/"/>
-    <id>http://yoursite.com/2015/12/31/ReactiveCocoa_exploration/</id>
+    <link href="http://broccolii.github.io/2015/12/31/ReactiveCocoa_exploration/"/>
+    <id>http://broccolii.github.io/2015/12/31/ReactiveCocoa_exploration/</id>
     <published>2015-12-30T19:52:39.000Z</published>
     <updated>2016-01-15T10:44:08.000Z</updated>
     <content type="html"><![CDATA[<h3 id="ReactiveCocoa__u662F_u4EC0_u4E48"><a href="#ReactiveCocoa__u662F_u4EC0_u4E48" class="headerlink" title="ReactiveCocoa 是什么"></a>ReactiveCocoa 是什么</h3><p><a href="https://github.com/ReactiveCocoa/ReactiveCocoa" target="_blank" rel="external">ReactiveCocoa</a>（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.(注: 文本例子使用 ReactiveCocoa 2.5)</p>
@@ -204,14 +204,14 @@
     <![CDATA[<h3 id="ReactiveCocoa__u662F_u4EC0_u4E48"><a href="#ReactiveCocoa__u662F_u4EC0_u4E48" class="headerlink" title="ReactiveCocoa 是什么"></a>React]]>
     </summary>
     
-      <category term="ReactiveCocoa" scheme="http://yoursite.com/tags/ReactiveCocoa/"/>
+      <category term="ReactiveCocoa" scheme="http://broccolii.github.io/tags/ReactiveCocoa/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[iOS 中的 RunLoop]]></title>
-    <link href="http://yoursite.com/2015/01/31/iOS_Runloop/"/>
-    <id>http://yoursite.com/2015/01/31/iOS_Runloop/</id>
+    <link href="http://broccolii.github.io/2015/01/31/iOS_Runloop/"/>
+    <id>http://broccolii.github.io/2015/01/31/iOS_Runloop/</id>
     <published>2015-01-30T18:11:12.000Z</published>
     <updated>2016-01-11T09:14:22.000Z</updated>
     <content type="html"><![CDATA[<p>最近听了 <a href="http://blog.sunnyxx.com/" target="_blank" rel="external">sunnyxx</a> 大神关于 RunLoop 的分享会,总结一下 iOS 中的 RunLoop.</p>
@@ -252,14 +252,14 @@
 <h3 id="u4E]]>
     </summary>
     
-      <category term="RunLoop" scheme="http://yoursite.com/tags/RunLoop/"/>
+      <category term="RunLoop" scheme="http://broccolii.github.io/tags/RunLoop/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[iOS 中的多线程]]></title>
-    <link href="http://yoursite.com/2014/09/29/iOS_multithreading/"/>
-    <id>http://yoursite.com/2014/09/29/iOS_multithreading/</id>
+    <link href="http://broccolii.github.io/2014/09/29/iOS_multithreading/"/>
+    <id>http://broccolii.github.io/2014/09/29/iOS_multithreading/</id>
     <published>2014-09-29T15:56:35.000Z</published>
     <updated>2016-01-11T06:51:45.000Z</updated>
     <content type="html"><![CDATA[<p>整理了一下 iOS 开发中会遇到的几种多线程.</p>
@@ -385,14 +385,14 @@
 <h3 id="iOS__u4E2D_u7684_u591A_u7EBF_u7A0B_u7F16_u7A0B"><a href="#iOS__u4E2D_u7684_u591A_u7EBF_u7A0B_u7F16_u7]]>
     </summary>
     
-      <category term="Thread" scheme="http://yoursite.com/tags/Thread/"/>
+      <category term="Thread" scheme="http://broccolii.github.io/tags/Thread/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Objective-C 中的 Runtime]]></title>
-    <link href="http://yoursite.com/2014/07/29/Objective-C_Runtime/"/>
-    <id>http://yoursite.com/2014/07/29/Objective-C_Runtime/</id>
+    <link href="http://broccolii.github.io/2014/07/29/Objective-C_Runtime/"/>
+    <id>http://broccolii.github.io/2014/07/29/Objective-C_Runtime/</id>
     <published>2014-07-28T20:12:01.000Z</published>
     <updated>2016-01-12T13:55:06.000Z</updated>
     <content type="html"><![CDATA[<h3 id="Runtime__u662F_u4EC0_u4E48"><a href="#Runtime__u662F_u4EC0_u4E48" class="headerlink" title="Runtime 是什么"></a>Runtime 是什么</h3><p>Objective-C 是基于 C 语言加入了面向对象特性和消息转发机制的动态语言,因此它尽可能地将一些工作从编译链接推迟到运行时.这意味着仅仅有编译器是不够的,还需要一套运行时系统来执行编译后的代码.这个运行时系统就是一个用 C 和汇编写的 Runtime 库,它是 Objective-C 作为一门动态语言的是基础.虽然这些特性在开发中使用的较少，但是理解 Objective-C 的 Runtime 机制可以帮我们更好的了解这个语言,合理的运用还能在系统层面上解决一些技术问题.<br>你可以<a href="http://opensource.apple.com/tarballs/objc4/" target="_blank" rel="external">这里</a>在下载到 Apple 维护的 Runtime 源码,开始我们的探索.</p>
@@ -450,14 +450,14 @@
     <![CDATA[<h3 id="Runtime__u662F_u4EC0_u4E48"><a href="#Runtime__u662F_u4EC0_u4E48" class="headerlink" title="Runtime 是什么"></a>Runtime 是什么</h3><p>Obje]]>
     </summary>
     
-      <category term="Runtime" scheme="http://yoursite.com/tags/Runtime/"/>
+      <category term="Runtime" scheme="http://broccolii.github.io/tags/Runtime/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Objective-C 中的 Block]]></title>
-    <link href="http://yoursite.com/2014/07/28/Objective-C_Block/"/>
-    <id>http://yoursite.com/2014/07/28/Objective-C_Block/</id>
+    <link href="http://broccolii.github.io/2014/07/28/Objective-C_Block/"/>
+    <id>http://broccolii.github.io/2014/07/28/Objective-C_Block/</id>
     <published>2014-07-27T17:11:02.000Z</published>
     <updated>2016-01-12T14:17:25.000Z</updated>
     <content type="html"><![CDATA[<h3 id="u4EC0_u4E48_u662F_Block"><a href="#u4EC0_u4E48_u662F_Block" class="headerlink" title="什么是 Block"></a>什么是 Block</h3><p>Block 翻译成中文就是块,顾名思义指的是代码块.与函数类似,有参数,有返回值.只不过是直接实现在另一个函数里的,同时可以获取该函数的局部变量. Block 只是 Objective-C 对闭包的实现.</p>
@@ -491,14 +491,14 @@
     <![CDATA[<h3 id="u4EC0_u4E48_u662F_Block"><a href="#u4EC0_u4E48_u662F_Block" class="headerlink" title="什么是 Block"></a>什么是 Block</h3><p>Block 翻译成中文就是块]]>
     </summary>
     
-      <category term="Block" scheme="http://yoursite.com/tags/Block/"/>
+      <category term="Block" scheme="http://broccolii.github.io/tags/Block/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[用 GitHub & Hexo 在 Mac 上搭建博客]]></title>
-    <link href="http://yoursite.com/2014/07/08/GitHub&Hexo-Blog/"/>
-    <id>http://yoursite.com/2014/07/08/GitHub&Hexo-Blog/</id>
+    <link href="http://broccolii.github.io/2014/07/08/GitHub&Hexo-Blog/"/>
+    <id>http://broccolii.github.io/2014/07/08/GitHub&Hexo-Blog/</id>
     <published>2014-07-08T15:22:12.000Z</published>
     <updated>2015-12-30T09:36:11.000Z</updated>
     <content type="html"><![CDATA[<p>想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 <a href="https://github.com" target="_blank" rel="external">GitHub</a> 和 <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a> 在 Mac 下搭建属于自己的博客.</p>
