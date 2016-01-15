@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[一朵西兰花]]></title>
-  
-  <link href="/atom.xml" rel="self"/>
-  <link href="http://broccolii.github.io/"/>
-  <updated>2016-01-15T10:44:08.000Z</updated>
-  <id>http://broccolii.github.io/</id>
-  
-  <author>
-    <name><![CDATA[Broccoliii]]></name>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title><![CDATA[一朵西兰花]]></title>
+    <link>http://broccolii.github.io/</link>
+    <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
+    <description><![CDATA[不求深刻,但求简单.]]></description>
+    <pubDate>Fri, 15 Jan 2016 10:44:08 GMT</pubDate>
+    <generator>http://hexo.io/</generator>
     
-  </author>
-  
-  <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title><![CDATA[ReactiveCocoa 整理]]></title>
-    <link href="http://broccolii.github.io/2015/12/31/ReactiveCocoa_exploration/"/>
-    <id>http://broccolii.github.io/2015/12/31/ReactiveCocoa_exploration/</id>
-    <published>2015-12-30T19:52:39.000Z</published>
-    <updated>2016-01-15T10:44:08.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="ReactiveCocoa__u662F_u4EC0_u4E48"><a href="#ReactiveCocoa__u662F_u4EC0_u4E48" class="headerlink" title="ReactiveCocoa 是什么"></a>ReactiveCocoa 是什么</h3><p><a href="https://github.com/ReactiveCocoa/ReactiveCocoa" target="_blank" rel="external">ReactiveCocoa</a>（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.(注: 文本例子使用 ReactiveCocoa 2.5)</p>
+    <item>
+      <title><![CDATA[ReactiveCocoa 整理]]></title>
+      <link>http://broccolii.github.io/2015/12/31/ReactiveCocoa_exploration/</link>
+      <guid>http://broccolii.github.io/2015/12/31/ReactiveCocoa_exploration/</guid>
+      <pubDate>Wed, 30 Dec 2015 19:52:39 GMT</pubDate>
+      <description>
+      <![CDATA[<h3 id="ReactiveCocoa__u662F_u4EC0_u4E48"><a href="#ReactiveCocoa__u662F_u4EC0_u4E48" class="headerlink" title="ReactiveCocoa 是什么"></a>React]]>
+      </description>
+      <content:encoded><![CDATA[<h3 id="ReactiveCocoa__u662F_u4EC0_u4E48"><a href="#ReactiveCocoa__u662F_u4EC0_u4E48" class="headerlink" title="ReactiveCocoa 是什么"></a>ReactiveCocoa 是什么</h3><p><a href="https://github.com/ReactiveCocoa/ReactiveCocoa" target="_blank" rel="external">ReactiveCocoa</a>（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.(注: 文本例子使用 ReactiveCocoa 2.5)</p>
 <h3 id="ReactiveCocoa__u7684_u4F5C_u7528"><a href="#ReactiveCocoa__u7684_u4F5C_u7528" class="headerlink" title="ReactiveCocoa 的作用"></a>ReactiveCocoa 的作用</h3><p>在 iOS 开发过程中,我们需要监听不同的事件,并作出反应,例如对 <code>UIButton</code> 的点击事件使用 <code>TA</code> 模式,对 <code>UIScrollView</code> 的滚动事件使用 <code>delegate</code>,对属性变化监听使用 <code>KVO</code>.那么我们可能会想能不能使用同一的标准? <code>ReactiveCocoa</code> 为我们提供了一个单独的、统一的方法来这些行为.它可以把要处理的事情,和监听的事情的代码放在一起,便于我们管理代码,非常符合我们开发中<code>高聚合,低耦合</code>的思想.</p>
 <h3 id="u7F16_u7A0B_u8303_u5F0F_3A__u51FD_u6570_u5F0F_u7F16_u7A0B_/__u54CD_u5E94_u5F0F_u7F16_u7A0B"><a href="#u7F16_u7A0B_u8303_u5F0F_3A__u51FD_u6570_u5F0F_u7F16_u7A0B_/__u54CD_u5E94_u5F0F_u7F16_u7A0B" class="headerlink" title="编程范式: 函数式编程 / 响应式编程"></a>编程范式: 函数式编程 / 响应式编程</h3><p><em>ReactiveCocoa被描述为函数响应式编程（FRP）框架,使用 FRP 有两个好处: 直观和灵活.</em><br><strong>函数式编程(Functional Programming)</strong><br>函数式编程(functional programming)简单的来说就是一种编程范型,主要思想是把运算过程尽量写成一系列嵌套的函数调用.函数编程语言最重要的基础是 λ 演算(lambda calculus),而且 λ 演算的函数可以接受函数当作输入和输出.函数式编程更加强调程序执行的结果而非执行的过程,倡导利用若干简单的执行单元让计算结果不断渐进,逐层推导复杂的运算,而不是设计一个复杂的执行过程.<br>阮一峰老师有一个关于<a href="http://www.ruanyifeng.com/blog/2012/04/functional_programming.html" target="_blank" rel="external">函数式编程</a>的例子,如下:</p>
 <blockquote>
@@ -199,22 +197,20 @@
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UITextField</span> * textField = [[<span class="built_in">UITextField</span> alloc]init];</span><br><span class="line">textField<span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> cyanColor];</span><br><span class="line">[<span class="keyword">self</span><span class="variable">.view</span> addSubview:textField];</span><br><span class="line">   </span><br><span class="line">@weakify(<span class="keyword">self</span>);</span><br><span class="line">[textField mas_makeConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">  @strongify(<span class="keyword">self</span>);</span><br><span class="line">  make<span class="variable">.size</span><span class="variable">.mas_equalTo</span>(<span class="built_in">CGSizeMake</span>(<span class="number">180</span>, <span class="number">40</span>));</span><br><span class="line">  make<span class="variable">.center</span><span class="variable">.equalTo</span>(<span class="keyword">self</span><span class="variable">.view</span>);</span><br><span class="line">&#125;];</span><br><span class="line"><span class="comment">//throttle 后面是个时间 表示rac_textSignal发送消息，0.3秒内没有再次发送就会相应，若是0.3内又发送消息了，便会在新的信息处重新计时</span></span><br><span class="line"><span class="comment">//distinctUntilChanged 表示两个消息相同的时候，只会发送一个请求</span></span><br><span class="line"><span class="comment">//ignore 表示如果消息和ignore后面的消息相同，则会忽略掉这条消息，不让其发送</span></span><br><span class="line">[[[[[[textField<span class="variable">.rac_textSignal</span> throttle:<span class="number">0.3</span>] distinctUntilChanged] ignore:<span class="string">@""</span>] map:^<span class="keyword">id</span>(<span class="keyword">id</span> value) &#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> [RACSignal createSignal:^RACDisposable *(<span class="keyword">id</span>&lt;RACSubscriber&gt; subscriber) &#123;</span><br><span class="line">      </span><br><span class="line">      <span class="comment">//  network request</span></span><br><span class="line">      [subscriber sendNext:value];</span><br><span class="line">      [subscriber sendCompleted];</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">return</span> [RACDisposable disposableWithBlock:^&#123;</span><br><span class="line">          </span><br><span class="line">          <span class="comment">//  cancel request</span></span><br><span class="line">      &#125;];</span><br><span class="line">  &#125;];</span><br><span class="line">&#125;]switchToLatest] subscribeNext:^(<span class="keyword">id</span> x) &#123;</span><br><span class="line">  </span><br><span class="line">  LxDBAnyVar(x);</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
 <p>这样做给服务器减小了很多的压力，更是节省了我们大量的代码。 其中我们用map建立了一个新的信号，我们知道textField的改变是一个信号， map就是在这个信号上，又加了一个信号，即signal of signals。<br>订阅者所打印的消息x则是，map发出的信号。我们可以再map中发送新的信号，以及取消信号disposable.<br>当我们用map发送信号的时候，我们则需要使用 switchToLatest这个参数来获取最后一个信号，也就是我们最后所打印的x，就是map最后发错的这个信号。</p>
 <h3 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h3><p>未完待续</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="ReactiveCocoa__u662F_u4EC0_u4E48"><a href="#ReactiveCocoa__u662F_u4EC0_u4E48" class="headerlink" title="ReactiveCocoa 是什么"></a>React]]>
-    </summary>
+]]></content:encoded>
+      <comments>http://broccolii.github.io/2015/12/31/ReactiveCocoa_exploration/#disqus_thread</comments>
+    </item>
     
-      <category term="ReactiveCocoa" scheme="http://broccolii.github.io/tags/ReactiveCocoa/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[iOS 中的 RunLoop]]></title>
-    <link href="http://broccolii.github.io/2015/01/31/iOS_Runloop/"/>
-    <id>http://broccolii.github.io/2015/01/31/iOS_Runloop/</id>
-    <published>2015-01-30T18:11:12.000Z</published>
-    <updated>2016-01-11T09:14:22.000Z</updated>
-    <content type="html"><![CDATA[<p>最近听了 <a href="http://blog.sunnyxx.com/" target="_blank" rel="external">sunnyxx</a> 大神关于 RunLoop 的分享会,总结一下 iOS 中的 RunLoop.</p>
+    <item>
+      <title><![CDATA[iOS 中的 RunLoop]]></title>
+      <link>http://broccolii.github.io/2015/01/31/iOS_Runloop/</link>
+      <guid>http://broccolii.github.io/2015/01/31/iOS_Runloop/</guid>
+      <pubDate>Fri, 30 Jan 2015 18:11:12 GMT</pubDate>
+      <description>
+      <![CDATA[<p>最近听了 <a href="http://blog.sunnyxx.com/" target="_blank" rel="external">sunnyxx</a> 大神关于 RunLoop 的分享会,总结一下 iOS 中的 RunLoop.</p>
+<h3 id="u4E]]>
+      </description>
+      <content:encoded><![CDATA[<p>最近听了 <a href="http://blog.sunnyxx.com/" target="_blank" rel="external">sunnyxx</a> 大神关于 RunLoop 的分享会,总结一下 iOS 中的 RunLoop.</p>
 <h3 id="u4EC0_u4E48_u662F_RunLoop"><a href="#u4EC0_u4E48_u662F_RunLoop" class="headerlink" title="什么是 RunLoop"></a>什么是 RunLoop</h3><p>RunLoop 顾名思义指的是运行的循环,指一个事件处理的循环,用来不停地调动工作以及处理输入事件.通俗点说RunLoop 好比一个 While 循环,不停地在监听事件,处理事件.不过 Apple 在此基础上进行了大量优化,使得大大减少了 CPU 的占用.比如给 RunLoop 添加了不同事件源,不同的 mode,使其在不工作时休眠等.不过 RunLoop 并不是 iOS / OS X 所特有的,在任何平台的多线程编程中,为了处理异步消息,都有这样一个类似消息队列的概念,比如 Android 中的 Looper.</p>
 <h3 id="RunLoop__u548C_u7EBF_u7A0B_u7684_u5173_u7CFB"><a href="#RunLoop__u548C_u7EBF_u7A0B_u7684_u5173_u7CFB" class="headerlink" title="RunLoop 和线程的关系"></a>RunLoop 和线程的关系</h3><p>RunLoop 和 iOS 的线程是紧密相连的,在 iOS 中任何线程,如果要监听处理一些事件都需要产生一个 RunLoop 的对象.主线程中的 RunLoop 在 App 启动时产生并运行,子线程中需要手动创建并运行(<code>[NSRunLoop currentRunLoop];</code> 会判断是否有 RunLoop ,而自动创建).也就是说每一个线程中都可以获取 RunLoop 对象，但是并不是每一个线程中都有 RunLoop 的实例对象.</p>
 <h3 id="RunLoop_mode"><a href="#RunLoop_mode" class="headerlink" title="RunLoop mode"></a>RunLoop mode</h3><p>RunLoop 运行时,它会显式或隐式地指定一个mode.并只能以一种固定的模式运行,只会监听这个 mode 下添加的 Time Source 和 Input Source.如果这个模式下没有添加事件源,RunLoop会立刻退出.大多数时候,Run Loop 都是运行在系统定义的默认模式上.同理也只有与这个 mode 关联的 observer 才会被通知.和其他 mode 关联的事件源只有当 Run Loop 运行在对应的 mode 下才会分发相应的事件过来，否则就处于暂停状态。<br>在 Cocoa 中定义的 mode 主要的是那么几种:</p>
@@ -246,23 +242,20 @@
 <h3 id="RunLoop_Observer"><a href="#RunLoop_Observer" class="headerlink" title="RunLoop Observer"></a>RunLoop Observer</h3><p>对比上面说的 sources,它们是在特定的同步事件或异步事件发生时被触发,RunLoop observer 就不一样了,它是在 RunLoop 执行自己的代码到某一个指定状态时被触发.</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">CF_OPTIONS</span><span class="params">(CFOptionFlags, CFRunLoopActivity)</span> </span>&#123;</span><br><span class="line">    kCFRunLoopEntry = (<span class="number">1U</span>L &lt;&lt; <span class="number">0</span>),</span><br><span class="line">    kCFRunLoopBeforeTimers = (<span class="number">1U</span>L &lt;&lt; <span class="number">1</span>),</span><br><span class="line">    kCFRunLoopBeforeSources = (<span class="number">1U</span>L &lt;&lt; <span class="number">2</span>),</span><br><span class="line">    kCFRunLoopBeforeWaiting = (<span class="number">1U</span>L &lt;&lt; <span class="number">5</span>),</span><br><span class="line">    kCFRunLoopAfterWaiting = (<span class="number">1U</span>L &lt;&lt; <span class="number">6</span>),</span><br><span class="line">    kCFRunLoopExit = (<span class="number">1U</span>L &lt;&lt; <span class="number">7</span>),</span><br><span class="line">    kCFRunLoopAllActivities = <span class="number">0x0FFFFFFF</span>U</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">CFRunLoopObserverContext</span>  context = &#123;<span class="number">0</span>, (__bridge <span class="keyword">void</span> *)(<span class="keyword">self</span>), <span class="literal">NULL</span>, <span class="literal">NULL</span>, <span class="literal">NULL</span>&#125;;</span><br><span class="line"><span class="built_in">CFRunLoopObserverRef</span> observer = <span class="built_in">CFRunLoopObserverCreate</span>(k<span class="built_in">CFAllocatorDefault</span>, k<span class="built_in">CFRunLoopBeforeTimers</span>, <span class="literal">YES</span>, <span class="number">0</span>, &amp;runLoopObserver, &amp;context);</span><br><span class="line"><span class="keyword">if</span> (observer) &#123;</span><br><span class="line">	<span class="built_in">CFRunLoopAddObserver</span>(<span class="built_in">CFRunLoopGetCurrent</span>(), observer, k<span class="built_in">CFRunLoopCommonModes</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>最近听了 <a href="http://blog.sunnyxx.com/" target="_blank" rel="external">sunnyxx</a> 大神关于 RunLoop 的分享会,总结一下 iOS 中的 RunLoop.</p>
-<h3 id="u4E]]>
-    </summary>
+]]></content:encoded>
+      <comments>http://broccolii.github.io/2015/01/31/iOS_Runloop/#disqus_thread</comments>
+    </item>
     
-      <category term="RunLoop" scheme="http://broccolii.github.io/tags/RunLoop/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[iOS 中的多线程]]></title>
-    <link href="http://broccolii.github.io/2014/09/29/iOS_multithreading/"/>
-    <id>http://broccolii.github.io/2014/09/29/iOS_multithreading/</id>
-    <published>2014-09-29T15:56:35.000Z</published>
-    <updated>2016-01-11T06:51:45.000Z</updated>
-    <content type="html"><![CDATA[<p>整理了一下 iOS 开发中会遇到的几种多线程.</p>
+    <item>
+      <title><![CDATA[iOS 中的多线程]]></title>
+      <link>http://broccolii.github.io/2014/09/29/iOS_multithreading/</link>
+      <guid>http://broccolii.github.io/2014/09/29/iOS_multithreading/</guid>
+      <pubDate>Mon, 29 Sep 2014 15:56:35 GMT</pubDate>
+      <description>
+      <![CDATA[<p>整理了一下 iOS 开发中会遇到的几种多线程.</p>
+<h3 id="iOS__u4E2D_u7684_u591A_u7EBF_u7A0B_u7F16_u7A0B"><a href="#iOS__u4E2D_u7684_u591A_u7EBF_u7A0B_u7F16_u7]]>
+      </description>
+      <content:encoded><![CDATA[<p>整理了一下 iOS 开发中会遇到的几种多线程.</p>
 <h3 id="iOS__u4E2D_u7684_u591A_u7EBF_u7A0B_u7F16_u7A0B"><a href="#iOS__u4E2D_u7684_u591A_u7EBF_u7A0B_u7F16_u7A0B" class="headerlink" title="iOS 中的多线程编程"></a>iOS 中的多线程编程</h3><p>iOS 中的多线程分为以下三种: NSThread, NSOperation/NSOperationQueue, GCD. 其中 NSOperation/NSOperationQueue 是对 GCD 的面向对象封装.</p>
 <h3 id="u57FA_u672C_u6982_u5FF5"><a href="#u57FA_u672C_u6982_u5FF5" class="headerlink" title="基本概念"></a>基本概念</h3><h3 id="u7EBF_u7A0B_/__u8FDB_u7A0B"><a href="#u7EBF_u7A0B_/__u8FDB_u7A0B" class="headerlink" title="线程 / 进程"></a>线程 / 进程</h3><ul>
 <li>进程(Process):操作系统进行资源分配和调度的基本单位,计算机中已运行程序的实体.</li>
@@ -379,23 +372,19 @@
 <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSOperationQueue *queue = <span class="comment">[<span class="comment">[NSOperationQueue alloc]</span> init]</span>;</span><br></pre></td></tr></table></figure>
 <p>进行初始化创建,然后通过以下三种方法添加任务,如果使用了下面三个方法,那么自动执行了 NSOperation 的 <code>start</code> 方法</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加一个NSOperation</span></span><br><span class="line">- (<span class="keyword">void</span>)addOperation:(NSOperation *)op;</span><br><span class="line"><span class="comment">// 添加一组NSOperation</span></span><br><span class="line">- (<span class="keyword">void</span>)addOperations:(NSArray&lt;NSOperation *&gt; *)ops waitUntilFinished:(BOOL)<span class="function">wait <span class="title">NS_AVAILABLE</span><span class="params">(<span class="number">10</span>_6, <span class="number">4</span>_0)</span></span>;</span><br><span class="line"><span class="comment">// 以 block 的形式 添加任务(代替 NSBlockOperation)</span></span><br><span class="line">- (<span class="keyword">void</span>)addOperationWithBlock:(<span class="keyword">void</span> (^)(<span class="keyword">void</span>))<span class="function">block <span class="title">NS_AVAILABLE</span><span class="params">(<span class="number">10</span>_6, <span class="number">4</span>_0)</span></span>;</span><br></pre></td></tr></table></figure>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>整理了一下 iOS 开发中会遇到的几种多线程.</p>
-<h3 id="iOS__u4E2D_u7684_u591A_u7EBF_u7A0B_u7F16_u7A0B"><a href="#iOS__u4E2D_u7684_u591A_u7EBF_u7A0B_u7F16_u7]]>
-    </summary>
+]]></content:encoded>
+      <comments>http://broccolii.github.io/2014/09/29/iOS_multithreading/#disqus_thread</comments>
+    </item>
     
-      <category term="Thread" scheme="http://broccolii.github.io/tags/Thread/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Objective-C 中的 Runtime]]></title>
-    <link href="http://broccolii.github.io/2014/07/29/Objective-C_Runtime/"/>
-    <id>http://broccolii.github.io/2014/07/29/Objective-C_Runtime/</id>
-    <published>2014-07-28T20:12:01.000Z</published>
-    <updated>2016-01-12T13:55:06.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="Runtime__u662F_u4EC0_u4E48"><a href="#Runtime__u662F_u4EC0_u4E48" class="headerlink" title="Runtime 是什么"></a>Runtime 是什么</h3><p>Objective-C 是基于 C 语言加入了面向对象特性和消息转发机制的动态语言,因此它尽可能地将一些工作从编译链接推迟到运行时.这意味着仅仅有编译器是不够的,还需要一套运行时系统来执行编译后的代码.这个运行时系统就是一个用 C 和汇编写的 Runtime 库,它是 Objective-C 作为一门动态语言的是基础.虽然这些特性在开发中使用的较少，但是理解 Objective-C 的 Runtime 机制可以帮我们更好的了解这个语言,合理的运用还能在系统层面上解决一些技术问题.<br>你可以<a href="http://opensource.apple.com/tarballs/objc4/" target="_blank" rel="external">这里</a>在下载到 Apple 维护的 Runtime 源码,开始我们的探索.</p>
+    <item>
+      <title><![CDATA[Objective-C 中的 Runtime]]></title>
+      <link>http://broccolii.github.io/2014/07/29/Objective-C_Runtime/</link>
+      <guid>http://broccolii.github.io/2014/07/29/Objective-C_Runtime/</guid>
+      <pubDate>Mon, 28 Jul 2014 20:12:01 GMT</pubDate>
+      <description>
+      <![CDATA[<h3 id="Runtime__u662F_u4EC0_u4E48"><a href="#Runtime__u662F_u4EC0_u4E48" class="headerlink" title="Runtime 是什么"></a>Runtime 是什么</h3><p>Obje]]>
+      </description>
+      <content:encoded><![CDATA[<h3 id="Runtime__u662F_u4EC0_u4E48"><a href="#Runtime__u662F_u4EC0_u4E48" class="headerlink" title="Runtime 是什么"></a>Runtime 是什么</h3><p>Objective-C 是基于 C 语言加入了面向对象特性和消息转发机制的动态语言,因此它尽可能地将一些工作从编译链接推迟到运行时.这意味着仅仅有编译器是不够的,还需要一套运行时系统来执行编译后的代码.这个运行时系统就是一个用 C 和汇编写的 Runtime 库,它是 Objective-C 作为一门动态语言的是基础.虽然这些特性在开发中使用的较少，但是理解 Objective-C 的 Runtime 机制可以帮我们更好的了解这个语言,合理的运用还能在系统层面上解决一些技术问题.<br>你可以<a href="http://opensource.apple.com/tarballs/objc4/" target="_blank" rel="external">这里</a>在下载到 Apple 维护的 Runtime 源码,开始我们的探索.</p>
 <h3 id="Runtime_NSObject_/_Class"><a href="#Runtime_NSObject_/_Class" class="headerlink" title="Runtime NSObject / Class"></a>Runtime NSObject / Class</h3><p>我们打开刚刚下载的源码,选择 NSObject.h 这个文件.我们可以看到 NSObject 就是一个包含 isa 指针的结构体:</p>
 <figure class="highlight monkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="class"><span class="keyword">interface</span> <span class="title">NSObject</span> &lt;<span class="title">NSObject</span>&gt; &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">Class</span> <span class="title">isa</span>  <span class="title">OBJC_ISA_AVAILABILITY</span>;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -445,22 +434,19 @@
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">OBJC_EXPORT <span class="keyword">void</span> objc_setAssociatedObject(<span class="keyword">id</span> object, <span class="keyword">const</span> <span class="keyword">void</span> *key, <span class="keyword">id</span> value, objc_AssociationPolicy policy)</span><br><span class="line">OBJC_EXPORT <span class="keyword">id</span> objc_getAssociatedObject(<span class="keyword">id</span> object, <span class="keyword">const</span> <span class="keyword">void</span> *key)</span><br><span class="line">    __OSX_<span class="built_in">AVAILABLE_STARTING</span>(__MAC_10_6, __IPHONE_3_1);</span><br><span class="line">OBJC_EXPORT <span class="keyword">void</span> objc_removeAssociatedObjects(<span class="keyword">id</span> object)</span><br><span class="line">    __OSX_<span class="built_in">AVAILABLE_STARTING</span>(__MAC_10_6, __IPHONE_3_1);</span><br></pre></td></tr></table></figure>
 <p>有一点需要注意的是 <code>objc_removeAssociatedObjects</code> 这个方法会 remove 掉所有该对象的 Associated Objects, 所以要谨慎使用.下面我们试着给 NSObject 添加一个 <code>associatedObject</code> 属性.<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// NSObject+AssociatedObject.h</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">NSObject</span> (<span class="title">AssociatedObject</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="keyword">id</span> associatedObject;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"><span class="comment">// NSObject+AssociatedObject.m</span></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">NSObject</span> (<span class="title">AssociatedObject</span>)</span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)setAssociatedObject:(<span class="keyword">id</span>)associatedObject</span><br><span class="line">&#123;</span><br><span class="line">    objc_setAssociatedObject(<span class="keyword">self</span>, <span class="keyword">@selector</span>(associatedObject), associatedObject, OBJC_ASSO<span class="built_in">CIATION_RETAIN_NONATOMIC</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">id</span>)associatedObject</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> objc_getAssociatedObject(<span class="keyword">self</span>, _cmd);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure></p>
 <p>Associated Objects 的 key 要求是唯一并且是常量,而SEL是满足这个要求的,所以上面的采用隐藏参数 <code>_cmd</code> 作为 key.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="Runtime__u662F_u4EC0_u4E48"><a href="#Runtime__u662F_u4EC0_u4E48" class="headerlink" title="Runtime 是什么"></a>Runtime 是什么</h3><p>Obje]]>
-    </summary>
+]]></content:encoded>
+      <comments>http://broccolii.github.io/2014/07/29/Objective-C_Runtime/#disqus_thread</comments>
+    </item>
     
-      <category term="Runtime" scheme="http://broccolii.github.io/tags/Runtime/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Objective-C 中的 Block]]></title>
-    <link href="http://broccolii.github.io/2014/07/28/Objective-C_Block/"/>
-    <id>http://broccolii.github.io/2014/07/28/Objective-C_Block/</id>
-    <published>2014-07-27T17:11:02.000Z</published>
-    <updated>2016-01-12T14:17:25.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="u4EC0_u4E48_u662F_Block"><a href="#u4EC0_u4E48_u662F_Block" class="headerlink" title="什么是 Block"></a>什么是 Block</h3><p>Block 翻译成中文就是块,顾名思义指的是代码块.与函数类似,有参数,有返回值.只不过是直接实现在另一个函数里的,同时可以获取该函数的局部变量. Block 只是 Objective-C 对闭包的实现.</p>
+    <item>
+      <title><![CDATA[Objective-C 中的 Block]]></title>
+      <link>http://broccolii.github.io/2014/07/28/Objective-C_Block/</link>
+      <guid>http://broccolii.github.io/2014/07/28/Objective-C_Block/</guid>
+      <pubDate>Sun, 27 Jul 2014 17:11:02 GMT</pubDate>
+      <description>
+      <![CDATA[<h3 id="u4EC0_u4E48_u662F_Block"><a href="#u4EC0_u4E48_u662F_Block" class="headerlink" title="什么是 Block"></a>什么是 Block</h3><p>Block 翻译成中文就是块]]>
+      </description>
+      <content:encoded><![CDATA[<h3 id="u4EC0_u4E48_u662F_Block"><a href="#u4EC0_u4E48_u662F_Block" class="headerlink" title="什么是 Block"></a>什么是 Block</h3><p>Block 翻译成中文就是块,顾名思义指的是代码块.与函数类似,有参数,有返回值.只不过是直接实现在另一个函数里的,同时可以获取该函数的局部变量. Block 只是 Objective-C 对闭包的实现.</p>
 <blockquote>
 <p>讲人话:  Block 就是一段能够在将来被执行的代码. Block 本身就是一个普通的 Objective-C 对象.正因为它是对象，Block 可以被作为参数传递，可以作为返回值从一个方法返回，可以用来给变量赋值</p>
 </blockquote>
@@ -486,22 +472,19 @@
 <p>为了打破循环,我们需要取消引用可以将 self 用 __weak 所修饰</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> (^AddBlock)(<span class="keyword">int</span> a, <span class="keyword">int</span> b);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) AddBlock addBlock;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">NSString</span> *memberVariable;</span><br><span class="line">...</span><br><span class="line">- (<span class="keyword">void</span>)foo &#123;</span><br><span class="line">    <span class="keyword">int</span> stackVariables = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">	 __<span class="keyword">weak</span> <span class="keyword">typeof</span>(<span class="keyword">self</span>) weakSelf = <span class="keyword">self</span>;</span><br><span class="line">  	 _addBlock = ^ <span class="keyword">int</span> (<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</span><br><span class="line">      	<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, weakSelf<span class="variable">.memberVariable</span>);</span><br><span class="line">     </span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 修改 stackVariables 的值</span></span><br><span class="line">    stackVariables = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> add = addBlock(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>__weak 变量有一个特性就是它不会影响所指向对象的生命周期,因此可以使用它来生成一个对自身对象的弱引用. 应该没有人的项目现在还不支持 ARC, 如果有, 那可以使用 __block 来打破循环. 那么__block typeof(self) weakSelf = self 就表示 Block 别再对 self 对象 retain 啦,这就打破了循环引用.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="u4EC0_u4E48_u662F_Block"><a href="#u4EC0_u4E48_u662F_Block" class="headerlink" title="什么是 Block"></a>什么是 Block</h3><p>Block 翻译成中文就是块]]>
-    </summary>
+]]></content:encoded>
+      <comments>http://broccolii.github.io/2014/07/28/Objective-C_Block/#disqus_thread</comments>
+    </item>
     
-      <category term="Block" scheme="http://broccolii.github.io/tags/Block/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[用 GitHub & Hexo 在 Mac 上搭建博客]]></title>
-    <link href="http://broccolii.github.io/2014/07/08/GitHub&Hexo-Blog/"/>
-    <id>http://broccolii.github.io/2014/07/08/GitHub&Hexo-Blog/</id>
-    <published>2014-07-08T15:22:12.000Z</published>
-    <updated>2015-12-30T09:36:11.000Z</updated>
-    <content type="html"><![CDATA[<p>想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 <a href="https://github.com" target="_blank" rel="external">GitHub</a> 和 <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a> 在 Mac 下搭建属于自己的博客.</p>
+    <item>
+      <title><![CDATA[用 GitHub & Hexo 在 Mac 上搭建博客]]></title>
+      <link>http://broccolii.github.io/2014/07/08/GitHub&Hexo-Blog/</link>
+      <guid>http://broccolii.github.io/2014/07/08/GitHub&Hexo-Blog/</guid>
+      <pubDate>Tue, 08 Jul 2014 15:22:12 GMT</pubDate>
+      <description>
+      <![CDATA[<p>想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 <a href="https://github.com" target="_blank" rel="external">GitHub</a> 和]]>
+      </description>
+      <content:encoded><![CDATA[<p>想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 <a href="https://github.com" target="_blank" rel="external">GitHub</a> 和 <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a> 在 Mac 下搭建属于自己的博客.</p>
 <h3 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h3><p>在搭建之前你需要一个 <a href="https://github.com" target="_blank" rel="external">GitHub</a> 账号,因为 blog 的文件都是托管在 GitHub 上的.你需要创建一个仓库 <code>+ New repository</code>,名称为 <code>GitHub用户名.github.io</code></p>
 <h3 id="Homebrew"><a href="#Homebrew" class="headerlink" title="Homebrew"></a>Homebrew</h3><p>接下来我们会多次使用到 <a href="http://brew.sh" target="_blank" rel="external">homebrew</a></p>
 <p>安装 <code>Homebrew</code> 直接使用 Mac 自带的 <code>ruby</code> 脚本</p>
@@ -547,11 +530,9 @@
 <pre><code class="bash">$ hexo deploy
 </code></pre>
 <p>将网页发布到 GitHub 上,然后可以在 <a href="http://GitHub用户名.github.io" target="_blank" rel="external">http://GitHub用户名.github.io</a> 看到发布成功的 Blog</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 <a href="https://github.com" target="_blank" rel="external">GitHub</a> 和]]>
-    </summary>
+]]></content:encoded>
+      <comments>http://broccolii.github.io/2014/07/08/GitHub&Hexo-Blog/#disqus_thread</comments>
+    </item>
     
-  </entry>
-  
-</feed>
+  </channel>
+</rss>
