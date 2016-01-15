@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-01-15T07:16:58.000Z</updated>
+  <updated>2016-01-15T10:44:08.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,10 +16,10 @@
   
   <entry>
     <title><![CDATA[ReactiveCocoa 整理]]></title>
-    <link href="http://yoursite.com/2015/07/04/ReactiveCocoa_exploration/"/>
-    <id>http://yoursite.com/2015/07/04/ReactiveCocoa_exploration/</id>
-    <published>2015-07-03T19:52:39.000Z</published>
-    <updated>2016-01-15T07:16:58.000Z</updated>
+    <link href="http://yoursite.com/2015/12/31/ReactiveCocoa_exploration/"/>
+    <id>http://yoursite.com/2015/12/31/ReactiveCocoa_exploration/</id>
+    <published>2015-12-30T19:52:39.000Z</published>
+    <updated>2016-01-15T10:44:08.000Z</updated>
     <content type="html"><![CDATA[<h3 id="ReactiveCocoa__u662F_u4EC0_u4E48"><a href="#ReactiveCocoa__u662F_u4EC0_u4E48" class="headerlink" title="ReactiveCocoa 是什么"></a>ReactiveCocoa 是什么</h3><p><a href="https://github.com/ReactiveCocoa/ReactiveCocoa" target="_blank" rel="external">ReactiveCocoa</a>（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.(注: 文本例子使用 ReactiveCocoa 2.5)</p>
 <h3 id="ReactiveCocoa__u7684_u4F5C_u7528"><a href="#ReactiveCocoa__u7684_u4F5C_u7528" class="headerlink" title="ReactiveCocoa 的作用"></a>ReactiveCocoa 的作用</h3><p>在 iOS 开发过程中,我们需要监听不同的事件,并作出反应,例如对 <code>UIButton</code> 的点击事件使用 <code>TA</code> 模式,对 <code>UIScrollView</code> 的滚动事件使用 <code>delegate</code>,对属性变化监听使用 <code>KVO</code>.那么我们可能会想能不能使用同一的标准? <code>ReactiveCocoa</code> 为我们提供了一个单独的、统一的方法来这些行为.它可以把要处理的事情,和监听的事情的代码放在一起,便于我们管理代码,非常符合我们开发中<code>高聚合,低耦合</code>的思想.</p>
 <h3 id="u7F16_u7A0B_u8303_u5F0F_3A__u51FD_u6570_u5F0F_u7F16_u7A0B_/__u54CD_u5E94_u5F0F_u7F16_u7A0B"><a href="#u7F16_u7A0B_u8303_u5F0F_3A__u51FD_u6570_u5F0F_u7F16_u7A0B_/__u54CD_u5E94_u5F0F_u7F16_u7A0B" class="headerlink" title="编程范式: 函数式编程 / 响应式编程"></a>编程范式: 函数式编程 / 响应式编程</h3><p><em>ReactiveCocoa被描述为函数响应式编程（FRP）框架,使用 FRP 有两个好处: 直观和灵活.</em><br><strong>函数式编程(Functional Programming)</strong><br>函数式编程(functional programming)简单的来说就是一种编程范型,主要思想是把运算过程尽量写成一系列嵌套的函数调用.函数编程语言最重要的基础是 λ 演算(lambda calculus),而且 λ 演算的函数可以接受函数当作输入和输出.函数式编程更加强调程序执行的结果而非执行的过程,倡导利用若干简单的执行单元让计算结果不断渐进,逐层推导复杂的运算,而不是设计一个复杂的执行过程.<br>阮一峰老师有一个关于<a href="http://www.ruanyifeng.com/blog/2012/04/functional_programming.html" target="_blank" rel="external">函数式编程</a>的例子,如下:</p>
