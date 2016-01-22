@@ -37,7 +37,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Block," />
+  <meta name="keywords" content="CoreSpotlight," />
 
 
 
@@ -55,22 +55,19 @@
 
 
 
-<meta name="description" content="什么是 BlockBlock 翻译成中文就是块,顾名思义指的是代码块.与函数类似,有参数,有返回值.只不过是直接实现在另一个函数里的,同时可以获取该函数的局部变量. Block 只是 Objective-C 对闭包的实现.
-
-讲人话:  Block 就是一段能够在将来被执行的代码. Block 本身就是一个普通的 Objective-C 对象.正因为它是对象，Block 可以被作为参数传递，可以作">
+<meta name="description" content="Apple 发布了 iOS9 新系统,其中有一项新功能 CoreSpotlight 可以使 iPhone 的 Spotlight 访问 App 内的信息,在此之前只能通过 App 名来搜索 App.让我们来动手试一下.
+使用 CoreSpotlight 导入 CoreSpotlight Framework 先导入 CoreSpotlight.framework 和 MobileCoreServic">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Objective-C 中的 Block">
-<meta property="og:url" content="http://broccolii.github.io/2014/07/28/Objective-C_Block/index.html">
+<meta property="og:title" content="iOS9 中的 CoreSpotlight">
+<meta property="og:url" content="http://broccolii.github.io/2015/10/02/iOS9_CoreSpotlight/index.html">
 <meta property="og:site_name" content="一朵西兰花">
-<meta property="og:description" content="什么是 BlockBlock 翻译成中文就是块,顾名思义指的是代码块.与函数类似,有参数,有返回值.只不过是直接实现在另一个函数里的,同时可以获取该函数的局部变量. Block 只是 Objective-C 对闭包的实现.
-
-讲人话:  Block 就是一段能够在将来被执行的代码. Block 本身就是一个普通的 Objective-C 对象.正因为它是对象，Block 可以被作为参数传递，可以作">
-<meta property="og:updated_time" content="2016-01-12T14:17:25.000Z">
+<meta property="og:description" content="Apple 发布了 iOS9 新系统,其中有一项新功能 CoreSpotlight 可以使 iPhone 的 Spotlight 访问 App 内的信息,在此之前只能通过 App 名来搜索 App.让我们来动手试一下.
+使用 CoreSpotlight 导入 CoreSpotlight Framework 先导入 CoreSpotlight.framework 和 MobileCoreServic">
+<meta property="og:updated_time" content="2016-01-22T07:15:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Objective-C 中的 Block">
-<meta name="twitter:description" content="什么是 BlockBlock 翻译成中文就是块,顾名思义指的是代码块.与函数类似,有参数,有返回值.只不过是直接实现在另一个函数里的,同时可以获取该函数的局部变量. Block 只是 Objective-C 对闭包的实现.
-
-讲人话:  Block 就是一段能够在将来被执行的代码. Block 本身就是一个普通的 Objective-C 对象.正因为它是对象，Block 可以被作为参数传递，可以作">
+<meta name="twitter:title" content="iOS9 中的 CoreSpotlight">
+<meta name="twitter:description" content="Apple 发布了 iOS9 新系统,其中有一项新功能 CoreSpotlight 可以使 iPhone 的 Spotlight 访问 App 内的信息,在此之前只能通过 App 名来搜索 App.让我们来动手试一下.
+使用 CoreSpotlight 导入 CoreSpotlight Framework 先导入 CoreSpotlight.framework 和 MobileCoreServic">
 
 
 
@@ -82,7 +79,7 @@
   };
 </script>
 
-  <title> Objective-C 中的 Block | 一朵西兰花 </title>
+  <title> iOS9 中的 CoreSpotlight | 一朵西兰花 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -233,7 +230,7 @@
             
             
               
-                Objective-C 中的 Block
+                iOS9 中的 CoreSpotlight
               
             
           </h1>
@@ -242,8 +239,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2014-07-28T01:11:02+08:00" content="2014-07-28">
-              2014-07-28
+            <time itemprop="dateCreated" datetime="2015-10-02T08:52:23+08:00" content="2015-10-02">
+              2015-10-02
             </time>
           </span>
 
@@ -253,8 +250,8 @@
             
               <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2014/07/28/Objective-C_Block/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/07/28/Objective-C_Block/" itemprop="commentsCount"></span>
+              <a href="/2015/10/02/iOS9_CoreSpotlight/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/02/iOS9_CoreSpotlight/" itemprop="commentsCount"></span>
               </a>
             </span>
             
@@ -273,32 +270,22 @@
       
 
       
-        <span itemprop="articleBody"><h3 id="u4EC0_u4E48_u662F_Block"><a href="#u4EC0_u4E48_u662F_Block" class="headerlink" title="什么是 Block"></a>什么是 Block</h3><p>Block 翻译成中文就是块,顾名思义指的是代码块.与函数类似,有参数,有返回值.只不过是直接实现在另一个函数里的,同时可以获取该函数的局部变量. Block 只是 Objective-C 对闭包的实现.</p>
+        <span itemprop="articleBody"><p>Apple 发布了 iOS9 新系统,其中有一项新功能 <code>CoreSpotlight</code> 可以使 iPhone 的 Spotlight 访问 App 内的信息,在此之前只能通过 App 名来搜索 App.让我们来动手试一下.</p>
+<h4 id="u4F7F_u7528_CoreSpotlight"><a href="#u4F7F_u7528_CoreSpotlight" class="headerlink" title="使用 CoreSpotlight"></a>使用 CoreSpotlight</h4><p> <strong>导入 CoreSpotlight Framework</strong><br> 先导入 <code>CoreSpotlight.framework</code> 和 <code>MobileCoreServices.framework</code></p>
+<p><strong>创建索引数据</strong><br>先创建一个用户 UITableView 的数据 Model</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SpotlightModel</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> image: <span class="type">UIImage</span>!</span><br><span class="line">    <span class="keyword">var</span> text: <span class="type">String</span>!</span><br><span class="line">    <span class="keyword">var</span> detailText: <span class="type">String</span>!</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">createRandomData</span>() -&gt; <span class="title">SpotlightModel</span> </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> model = <span class="type">SpotlightModel</span>()</span><br><span class="line">        model.image = <span class="type">UIImage</span>(named: <span class="string">"image<span class="subst">\(arc4random()</span> % 3)"</span>)</span><br><span class="line">        model.detailText = <span class="string">"detailText<span class="subst">\(arc4random()</span> % 100)"</span></span><br><span class="line">        model.text = <span class="string">"text<span class="subst">\(arc4random()</span> % 300)"</span></span><br><span class="line">        <span class="keyword">return</span> model</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>将 <code>SpotlightModel</code> 对象保存到 CoreSpotlight 中</strong><br>创建我们需要被搜索到数据</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lazy var tableViewData: [SpotlightModel] = &#123;</span><br><span class="line">   var arr = [<span class="link_label">SpotlightModel</span>](<span class="link_url"></span>)</span><br><span class="line">   for _ in 0..<span class="xml"><span class="tag">&lt;<span class="title">30</span> &#123;</span><br><span class="line">       <span class="attribute">arr.append</span>(<span class="attribute">SpotlightModel.createRandomData</span>())</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="attribute">return</span> <span class="attribute">arr</span></span><br><span class="line">&#125;()</span></span></span><br></pre></td></tr></table></figure>
+<p>我们分别使用 <code>CSSearchableItem</code> 保存单个 model 对象的信息, 然后通过<code>CSSearchableItemAttributeSet</code> 这个集合类加入到 <code>CSSearchableIndex.defaultSearchableIndex()</code> 中去, 这样我们就可以通过 <code>CoreSpotlight</code>,搜索到我们提供的元数据了.</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">func addToCoreSpotlight() &#123;</span><br><span class="line">   <span class="keyword">var</span> searchableItems = [CSSearchableItem]()</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">for</span> model <span class="keyword">in</span> tableViewData &#123;</span><br><span class="line">       <span class="keyword">let</span> attri = CSSearchableItemAttributeSet(<span class="attribute">itemContentType</span>: kUTTypeMessage as String)</span><br><span class="line">       </span><br><span class="line">       attri.title = <span class="string">"title"</span> </span><br><span class="line">       attri.contentDescription = <span class="string">"contentDescription"</span></span><br><span class="line">       attri.thumbnailData = UIImageJPEGRepresentation(UIImage(<span class="attribute">named</span>: <span class="string">"image0"</span>)!, <span class="number">0.9</span>)</span><br><span class="line">       attri.supportsPhoneCall = <span class="literal">true</span></span><br><span class="line">       attri.supportsNavigation = <span class="literal">true</span></span><br><span class="line">       attri.phoneNumbers = [<span class="string">"phone"</span>]</span><br><span class="line">       attri.emailAddresses = [<span class="string">"email"</span>]</span><br><span class="line">       attri.keywords = [<span class="string">"keywords"</span>]</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">let</span> searchableItem = CSSearchableItem(<span class="attribute">uniqueIdentifier</span>: model.text, <span class="attribute">domainIdentifier</span>: <span class="string">"com.broccoli"</span>, <span class="attribute">attributeSet</span>: attri)</span><br><span class="line">       searchableItems.append(searchableItem)</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   CSSearchableIndex.defaultSearchableIndex<span class="function"><span class="params">()</span>.<span class="title">indexSearchableItems</span><span class="params">(searchableItems)</span> &#123; <span class="params">(error)</span> -&gt;</span> Void <span class="keyword">in</span></span><br><span class="line">       debugPrint(error)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>讲人话:  Block 就是一段能够在将来被执行的代码. Block 本身就是一个普通的 Objective-C 对象.正因为它是对象，Block 可以被作为参数传递，可以作为返回值从一个方法返回，可以用来给变量赋值</p>
-</blockquote>
-<h3 id="Block__u7684_u7533_u660E_u5B9A_u4E49"><a href="#Block__u7684_u7533_u660E_u5B9A_u4E49" class="headerlink" title="Block 的申明定义"></a>Block 的申明定义</h3><p>可以先看一下 <a href="http://fuckingblocksyntax.com" target="_blank" rel="external">How Do I Declare A Block in Objective-C?</a><br>Block 的声明格式如下：</p>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">returnType (^blockName)(parameterTypes) = ^returnType(parameters) <span class="decorator">&#123;...&#125;</span>;</span><br></pre></td></tr></table></figure>
-<p>我们实现一个加法功能的 Block</p>
-<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> (^addBlock)(<span class="keyword">int</span> a, <span class="keyword">int</span> b) = ^(<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</span><br><span class="line">   <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>然后像函数一样调用这个 Block </p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> add = addBlock(<span class="number">1</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-<h3 id="Block__u7684_u53D8_u91CF"><a href="#Block__u7684_u53D8_u91CF" class="headerlink" title="Block 的变量"></a>Block 的变量</h3><p>还记得我们刚刚说过 Block 会获取实现它的函数内的局部变量,并且对这些栈变量进行一次只读拷贝，然后在  Block 块内使用该只读拷贝.</p>
 <ol>
-<li>只读: 不能被修改值</li>
+<li>uniqueIdentifier: 在应用程序中这个值是唯一的，由于这个可以用于索引的更新、删除索引是唯一的，推荐使用UUID或者是搜索的条目的主键。</li>
+<li>domainIdentifier: 一个可选的标识符，用来表示item的域(domain)或者所有者，这个可能用一个账户的邮箱作为identifier来索引数据，并且当账户删除的时候可以根据这个来删除数据，一般情况下domainIdentifier应该是这种格式<account-id>.<mailbox-id>并且不能包含时间。</mailbox-id></account-id></li>
+<li>expirationDate: 过期的日期，默认过期的日期是一个月</li>
 </ol>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)foo &#123;</span><br><span class="line">    <span class="keyword">int</span> stackVariables = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> (^addBlock)(<span class="keyword">int</span> a, <span class="keyword">int</span> b) = ^ <span class="keyword">int</span> (<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</span><br><span class="line">        stackVariables++; <span class="comment">// 编译不通过</span></span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> add = addBlock(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2.copy: 在定义完 Block 后 修改了 stackVariables 的值, 但是 Block 并不受影响</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)foo &#123;</span><br><span class="line">    <span class="keyword">int</span> stackVariables = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> (^addBlock)(<span class="keyword">int</span> a, <span class="keyword">int</span> b) = ^ <span class="keyword">int</span> (<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"stack variable = %ld"</span>, (<span class="keyword">long</span>)stackVariables);</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 修改 stackVariables 的值</span></span><br><span class="line">    stackVariables = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> add = addBlock(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果需要在 Block 中修改局部变量的值, 我们可以使用 __block 关键字来修饰变量,这样就可以在 Block 中修改变量了.对于用 __block 修饰的局部变量，Block 为其生成了一个 Struct 来存储引用地址.具体细节可以看唐巧大神写的<a href="http://blog.devtang.com/blog/2013/07/28/a-look-inside-blocks/" target="_blank" rel="external">谈Objective-C Block的实现</a></p>
-<h3 id="retain_cycle"><a href="#retain_cycle" class="headerlink" title="retain cycle"></a>retain cycle</h3><p>Block 使用时,不仔细思量,就很容易出现循环引用,导致内存泄露.那到底什么时候会发生循环引用呢?<br>我们来修改一下刚刚的 Block 将他定义成 当前类的一个属性,同时在 Block 定义时,打印当前类的一个属性</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> (^AddBlock)(<span class="keyword">int</span> a, <span class="keyword">int</span> b);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) AddBlock addBlock;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">NSString</span> *memberVariable;</span><br><span class="line">...</span><br><span class="line">- (<span class="keyword">void</span>)foo &#123;</span><br><span class="line">    <span class="keyword">int</span> stackVariables = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">  	 _addBlock = ^ <span class="keyword">int</span> (<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</span><br><span class="line">      	<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, _memberVariable);</span><br><span class="line">     </span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 修改 stackVariables 的值</span></span><br><span class="line">    stackVariables = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> add = addBlock(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们在 foo 中定义了一个 栈 Block 然后把它复制到 _addBlock 中去, 由于是从栈 copy 到堆,(这里要说一下: 在开启了 ARC 的情况下,因为编译器自动帮我们 copy 了,所以我们写 Block 的属性词时,用 copy 和 strong 都是一样的, 但是还是推荐使用 copy 啦,可以提醒我们编译器替我们做了 copy 操作😊)  Block 会持有 Block 中的变量.在 ARC 下, Block 中如果引用了 __strong 修饰符的自动变量,则相当于 Block 对该变量的引用计数+1. 由于 self 是 __strong 修饰.因此 self 持有了 Block, 同时 Block 也持有了 self.当 self 释放的时候,需要 Block 释放后才会对 self 进行释放,但是 Block 的释放又需要等 self 的 dealloc 方法中才会释放.如此一来变形成了循环引用，导致内存泄露.</p>
-<p>你可能要问了,我这里并没有出现 self ?为什么 self 会被 Block 持有?</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">其实 <span class="constant">_memberVariable </span>等价于 <span class="keyword">self</span>-&gt;memberVariable</span><br></pre></td></tr></table></figure>
-<p>为了打破循环,我们需要取消引用可以将 self 用 __weak 所修饰</p>
-<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> (^AddBlock)(<span class="keyword">int</span> a, <span class="keyword">int</span> b);</span><br><span class="line">...</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">copy</span>) AddBlock addBlock;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">NSString</span> *memberVariable;</span><br><span class="line">...</span><br><span class="line">- (<span class="keyword">void</span>)foo &#123;</span><br><span class="line">    <span class="keyword">int</span> stackVariables = <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">	 __<span class="keyword">weak</span> <span class="keyword">typeof</span>(<span class="keyword">self</span>) weakSelf = <span class="keyword">self</span>;</span><br><span class="line">  	 _addBlock = ^ <span class="keyword">int</span> (<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</span><br><span class="line">      	<span class="built_in">NSLog</span>(<span class="string">@"%@"</span>, weakSelf<span class="variable">.memberVariable</span>);</span><br><span class="line">     </span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 修改 stackVariables 的值</span></span><br><span class="line">    stackVariables = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">int</span> add = addBlock(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>__weak 变量有一个特性就是它不会影响所指向对象的生命周期,因此可以使用它来生成一个对自身对象的弱引用. 应该没有人的项目现在还不支持 ARC, 如果有, 那可以使用 __block 来打破循环. 那么__block typeof(self) weakSelf = self 就表示 Block 别再对 self 对象 retain 啦,这就打破了循环引用.</p>
+</blockquote>
+<p><strong>响应用户点击事件</strong><br>现在运行一下程序搜索 <code>title</code> 是不是可以看到 App 中的数据.但是点击之后我们只能到 App 的主页,我们可以在 <code>UIApplicationDelegate</code> 中通过 <code>SearchID</code> 自定义跳转到我们自定义的页面<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">application</span><span class="params">(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: <span class="params">([AnyObject]?)</span></span></span> -&gt; <span class="type">Void</span>) -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">   <span class="keyword">let</span> <span class="type">SearchID</span> = userActivity.userInfo?[<span class="string">"kCSSearchableItemActivityIdentifier"</span>] <span class="keyword">as</span>! <span class="type">String</span></span><br><span class="line">   <span class="keyword">let</span> navigationController = (window?.rootViewController <span class="keyword">as</span>! <span class="type">UINavigationController</span>)</span><br><span class="line">   navigationController.popToRootViewControllerAnimated(<span class="literal">false</span>)</span><br><span class="line">   <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;​</span><br></pre></td></tr></table></figure></p>
 </span>
       
     </div>
@@ -307,7 +294,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Block/" rel="tag">#Block</a>
+            <a href="/tags/CoreSpotlight/" rel="tag">#CoreSpotlight</a>
           
         </div>
       
@@ -316,16 +303,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/07/08/GitHub_Hexo-Blog/" rel="next" title="用 GitHub & Hexo 在 Mac 上搭建博客">
-                <i class="fa fa-chevron-left"></i> 用 GitHub & Hexo 在 Mac 上搭建博客
+              <a href="/2015/01/31/iOS_Runloop/" rel="next" title="iOS 中的 RunLoop">
+                <i class="fa fa-chevron-left"></i> iOS 中的 RunLoop
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2014/07/29/Objective-C_Runtime/" rel="prev" title="Objective-C 中的 Runtime">
-                Objective-C 中的 Runtime <i class="fa fa-chevron-right"></i>
+              <a href="/2015/12/31/ReactiveCocoa_exploration/" rel="prev" title="ReactiveCocoa 整理">
+                ReactiveCocoa 整理 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -477,7 +464,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u4EC0_u4E48_u662F_Block"><span class="nav-number">1.</span> <span class="nav-text">什么是 Block</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Block__u7684_u7533_u660E_u5B9A_u4E49"><span class="nav-number">2.</span> <span class="nav-text">Block 的申明定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Block__u7684_u53D8_u91CF"><span class="nav-number">3.</span> <span class="nav-text">Block 的变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#retain_cycle"><span class="nav-number">4.</span> <span class="nav-text">retain cycle</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#u4F7F_u7528_CoreSpotlight"><span class="nav-number">1.</span> <span class="nav-text">使用 CoreSpotlight</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -537,9 +524,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'broccoliii';
-      var disqus_identifier = '2014/07/28/Objective-C_Block/';
-      var disqus_title = 'Objective-C 中的 Block';
-      var disqus_url = 'http://broccolii.github.io/2014/07/28/Objective-C_Block/';
+      var disqus_identifier = '2015/10/02/iOS9_CoreSpotlight/';
+      var disqus_title = 'iOS9 中的 CoreSpotlight';
+      var disqus_url = 'http://broccolii.github.io/2015/10/02/iOS9_CoreSpotlight/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
