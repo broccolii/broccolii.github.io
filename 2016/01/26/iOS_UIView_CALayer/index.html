@@ -64,7 +64,8 @@
 <meta property="og:description" content="UIView 和 CALayerUIView 可以响应事件点进 UIView.h 文件,可以看到 UIView : UIResponder.UIView 是继承 UIResponder 的,在 iOS 中 UIResponder 做为响应系统中事件的传递者和处理者,提供了大量事件处理的接口,比如我们经常使用的:
 1234- (void)touchesBegan:(NSSet&amp;lt;UITouch">
 <meta property="og:image" content="https://github.com/broccolii/broccolii.github.io/raw/master/images/iOS_UIView_CALayer/CALayerDelegate.png">
-<meta property="og:updated_time" content="2016-01-27T07:07:39.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/CAlayer_frame.jpg">
+<meta property="og:updated_time" content="2016-01-27T07:39:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 中的 UIView 和 CALayer">
 <meta name="twitter:description" content="UIView 和 CALayerUIView 可以响应事件点进 UIView.h 文件,可以看到 UIView : UIResponder.UIView 是继承 UIResponder 的,在 iOS 中 UIResponder 做为响应系统中事件的传递者和处理者,提供了大量事件处理的接口,比如我们经常使用的:
@@ -279,7 +280,14 @@
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">readonly</span>,<span class="keyword">strong</span>)                 <span class="built_in">CALayer</span>  *layer;              <span class="comment">// returns view's layer. Will always return a non-nil value. view is layer's delegate</span></span><br></pre></td></tr></table></figure>
 <p>注释中有一句 <strong>“view is layer’s delegate”</strong>,我们可以自定义一个 UIView 的子类 <code>CustomView</code> 并在 <code>- (void)drawRect:(CGRect)rect</code> 打断点,在左侧的可以看到 CustomView 作为一个 CALayerDelegate 出现,<br><img src="https://github.com/broccolii/broccolii.github.io/raw/master/images/iOS_UIView_CALayer/CALayerDelegate.png" alt=""></p>
 <p><strong>两者的联系</strong><br>UIView 内容的绘制和显示都是靠 <code>layer</code> 属性提供,而视图的点击事件则是通过父类 UIResponder 来接收处理.</p>
-<h3 id="frame__u548C_bounds"><a href="#frame__u548C_bounds" class="headerlink" title="frame 和 bounds"></a>frame 和 bounds</h3></span>
+<h3 id="frame__u548C_bounds"><a href="#frame__u548C_bounds" class="headerlink" title="frame 和 bounds"></a>frame 和 bounds</h3><p>为了更好了理解 <code>frame</code> 和 <code>bounds</code>,我们先来看一下一张图:<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/CAlayer_frame.jpg" alt=""></p>
+<ol>
+<li>UIView 的 center 直接调用 rootLayer 的 position </li>
+<li>UIView 的 bounds 直接调用 rootLayer 的 bounds</li>
+<li>UIView 的 frame 直接调用 rootLayer 的 frame</li>
+<li>rootLayer 的 frame 又是 <code>anchorPoint</code>, <code>position</code>, <code>bounds</code>, <code>transform</code> 四个属性的派生属性<br>既然九九归一,最后都是这四个属性在影响着 frame 的大小.我们先从 <code>anchorPoint</code> 和 <code>position</code> 着手,因为 <code>position</code> 是 <code>anchorPoint</code> 在 superLayer 上的投影坐标.<br><strong>anchorPoint</strong><br><code>anchorPoint</code> (锚点) 顾名思义是一个固定点,在做 transform 时,会以 <code>anchorPoint</code> 作为固定点旋转.在 iOS 中,anchorPoint 的值是以相对 bounds 的比例值来确定的.如果觉得太抽象可以看下图:<br><img src="" alt=""><br><img src="" alt=""><br><img src="" alt=""><br><img src="" alt=""></li>
+</ol>
+</span>
       
     </div>
 
