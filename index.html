@@ -337,6 +337,99 @@ ReactiveCocoa 的作用在 iOS 开发过程中,我们需要监听不同的事件
             
               
                 
+                <a class="post-title-link" href="/2015/11/19/UITableView_Optimization/" itemprop="url">
+                  UITableView 性能优化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-11-19T20:11:11+08:00" content="2015-11-19">
+              2015-11-19
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/11/19/UITableView_Optimization/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/11/19/UITableView_Optimization/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+            最近面试问到关于 UITableView 的优化,感觉自己回答的不是特别好,刚好项目上线需要优化一部分代码.所以在网上查阅了大量 blog,总结了一些关于 UITableView 实用的优化技巧.
+UITableView 重用机制UITableView 最核心的部分就是 UITableViewCell 的重用机制(初学者必问面试题.通俗的说: UITableView 有一个 Cell 对象的重用池,其中存放着当前页面显示的 Cell(在某些设备上,可能会再多几个.当 UITableView 滚动时,离开屏幕的 Cell 会被放到重用池中.有新的 Cell 要显示,则又从重用池中取.这样的好处显
+            ...
+          </span>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/11/19/UITableView_Optimization/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2015/11/06/iOS9_3D_Touch/" itemprop="url">
                   iOS9 中的 3D Touch
                 </a>
@@ -598,105 +691,6 @@ Peek / PopPeek: 轻压,操作能让用户在不离开当前界面的情况下预
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2014/09/29/iOS_multithreading/" itemprop="url">
-                  iOS 中的多线程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2014-09-29T23:56:35+08:00" content="2014-09-29">
-              2014-09-29
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-              &nbsp; | &nbsp;
-              <a href="/2014/09/29/iOS_multithreading/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2014/09/29/iOS_multithreading/" itemprop="commentsCount"></span>
-              </a>
-            </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-            整理了一下 iOS 开发中会遇到的几种多线程.
-iOS 中的多线程编程iOS 中的多线程分为以下三种: NSThread, NSOperation/NSOperationQueue, GCD. 其中 NSOperation/NSOperationQueue 是对 GCD 的面向对象封装.
-基本概念线程 / 进程
-进程(Process):操作系统进行资源分配和调度的基本单位,计算机中已运行程序的实体.
-线程(thread):操作系统进行运算调度的最小单位,它被包含在进程之中,是进程中的实际运作单位.一个进程中至少包含一条线程,即主线程.
-
-同步 / 异步
-同步:同步操作会等待操作执行完成后,再继
-            ...
-          </span>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2014/09/29/iOS_multithreading/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -743,7 +737,7 @@ iOS 中的多线程编程iOS 中的多线程分为以下三种: NSThread, NSOper
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
