@@ -37,7 +37,7 @@
 <link href="/css/main.css?v=0.4.5.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="CoreSpotlight," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -55,22 +55,19 @@
 
 
 
-<meta name="description" content="Apple 发布了 iOS9 新系统,其中有一项新功能 CoreSpotlight 可以使 iPhone 的 Spotlight 访问 App 内的信息,在此之前只能通过 App 名来搜索 App.让我们来动手试一下.
-使用 CoreSpotlight 导入 CoreSpotlight Framework 先导入 CoreSpotlight.framework和 MobileCoreService">
+<meta name="description" content="UIView 和 CALayerUIView 可以响应事件点进 UIView.h 文件,可以看到 UIView : UIResponder.UIView 是继承 UIResponder 的,在 iOS 中 UIResponder 做为响应系统中事件的传递者和处理者,提供了大量事件处理的接口,比如我们经常使用的:
+1234- (void)touchesBegan:(NSSet&amp;lt;UITouch">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS9 中的 CoreSpotlight">
-<meta property="og:url" content="http://broccolii.github.io/2015/10/02/iOS9_CoreSpotlight/index.html">
+<meta property="og:title" content="iOS 中的 UIView 和 CALayer">
+<meta property="og:url" content="http://broccolii.github.io/2016/01/26/iOS_UIView_CALayer/index.html">
 <meta property="og:site_name" content="一朵西兰花">
-<meta property="og:description" content="Apple 发布了 iOS9 新系统,其中有一项新功能 CoreSpotlight 可以使 iPhone 的 Spotlight 访问 App 内的信息,在此之前只能通过 App 名来搜索 App.让我们来动手试一下.
-使用 CoreSpotlight 导入 CoreSpotlight Framework 先导入 CoreSpotlight.framework和 MobileCoreService">
-<meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS9_CoreSpotlight/CoreSpotlight.png">
-<meta property="og:image" content="https://github.com/broccolii/broccolii.github.io/raw/master/images/iOS9_CoreSpotlight/MobileCoreServices.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS9_CoreSpotlight/ScreenShot.png">
-<meta property="og:updated_time" content="2016-01-22T07:23:03.000Z">
+<meta property="og:description" content="UIView 和 CALayerUIView 可以响应事件点进 UIView.h 文件,可以看到 UIView : UIResponder.UIView 是继承 UIResponder 的,在 iOS 中 UIResponder 做为响应系统中事件的传递者和处理者,提供了大量事件处理的接口,比如我们经常使用的:
+1234- (void)touchesBegan:(NSSet&amp;lt;UITouch">
+<meta property="og:updated_time" content="2016-01-27T06:17:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS9 中的 CoreSpotlight">
-<meta name="twitter:description" content="Apple 发布了 iOS9 新系统,其中有一项新功能 CoreSpotlight 可以使 iPhone 的 Spotlight 访问 App 内的信息,在此之前只能通过 App 名来搜索 App.让我们来动手试一下.
-使用 CoreSpotlight 导入 CoreSpotlight Framework 先导入 CoreSpotlight.framework和 MobileCoreService">
+<meta name="twitter:title" content="iOS 中的 UIView 和 CALayer">
+<meta name="twitter:description" content="UIView 和 CALayerUIView 可以响应事件点进 UIView.h 文件,可以看到 UIView : UIResponder.UIView 是继承 UIResponder 的,在 iOS 中 UIResponder 做为响应系统中事件的传递者和处理者,提供了大量事件处理的接口,比如我们经常使用的:
+1234- (void)touchesBegan:(NSSet&amp;lt;UITouch">
 
 
 
@@ -82,7 +79,7 @@
   };
 </script>
 
-  <title> iOS9 中的 CoreSpotlight | 一朵西兰花 </title>
+  <title> iOS 中的 UIView 和 CALayer | 一朵西兰花 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -233,7 +230,7 @@
             
             
               
-                iOS9 中的 CoreSpotlight
+                iOS 中的 UIView 和 CALayer
               
             
           </h1>
@@ -242,8 +239,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-10-02T08:52:23+08:00" content="2015-10-02">
-              2015-10-02
+            <time itemprop="dateCreated" datetime="2016-01-26T23:31:22+08:00" content="2016-01-26">
+              2016-01-26
             </time>
           </span>
 
@@ -253,8 +250,8 @@
             
               <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2015/10/02/iOS9_CoreSpotlight/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/10/02/iOS9_CoreSpotlight/" itemprop="commentsCount"></span>
+              <a href="/2016/01/26/iOS_UIView_CALayer/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/26/iOS_UIView_CALayer/" itemprop="commentsCount"></span>
               </a>
             </span>
             
@@ -273,52 +270,31 @@
       
 
       
-        <span itemprop="articleBody"><p>Apple 发布了 iOS9 新系统,其中有一项新功能 <code>CoreSpotlight</code> 可以使 iPhone 的 Spotlight 访问 App 内的信息,在此之前只能通过 App 名来搜索 App.让我们来动手试一下.</p>
-<h4 id="u4F7F_u7528_CoreSpotlight"><a href="#u4F7F_u7528_CoreSpotlight" class="headerlink" title="使用 CoreSpotlight"></a>使用 CoreSpotlight</h4><p> <strong>导入 CoreSpotlight Framework</strong><br> 先导入 <code>CoreSpotlight.framework</code><br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS9_CoreSpotlight/CoreSpotlight.png" alt=""><br>和 <code>MobileCoreServices.framework</code><br><img src="https://github.com/broccolii/broccolii.github.io/raw/master/images/iOS9_CoreSpotlight/MobileCoreServices.png" alt=""><br><strong>创建索引数据</strong><br>先创建一个用户 UITableView 的数据 Model</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SpotlightModel</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> image: <span class="type">UIImage</span>!</span><br><span class="line">    <span class="keyword">var</span> text: <span class="type">String</span>!</span><br><span class="line">    <span class="keyword">var</span> detailText: <span class="type">String</span>!</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">createRandomData</span>() -&gt; <span class="title">SpotlightModel</span> </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> model = <span class="type">SpotlightModel</span>()</span><br><span class="line">        model.image = <span class="type">UIImage</span>(named: <span class="string">"image<span class="subst">\(arc4random()</span> % 3)"</span>)</span><br><span class="line">        model.detailText = <span class="string">"detailText<span class="subst">\(arc4random()</span> % 100)"</span></span><br><span class="line">        model.text = <span class="string">"text<span class="subst">\(arc4random()</span> % 300)"</span></span><br><span class="line">        <span class="keyword">return</span> model</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>将 <code>SpotlightModel</code> 对象保存到 CoreSpotlight 中</strong><br>创建我们需要被搜索到数据</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lazy var tableViewData: [SpotlightModel] = &#123;</span><br><span class="line">   var arr = [<span class="link_label">SpotlightModel</span>](<span class="link_url"></span>)</span><br><span class="line">   for _ in 0..<span class="xml"><span class="tag">&lt;<span class="title">30</span> &#123;</span><br><span class="line">       <span class="attribute">arr.append</span>(<span class="attribute">SpotlightModel.createRandomData</span>())</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="attribute">return</span> <span class="attribute">arr</span></span><br><span class="line">&#125;()</span></span></span><br></pre></td></tr></table></figure>
-<p>我们分别使用 <code>CSSearchableItem</code> 保存单个 model 对象的信息, 然后通过<code>CSSearchableItemAttributeSet</code> 这个集合类加入到 <code>CSSearchableIndex.defaultSearchableIndex()</code> 中去, 这样我们就可以通过 <code>CoreSpotlight</code>,搜索到我们提供的元数据了.</p>
-<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">func addToCoreSpotlight() &#123;</span><br><span class="line">   <span class="keyword">var</span> searchableItems = [CSSearchableItem]()</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">for</span> model <span class="keyword">in</span> tableViewData &#123;</span><br><span class="line">       <span class="keyword">let</span> attri = CSSearchableItemAttributeSet(<span class="attribute">itemContentType</span>: kUTTypeMessage as String)</span><br><span class="line">       </span><br><span class="line">       attri.title = <span class="string">"title"</span> </span><br><span class="line">       attri.contentDescription = <span class="string">"contentDescription"</span></span><br><span class="line">       attri.thumbnailData = UIImageJPEGRepresentation(UIImage(<span class="attribute">named</span>: <span class="string">"image0"</span>)!, <span class="number">0.9</span>)</span><br><span class="line">       attri.supportsPhoneCall = <span class="literal">true</span></span><br><span class="line">       attri.supportsNavigation = <span class="literal">true</span></span><br><span class="line">       attri.phoneNumbers = [<span class="string">"phone"</span>]</span><br><span class="line">       attri.emailAddresses = [<span class="string">"email"</span>]</span><br><span class="line">       attri.keywords = [<span class="string">"keywords"</span>]</span><br><span class="line">       </span><br><span class="line">       <span class="keyword">let</span> searchableItem = CSSearchableItem(<span class="attribute">uniqueIdentifier</span>: model.text, <span class="attribute">domainIdentifier</span>: <span class="string">"com.broccoli"</span>, <span class="attribute">attributeSet</span>: attri)</span><br><span class="line">       searchableItems.append(searchableItem)</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   CSSearchableIndex.defaultSearchableIndex<span class="function"><span class="params">()</span>.<span class="title">indexSearchableItems</span><span class="params">(searchableItems)</span> &#123; <span class="params">(error)</span> -&gt;</span> Void <span class="keyword">in</span></span><br><span class="line">       debugPrint(error)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<ol>
-<li>uniqueIdentifier: 在应用程序中这个值是唯一的，由于这个可以用于索引的更新、删除索引是唯一的，推荐使用UUID或者是搜索的条目的主键。</li>
-<li>domainIdentifier: 一个可选的标识符，用来表示item的域(domain)或者所有者，这个可能用一个账户的邮箱作为identifier来索引数据，并且当账户删除的时候可以根据这个来删除数据，一般情况下domainIdentifier应该是这种格式<account-id>.<mailbox-id>并且不能包含时间。</mailbox-id></account-id></li>
-<li>expirationDate: 过期的日期，默认过期的日期是一个月</li>
-</ol>
-</blockquote>
-<p><strong>响应用户点击事件</strong><br>现在运行一下程序搜索 <code>title</code> 是不是可以看到 App 中的数据.<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS9_CoreSpotlight/ScreenShot.png" alt=""></p>
-<p>但是点击之后我们只能到 App 的主页,我们可以在 <code>UIApplicationDelegate</code> 中通过 <code>SearchID</code> 自定义跳转到我们自定义的页面</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">application</span><span class="params">(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: <span class="params">([AnyObject]?)</span></span></span> -&gt; <span class="type">Void</span>) -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">   <span class="keyword">let</span> <span class="type">SearchID</span> = userActivity.userInfo?[<span class="string">"kCSSearchableItemActivityIdentifier"</span>] <span class="keyword">as</span>! <span class="type">String</span></span><br><span class="line">   <span class="keyword">let</span> navigationController = (window?.rootViewController <span class="keyword">as</span>! <span class="type">UINavigationController</span>)</span><br><span class="line">   navigationController.popToRootViewControllerAnimated(<span class="literal">false</span>)</span><br><span class="line">   <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">&#125;​</span><br></pre></td></tr></table></figure>
-<p><a href="https://github.com/broccolii/SpotlightDemo" target="_blank" rel="external">Demo 地址</a></p>
-</span>
+        <span itemprop="articleBody"><h3 id="UIView__u548C_CALayer"><a href="#UIView__u548C_CALayer" class="headerlink" title="UIView 和 CALayer"></a>UIView 和 CALayer</h3><p><strong>UIView 可以响应事件</strong><br>点进 UIView.h 文件,可以看到 UIView : UIResponder.UIView 是继承 UIResponder 的,在 iOS 中 UIResponder 做为响应系统中事件的传递者和处理者,提供了大量事件处理的接口,比如我们经常使用的:</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(nullable <span class="built_in">UIEvent</span> *)event;</span><br><span class="line">- (<span class="keyword">void</span>)touchesMoved:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(nullable <span class="built_in">UIEvent</span> *)event;</span><br><span class="line">- (<span class="keyword">void</span>)touchesEnded:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(nullable <span class="built_in">UIEvent</span> *)event;</span><br><span class="line">- (<span class="keyword">void</span>)touchesCancelled:(nullable <span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(nullable <span class="built_in">UIEvent</span> *)event;</span><br></pre></td></tr></table></figure>
+<p>以及关于第一响应者的一些方法:</p>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby"> (<span class="constant">BOOL</span>)canBecomeFirstResponder;    <span class="regexp">//</span> default is <span class="constant">NO</span></span><br><span class="line"></span>-<span class="ruby"> (<span class="constant">BOOL</span>)becomeFirstResponder;</span><br><span class="line"></span>-<span class="ruby"> (<span class="constant">BOOL</span>)canResignFirstResponder;    <span class="regexp">//</span> default is <span class="constant">YES</span></span><br><span class="line"></span>-<span class="ruby"> (<span class="constant">BOOL</span>)resignFirstResponder;</span><br><span class="line"></span>-<span class="ruby"> (<span class="constant">BOOL</span>)isFirstResponder;</span></span><br></pre></td></tr></table></figure>
+<p><strong>UIView 是 CALayer 的 delegate</strong><br>我们继续看 UIView.h 文件,找到 <code>layer</code> 属性.</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">readonly</span>,<span class="keyword">strong</span>)                 <span class="built_in">CALayer</span>  *layer;              <span class="comment">// returns view's layer. Will always return a non-nil value. view is layer's delegate</span></span><br></pre></td></tr></table></figure>
+<p>注释中有一句 <strong>“view is layer’s delegate”</strong>,我们可以自定义一个 UIView 的子类 <code>CustomView</code> 并在 <code>- (void)drawRect:(CGRect)rect</code> 打断点,在左侧的可以看到 CustomView 作为一个 CALayerDelegate 出现,<br><img src="" alt=""><br><strong>两者的联系</strong><br>UIView 内容的绘制和显示都是靠 <code>layer</code> 属性提供,而视图的点击事件则是通过父类 UIResponder 来接收处理.</p>
+<h3 id="frame__u662F_u600E_u4E48_u4EA7_u751F_u7684"><a href="#frame__u662F_u600E_u4E48_u4EA7_u751F_u7684" class="headerlink" title="frame 是怎么产生的"></a>frame 是怎么产生的</h3></span>
       
     </div>
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/CoreSpotlight/" rel="tag">#CoreSpotlight</a>
-          
-        </div>
       
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/01/31/iOS_Runloop/" rel="next" title="iOS 中的 RunLoop">
-                <i class="fa fa-chevron-left"></i> iOS 中的 RunLoop
+              <a href="/2016/01/26/UITableView_Optimization/" rel="next" title="UITableView 性能优化">
+                <i class="fa fa-chevron-left"></i> UITableView 性能优化
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2015/11/06/iOS9_3D_Touch/" rel="prev" title="iOS9 中的 3D Touch">
-                iOS9 中的 3D Touch <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -469,7 +445,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#u4F7F_u7528_CoreSpotlight"><span class="nav-number">1.</span> <span class="nav-text">使用 CoreSpotlight</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#UIView__u548C_CALayer"><span class="nav-number">1.</span> <span class="nav-text">UIView 和 CALayer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#frame__u662F_u600E_u4E48_u4EA7_u751F_u7684"><span class="nav-number">2.</span> <span class="nav-text">frame 是怎么产生的</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -529,9 +505,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'broccoliii';
-      var disqus_identifier = '2015/10/02/iOS9_CoreSpotlight/';
-      var disqus_title = 'iOS9 中的 CoreSpotlight';
-      var disqus_url = 'http://broccolii.github.io/2015/10/02/iOS9_CoreSpotlight/';
+      var disqus_identifier = '2016/01/26/iOS_UIView_CALayer/';
+      var disqus_title = 'iOS 中的 UIView 和 CALayer';
+      var disqus_url = 'http://broccolii.github.io/2016/01/26/iOS_UIView_CALayer/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
