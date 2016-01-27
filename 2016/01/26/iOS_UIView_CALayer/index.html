@@ -65,7 +65,9 @@
 1234- (void)touchesBegan:(NSSet&amp;lt;UITouch">
 <meta property="og:image" content="https://github.com/broccolii/broccolii.github.io/raw/master/images/iOS_UIView_CALayer/CALayerDelegate.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/CAlayer_frame.jpg">
-<meta property="og:updated_time" content="2016-01-27T07:39:09.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/layer_coords_anchorpoint_position_2x-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/anchorpoint2.jpg">
+<meta property="og:updated_time" content="2016-01-27T08:20:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 中的 UIView 和 CALayer">
 <meta name="twitter:description" content="UIView 和 CALayerUIView 可以响应事件点进 UIView.h 文件,可以看到 UIView : UIResponder.UIView 是继承 UIResponder 的,在 iOS 中 UIResponder 做为响应系统中事件的传递者和处理者,提供了大量事件处理的接口,比如我们经常使用的:
@@ -285,8 +287,13 @@
 <li>UIView 的 center 直接调用 rootLayer 的 position </li>
 <li>UIView 的 bounds 直接调用 rootLayer 的 bounds</li>
 <li>UIView 的 frame 直接调用 rootLayer 的 frame</li>
-<li>rootLayer 的 frame 又是 <code>anchorPoint</code>, <code>position</code>, <code>bounds</code>, <code>transform</code> 四个属性的派生属性<br>既然九九归一,最后都是这四个属性在影响着 frame 的大小.我们先从 <code>anchorPoint</code> 和 <code>position</code> 着手,因为 <code>position</code> 是 <code>anchorPoint</code> 在 superLayer 上的投影坐标.<br><strong>anchorPoint</strong><br><code>anchorPoint</code> (锚点) 顾名思义是一个固定点,在做 transform 时,会以 <code>anchorPoint</code> 作为固定点旋转.在 iOS 中,anchorPoint 的值是以相对 bounds 的比例值来确定的.如果觉得太抽象可以看下图:<br><img src="" alt=""><br><img src="" alt=""><br><img src="" alt=""><br><img src="" alt=""></li>
+<li>rootLayer 的 frame 又是 <code>anchorPoint</code>, <code>position</code>, <code>bounds</code>, <code>transform</code> 四个属性的派生属性<br>既然九九归一,最后都是这四个属性在影响着 frame 的大小.我们先从 <code>anchorPoint</code> 和 <code>position</code> 着手,因为 <code>position</code> 是 <code>anchorPoint</code> 在 superLayer 上的投影坐标.<br><strong>anchorPoint</strong><br><code>anchorPoint</code> (锚点) 顾名思义是一个固定点,在做 transform 时,会以 <code>anchorPoint</code> 作为固定点旋转.在 iOS 中,anchorPoint 的值是以相对 bounds 的比例值来确定的.如果觉得太抽象可以看下图:</li>
 </ol>
+<p><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/layer_coords_anchorpoint_position_2x-2.png" alt=""><br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/anchorpoint2.jpg" alt=""></p>
+<p><strong>position</strong><br><code>position</code> 的定义是 <code>The position in the superlayer that the anchor point of the layer&#39;s bounds rect is aligned t</code> position 是 layer 相对 superLayer 坐标空间的位置.我们可以想象一下,我们是一条很大很大的邮轮停在大西洋上,我们向陆地发送的坐标就是船锚的位置.船锚的位置只能是相对于船身来说的,类比 <code>anchorPoint 的值是以相对 bounds 的比例值来确定的</code>.是不是很好理解呢(捂脸逃</p>
+<p><strong>bounds</strong><br>bounds 分为两部分: origin 和 size.bounds.size 定义了图层的大小,bounds.origin 却并不表示图层的位置,而是定了内部坐标系的原点.那什么是内部坐标系的原点呢?指的是图层内部子图层的坐标系,就是说如果修改了 bounds.origin 的自身不会发生任何变化,但是在其内部的子图层会发生位移.</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIView</span> *lightGrayView = [[<span class="built_in">UIView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>)];</span><br><span class="line">lightGrayView<span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> lightGrayColor];</span><br><span class="line">[<span class="keyword">self</span><span class="variable">.view</span> addSubview:lightGrayView];</span><br><span class="line">    </span><br><span class="line"><span class="built_in">UIView</span> *orangeView = [[<span class="built_in">UIView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">25</span>, <span class="number">25</span>, <span class="number">50</span>, <span class="number">50</span>)];</span><br><span class="line">orangeView<span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> orangeColor];</span><br><span class="line">[lightGrayView addSubview:orangeView];</span><br></pre></td></tr></table></figure>
+<p><img src="" alt=""><br>修改 bounds: <code>lightGrayView.layer.bounds = CGRectMake(20, 20, 100, 100);</code><br><img src="" alt=""></p>
 </span>
       
     </div>
