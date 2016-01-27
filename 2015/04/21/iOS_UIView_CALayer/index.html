@@ -64,14 +64,13 @@
 <meta property="og:description" content="UIView 和 CALayerUIView 可以响应事件点进 UIView.h 文件,可以看到 UIView : UIResponder.UIView 是继承 UIResponder 的,在 iOS 中 UIResponder 做为响应系统中事件的传递者和处理者,提供了大量事件处理的接口,比如我们经常使用的:
 1234- (void)touchesBegan:(NSSet&amp;lt;UITouch">
 <meta property="og:image" content="https://github.com/broccolii/broccolii.github.io/raw/master/images/iOS_UIView_CALayer/CALayerDelegate.png">
-<meta property="og:image" content="http://www.jianshu.com/p/079e5cf0f014">
 <meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/CAlayer_frame.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/layer_coords_anchorpoint_position_2x-2.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/anchorpoint2.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/bounds_demo1.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/bounds_demo2.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/transform_demo.png">
-<meta property="og:updated_time" content="2016-01-27T09:22:08.000Z">
+<meta property="og:updated_time" content="2016-01-27T09:25:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 中的 UIView 和 CALayer">
 <meta name="twitter:description" content="UIView 和 CALayerUIView 可以响应事件点进 UIView.h 文件,可以看到 UIView : UIResponder.UIView 是继承 UIResponder 的,在 iOS 中 UIResponder 做为响应系统中事件的传递者和处理者,提供了大量事件处理的接口,比如我们经常使用的:
@@ -285,7 +284,7 @@
 <p><strong>UIView 是 CALayer 的 delegate</strong><br>我们继续看 UIView.h 文件,找到 <code>layer</code> 属性.</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">readonly</span>,<span class="keyword">strong</span>)                 <span class="built_in">CALayer</span>  *layer;              <span class="comment">// returns view's layer. Will always return a non-nil value. view is layer's delegate</span></span><br></pre></td></tr></table></figure>
 <p>注释中有一句 <strong>“view is layer’s delegate”</strong>,我们可以自定义一个 UIView 的子类 <code>CustomView</code> 并在 <code>- (void)drawRect:(CGRect)rect</code> 打断点,在左侧的可以看到 CustomView 作为一个 CALayerDelegate 出现,<br><img src="https://github.com/broccolii/broccolii.github.io/raw/master/images/iOS_UIView_CALayer/CALayerDelegate.png" alt=""></p>
-<p><strong>两者的联系</strong><br>UIView 内容的绘制和显示都是靠 <code>layer</code> 属性提供,而视图的点击事件则是通过父类 UIResponder 来接收处理.两者之间的区别可以看一下<img src="http://www.jianshu.com/p/079e5cf0f014" alt="详解CALayer 和 UIView的区别和联系"></p>
+<p><strong>两者的联系</strong><br>UIView 内容的绘制和显示都是靠 <code>layer</code> 属性提供,而视图的点击事件则是通过父类 UIResponder 来接收处理.两者之间的区别可以看一下<a href="http://www.jianshu.com/p/079e5cf0f014" target="_blank" rel="external">详解CALayer 和 UIView的区别和联系</a></p>
 <h3 id="frame__u548C_bounds"><a href="#frame__u548C_bounds" class="headerlink" title="frame 和 bounds"></a>frame 和 bounds</h3><p>为了更好了理解 <code>frame</code> 和 <code>bounds</code>,我们先来看一下一张图:<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/CAlayer_frame.jpg" alt=""></p>
 <ol>
 <li>UIView 的 center 直接调用 rootLayer 的 position </li>
@@ -305,7 +304,7 @@
 <p>frame 的大小是一个包含了经过转换后的顶点的最小矩形,如下图灰框所示:<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/transform_demo.png" alt=""></p>
 <p>那么 frame 和这四个属性之间到底是什么关系呢? 在不考虑 transform 的情况下是(三角函数实在是太难了啊!摔:</p>
 <blockquote>
-<p>frame.origin.x = position.x - anchorPoint.x <em> bounds.size.width<br>frame.origin.y = position.y - anchorPoint.y </em> bounds.size.height<br>frame.size.width = bounds.size.width<br>frame.size.height = bounds.size.height</p>
+<p>frame.origin.x = position.x - anchorPoint.x * bounds.size.width<br>frame.origin.y = position.y - anchorPoint.y * bounds.size.height<br>frame.size.width = bounds.size.width<br>frame.size.height = bounds.size.height</p>
 </blockquote>
 </span>
       
