@@ -63,7 +63,8 @@
 <meta property="og:site_name" content="一朵西兰花">
 <meta property="og:description" content="UIView 和 CALayerUIView 可以响应事件点进 UIView.h 文件,可以看到 UIView : UIResponder.UIView 是继承 UIResponder 的,在 iOS 中 UIResponder 做为响应系统中事件的传递者和处理者,提供了大量事件处理的接口,比如我们经常使用的:
 1234- (void)touchesBegan:(NSSet&amp;lt;UITouch">
-<meta property="og:updated_time" content="2016-01-27T06:17:13.000Z">
+<meta property="og:image" content="https://github.com/broccolii/broccolii.github.io/raw/master/images/iOS_UIView_CALayer/CALayerDelegate.png">
+<meta property="og:updated_time" content="2016-01-27T07:07:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 中的 UIView 和 CALayer">
 <meta name="twitter:description" content="UIView 和 CALayerUIView 可以响应事件点进 UIView.h 文件,可以看到 UIView : UIResponder.UIView 是继承 UIResponder 的,在 iOS 中 UIResponder 做为响应系统中事件的传递者和处理者,提供了大量事件处理的接口,比如我们经常使用的:
@@ -276,8 +277,9 @@
 <figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby"> (<span class="constant">BOOL</span>)canBecomeFirstResponder;    <span class="regexp">//</span> default is <span class="constant">NO</span></span><br><span class="line"></span>-<span class="ruby"> (<span class="constant">BOOL</span>)becomeFirstResponder;</span><br><span class="line"></span>-<span class="ruby"> (<span class="constant">BOOL</span>)canResignFirstResponder;    <span class="regexp">//</span> default is <span class="constant">YES</span></span><br><span class="line"></span>-<span class="ruby"> (<span class="constant">BOOL</span>)resignFirstResponder;</span><br><span class="line"></span>-<span class="ruby"> (<span class="constant">BOOL</span>)isFirstResponder;</span></span><br></pre></td></tr></table></figure>
 <p><strong>UIView 是 CALayer 的 delegate</strong><br>我们继续看 UIView.h 文件,找到 <code>layer</code> 属性.</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">readonly</span>,<span class="keyword">strong</span>)                 <span class="built_in">CALayer</span>  *layer;              <span class="comment">// returns view's layer. Will always return a non-nil value. view is layer's delegate</span></span><br></pre></td></tr></table></figure>
-<p>注释中有一句 <strong>“view is layer’s delegate”</strong>,我们可以自定义一个 UIView 的子类 <code>CustomView</code> 并在 <code>- (void)drawRect:(CGRect)rect</code> 打断点,在左侧的可以看到 CustomView 作为一个 CALayerDelegate 出现,<br><img src="" alt=""><br><strong>两者的联系</strong><br>UIView 内容的绘制和显示都是靠 <code>layer</code> 属性提供,而视图的点击事件则是通过父类 UIResponder 来接收处理.</p>
-<h3 id="frame__u662F_u600E_u4E48_u4EA7_u751F_u7684"><a href="#frame__u662F_u600E_u4E48_u4EA7_u751F_u7684" class="headerlink" title="frame 是怎么产生的"></a>frame 是怎么产生的</h3></span>
+<p>注释中有一句 <strong>“view is layer’s delegate”</strong>,我们可以自定义一个 UIView 的子类 <code>CustomView</code> 并在 <code>- (void)drawRect:(CGRect)rect</code> 打断点,在左侧的可以看到 CustomView 作为一个 CALayerDelegate 出现,<br><img src="https://github.com/broccolii/broccolii.github.io/raw/master/images/iOS_UIView_CALayer/CALayerDelegate.png" alt=""></p>
+<p><strong>两者的联系</strong><br>UIView 内容的绘制和显示都是靠 <code>layer</code> 属性提供,而视图的点击事件则是通过父类 UIResponder 来接收处理.</p>
+<h3 id="frame__u548C_bounds"><a href="#frame__u548C_bounds" class="headerlink" title="frame 和 bounds"></a>frame 和 bounds</h3></span>
       
     </div>
 
@@ -445,7 +447,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#UIView__u548C_CALayer"><span class="nav-number">1.</span> <span class="nav-text">UIView 和 CALayer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#frame__u662F_u600E_u4E48_u4EA7_u751F_u7684"><span class="nav-number">2.</span> <span class="nav-text">frame 是怎么产生的</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#UIView__u548C_CALayer"><span class="nav-number">1.</span> <span class="nav-text">UIView 和 CALayer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#frame__u548C_bounds"><span class="nav-number">2.</span> <span class="nav-text">frame 和 bounds</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">

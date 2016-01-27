@@ -7,7 +7,7 @@
     <link>http://broccolii.github.io/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     <description><![CDATA[不求深刻,但求简单.]]></description>
-    <pubDate>Wed, 27 Jan 2016 06:17:13 GMT</pubDate>
+    <pubDate>Wed, 27 Jan 2016 07:07:39 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -24,8 +24,9 @@
 <figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby"> (<span class="constant">BOOL</span>)canBecomeFirstResponder;    <span class="regexp">//</span> default is <span class="constant">NO</span></span><br><span class="line"></span>-<span class="ruby"> (<span class="constant">BOOL</span>)becomeFirstResponder;</span><br><span class="line"></span>-<span class="ruby"> (<span class="constant">BOOL</span>)canResignFirstResponder;    <span class="regexp">//</span> default is <span class="constant">YES</span></span><br><span class="line"></span>-<span class="ruby"> (<span class="constant">BOOL</span>)resignFirstResponder;</span><br><span class="line"></span>-<span class="ruby"> (<span class="constant">BOOL</span>)isFirstResponder;</span></span><br></pre></td></tr></table></figure>
 <p><strong>UIView 是 CALayer 的 delegate</strong><br>我们继续看 UIView.h 文件,找到 <code>layer</code> 属性.</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">readonly</span>,<span class="keyword">strong</span>)                 <span class="built_in">CALayer</span>  *layer;              <span class="comment">// returns view's layer. Will always return a non-nil value. view is layer's delegate</span></span><br></pre></td></tr></table></figure>
-<p>注释中有一句 <strong>“view is layer’s delegate”</strong>,我们可以自定义一个 UIView 的子类 <code>CustomView</code> 并在 <code>- (void)drawRect:(CGRect)rect</code> 打断点,在左侧的可以看到 CustomView 作为一个 CALayerDelegate 出现,<br><img src="" alt=""><br><strong>两者的联系</strong><br>UIView 内容的绘制和显示都是靠 <code>layer</code> 属性提供,而视图的点击事件则是通过父类 UIResponder 来接收处理.</p>
-<h3 id="frame__u662F_u600E_u4E48_u4EA7_u751F_u7684"><a href="#frame__u662F_u600E_u4E48_u4EA7_u751F_u7684" class="headerlink" title="frame 是怎么产生的"></a>frame 是怎么产生的</h3>]]></content:encoded>
+<p>注释中有一句 <strong>“view is layer’s delegate”</strong>,我们可以自定义一个 UIView 的子类 <code>CustomView</code> 并在 <code>- (void)drawRect:(CGRect)rect</code> 打断点,在左侧的可以看到 CustomView 作为一个 CALayerDelegate 出现,<br><img src="https://github.com/broccolii/broccolii.github.io/raw/master/images/iOS_UIView_CALayer/CALayerDelegate.png" alt=""></p>
+<p><strong>两者的联系</strong><br>UIView 内容的绘制和显示都是靠 <code>layer</code> 属性提供,而视图的点击事件则是通过父类 UIResponder 来接收处理.</p>
+<h3 id="frame__u548C_bounds"><a href="#frame__u548C_bounds" class="headerlink" title="frame 和 bounds"></a>frame 和 bounds</h3>]]></content:encoded>
       <comments>http://broccolii.github.io/2016/01/26/iOS_UIView_CALayer/#disqus_thread</comments>
     </item>
     
