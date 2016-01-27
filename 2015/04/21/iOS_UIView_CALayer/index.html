@@ -59,18 +59,19 @@
 1234- (void)touchesBegan:(NSSet&amp;lt;UITouch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS 中的 UIView 和 CALayer">
-<meta property="og:url" content="http://broccolii.github.io/2016/01/26/iOS_UIView_CALayer/index.html">
+<meta property="og:url" content="http://broccolii.github.io/2015/04/21/iOS_UIView_CALayer/index.html">
 <meta property="og:site_name" content="一朵西兰花">
 <meta property="og:description" content="UIView 和 CALayerUIView 可以响应事件点进 UIView.h 文件,可以看到 UIView : UIResponder.UIView 是继承 UIResponder 的,在 iOS 中 UIResponder 做为响应系统中事件的传递者和处理者,提供了大量事件处理的接口,比如我们经常使用的:
 1234- (void)touchesBegan:(NSSet&amp;lt;UITouch">
 <meta property="og:image" content="https://github.com/broccolii/broccolii.github.io/raw/master/images/iOS_UIView_CALayer/CALayerDelegate.png">
+<meta property="og:image" content="http://www.jianshu.com/p/079e5cf0f014">
 <meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/CAlayer_frame.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/layer_coords_anchorpoint_position_2x-2.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/anchorpoint2.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/bounds_demo1.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/bounds_demo2.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/transform_demo.png">
-<meta property="og:updated_time" content="2016-01-27T09:03:19.000Z">
+<meta property="og:updated_time" content="2016-01-27T09:22:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 中的 UIView 和 CALayer">
 <meta name="twitter:description" content="UIView 和 CALayerUIView 可以响应事件点进 UIView.h 文件,可以看到 UIView : UIResponder.UIView 是继承 UIResponder 的,在 iOS 中 UIResponder 做为响应系统中事件的传递者和处理者,提供了大量事件处理的接口,比如我们经常使用的:
@@ -246,8 +247,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-01-26T23:31:22+08:00" content="2016-01-26">
-              2016-01-26
+            <time itemprop="dateCreated" datetime="2015-04-21T11:34:21+08:00" content="2015-04-21">
+              2015-04-21
             </time>
           </span>
 
@@ -257,8 +258,8 @@
             
               <span class="post-comments-count">
               &nbsp; | &nbsp;
-              <a href="/2016/01/26/iOS_UIView_CALayer/#comments" itemprop="discussionUrl">
-                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/01/26/iOS_UIView_CALayer/" itemprop="commentsCount"></span>
+              <a href="/2015/04/21/iOS_UIView_CALayer/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/04/21/iOS_UIView_CALayer/" itemprop="commentsCount"></span>
               </a>
             </span>
             
@@ -284,7 +285,7 @@
 <p><strong>UIView 是 CALayer 的 delegate</strong><br>我们继续看 UIView.h 文件,找到 <code>layer</code> 属性.</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">readonly</span>,<span class="keyword">strong</span>)                 <span class="built_in">CALayer</span>  *layer;              <span class="comment">// returns view's layer. Will always return a non-nil value. view is layer's delegate</span></span><br></pre></td></tr></table></figure>
 <p>注释中有一句 <strong>“view is layer’s delegate”</strong>,我们可以自定义一个 UIView 的子类 <code>CustomView</code> 并在 <code>- (void)drawRect:(CGRect)rect</code> 打断点,在左侧的可以看到 CustomView 作为一个 CALayerDelegate 出现,<br><img src="https://github.com/broccolii/broccolii.github.io/raw/master/images/iOS_UIView_CALayer/CALayerDelegate.png" alt=""></p>
-<p><strong>两者的联系</strong><br>UIView 内容的绘制和显示都是靠 <code>layer</code> 属性提供,而视图的点击事件则是通过父类 UIResponder 来接收处理.</p>
+<p><strong>两者的联系</strong><br>UIView 内容的绘制和显示都是靠 <code>layer</code> 属性提供,而视图的点击事件则是通过父类 UIResponder 来接收处理.两者之间的区别可以看一下<img src="http://www.jianshu.com/p/079e5cf0f014" alt="详解CALayer 和 UIView的区别和联系"></p>
 <h3 id="frame__u548C_bounds"><a href="#frame__u548C_bounds" class="headerlink" title="frame 和 bounds"></a>frame 和 bounds</h3><p>为了更好了理解 <code>frame</code> 和 <code>bounds</code>,我们先来看一下一张图:<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/CAlayer_frame.jpg" alt=""></p>
 <ol>
 <li>UIView 的 center 直接调用 rootLayer 的 position </li>
@@ -317,13 +318,17 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/26/UITableView_Optimization/" rel="next" title="UITableView 性能优化">
-                <i class="fa fa-chevron-left"></i> UITableView 性能优化
+              <a href="/2015/01/31/iOS_Runloop/" rel="next" title="iOS 中的 RunLoop">
+                <i class="fa fa-chevron-left"></i> iOS 中的 RunLoop
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/10/02/iOS9_CoreSpotlight/" rel="prev" title="iOS9 中的 CoreSpotlight">
+                iOS9 中的 CoreSpotlight <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -534,9 +539,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'broccoliii';
-      var disqus_identifier = '2016/01/26/iOS_UIView_CALayer/';
+      var disqus_identifier = '2015/04/21/iOS_UIView_CALayer/';
       var disqus_title = 'iOS 中的 UIView 和 CALayer';
-      var disqus_url = 'http://broccolii.github.io/2016/01/26/iOS_UIView_CALayer/';
+      var disqus_url = 'http://broccolii.github.io/2015/04/21/iOS_UIView_CALayer/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
