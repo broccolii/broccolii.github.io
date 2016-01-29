@@ -63,7 +63,7 @@ GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是�
 <meta property="og:site_name" content="一朵西兰花">
 <meta property="og:description" content="想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 GitHub 和 Hexo 在 Mac 下搭建属于自己的博客.
 GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是托管在 GitHub 上的.你需要创建一个仓库 + New repository,名称为 GitHub用户名.github.i">
-<meta property="og:updated_time" content="2015-12-30T09:36:11.000Z">
+<meta property="og:updated_time" content="2016-01-29T14:23:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用 GitHub & Hexo 在 Mac 上搭建博客">
 <meta name="twitter:description" content="想搭建一个个人博客来记录一下自己学习的点滴,开发中遇到的问题,分享一下小经验.这篇文章作为 blog 的第一篇,分享一下如何基于 GitHub 和 Hexo 在 Mac 下搭建属于自己的博客.
@@ -303,14 +303,14 @@ GitHub在搭建之前你需要一个 GitHub 账号,因为 blog 的文件都是�
 <pre><code class="bash">$ hexo server
 </code></pre>
 <p>操作到这里时,可以在浏览器中 <a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a> 看到生成的好的 blog</p>
-<h4 id="u6258_u7BA1_u5230_GitHub__u4E0A"><a href="#u6258_u7BA1_u5230_GitHub__u4E0A" class="headerlink" title="托管到 GitHub 上"></a>托管到 GitHub 上</h4><p>打开 <code>_config.yml</code>, 配置 <code>GitHub</code> 信息</p>
+<h4 id="u6258_u7BA1_u5230_GitHub__u4E0A"><a href="#u6258_u7BA1_u5230_GitHub__u4E0A" class="headerlink" title="托管到 GitHub 上"></a>托管到 GitHub 上</h4><p>打开 <code>_config.yml</code>, 配置 <code>GitHub</code> 信息 PS: yml 是有严格的格式要求,所以一定要两个空格哦~</p>
 <pre><code class="bash">deploy:
-      <span class="comment">#部署类型, 本文使用Github</span>
-    <span class="built_in">type</span>: git            
-    <span class="comment">#部署的仓库的链接         </span>
-    repository: &lt;GitHub用户名.github.io 这个仓库所在的路径&gt;.git
-    <span class="comment">#部署分支,一般使用master主分支      </span>
-    branch: master
+  <span class="comment">#部署类型, 本文使用Github</span>
+  <span class="built_in">type</span>: git            
+  <span class="comment">#部署的仓库的链接         </span>
+  repository: &lt;GitHub用户名.github.io 这个仓库所在的路径&gt;.git
+  <span class="comment">#部署分支,一般使用master主分支      </span>
+  branch: master
 </code></pre>
 <p>使用命令:</p>
 <pre><code class="bash">$ hexo deploy
