@@ -7,7 +7,7 @@
     <link>http://broccolii.github.io/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     <description><![CDATA[不求深刻,但求简单.]]></description>
-    <pubDate>Fri, 19 Feb 2016 06:21:34 GMT</pubDate>
+    <pubDate>Fri, 19 Feb 2016 06:27:45 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -30,6 +30,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> <span class="string">'https://github.com/broccolii/blog_demo_PrivateLibrary.git'</span></span><br><span class="line">pod <span class="string">'LibraryName'</span></span><br></pre></td></tr></table></figure>
 <p>接着</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod <span class="keyword">install</span></span><br></pre></td></tr></table></figure>
+<p><em>PS:</em> 如果想把自己写的库支持 CocoaPods,可以看一下<a href="http://yulingtianxia.com/blog/2014/05/26/publish-your-pods-on-cocoapods-with-trunk/" target="_blank" rel="external">Publish Your Pods on CocoaPods with Trunk</a></p>
 ]]></content:encoded>
       <comments>http://broccolii.github.io/2016/02/04/CocoaPods_private_library/#disqus_thread</comments>
     </item>
