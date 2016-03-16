@@ -127,6 +127,7 @@
 <p>RLMResults *results = [[RealmModel objectsWhere:@”nickname = ‘broccoliii’”] sortedResultsUsingProperty:@”ID” ascending:YES];<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4.4</span> 链式查询</span><br><span class="line">在 <span class="escape">`n</span>ickname<span class="escape">` </span>是 <span class="escape">`b</span>roccoliii<span class="escape">` </span>的结果中查询 <span class="escape">`a</span>ge<span class="escape">` </span>为 <span class="number">23</span> 的结果集.</span><br></pre></td></tr></table></figure></p>
 <p>RLMResults <em>nameResults = [RealmModel objectsWhere:@”nickname = ‘broccoliii’”];<br>RLMResults </em>results = [nameResults objectsWhere:@”age = 23”];<br>```</p>
 <h4 id="Core_Data"><a href="#Core_Data" class="headerlink" title="Core Data"></a>Core Data</h4><p>新建一个 Core Data 工程, 在 <code>Choose a template for your new progect</code> 时, 勾选 <code>Use Core Data</code>.<br><img src="" alt=""></p>
+<p>项目建立后会发现 Frameworks 中已经有了 CoreData.framework 一项，并且还多了一个<em>**</em>.xcdatamodeld 文件，该文件定义了数据模型结构，你可以使用XCode内置的可视化建模工具进行构建。点开它你会发现左侧有三项：<code>Entities</code>，<code>Fetch Request</code>、<code>Configurations</code>。<em>Entities</em>: 可以简单的将 Entity 理解为数据库中的一张表. 点击下方 <code>Add Entity</code> 新增 <code>Entities</code>. 表中 <code>Attributes</code> 相当于一张表的列属性,可以设置其数据类型，默认值，最大最小值等，类似数据库可视化建表. <code>Fetch Request</code> 可以用来描述数据请求, 用 <code>NSFetchRequest</code> 封装一次数据请求, 通过 <code>Fetch Request</code> 将 <code>NSFetchRequest</code> 作为模板存储在被管理对象模型. </p>
 <h3 id="u6027_u80FD_u6BD4_u8F83__u56FE_u8868"><a href="#u6027_u80FD_u6BD4_u8F83__u56FE_u8868" class="headerlink" title="性能比较 图表"></a>性能比较 图表</h3><h3 id="App__u4F7F_u7528"><a href="#App__u4F7F_u7528" class="headerlink" title="App 使用"></a>App 使用</h3><p>Apple 的 News 使用了 FMDB.(笑</p>
 <h3 id="IM__u7684_u9700_u6C42"><a href="#IM__u7684_u9700_u6C42" class="headerlink" title="IM 的需求"></a>IM 的需求</h3><ol>
 <li>单条写</li>
@@ -135,6 +136,7 @@
 <li><h3 id="u6709_u4EC0_u4E48_u4F18_u7F3A_u70B9"><a href="#u6709_u4EC0_u4E48_u4F18_u7F3A_u70B9" class="headerlink" title="有什么优缺点"></a>有什么优缺点</h3><del>FMDB</del><br>优点:<br>对多线程的并发操作进行处理，所以是线程安全的；<br>以OC的方式封装了SQLite的C语言API，使用起来更加的方便；<br>FMDB是轻量级的框架，使用灵活。</li>
 </ol>
 <p>缺点:<br>因为它是OC的语言封装的，只能在ios开发的时候使用，所以在实现跨平台操作的时候存在局限性。</p>
+<p><a href="http://yulingtianxia.com/blog/2014/05/01/chu-shi-core-data-1/" target="_blank" rel="external">CoreData</a><br><a href="https://realm.io/cn/docs/objc/latest/#section" target="_blank" rel="external">Realm</a></p>
 ]]></content:encoded>
       <comments>http://broccolii.github.io/2015/12/31/iOS_database/#disqus_thread</comments>
     </item>
