@@ -47,18 +47,122 @@
 <p>RLMResults <em>models = [RealmModel allObjects];<br>// 或者 指定数据库<br>RLMResults </em>models = [RealmModel allObjectsInRealm:realm];<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4.2</span> 条件查询</span><br></pre></td></tr></table></figure></p>
 <p>RLMResults <em>results = [RealmModel objectsWhere:@”nickname = ‘broccoliii’”];<br>// 或者使用谓词<br>NSPredicate </em>predicate = [NSPredicate predicateWithFormat:@”nickname = ‘%@’”, @”broccoliii”];<br>RLMResults *results = [RealmModel objectsWithPredicate:predicate];<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4.3</span> 条件排序</span><br><span class="line">筛选出来的结果按照num字段进行递增排序：</span><br></pre></td></tr></table></figure></p>
 <p>RLMResults *results = [[RealmModel objectsWhere:@”nickname = ‘broccoliii’”] sortedResultsUsingProperty:@”ID” ascending:YES];<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4.4</span> 链式查询</span><br><span class="line">在 <span class="escape">`n</span>ickname<span class="escape">` </span>是 <span class="escape">`b</span>roccoliii<span class="escape">` </span>的结果中查询 <span class="escape">`a</span>ge<span class="escape">` </span>为 <span class="number">23</span> 的结果集.</span><br></pre></td></tr></table></figure></p>
-<p>RLMResults <em>nameResults = [RealmModel objectsWhere:@”nickname = ‘broccoliii’”];<br>RLMResults </em>results = [nameResults objectsWhere:@”age = 23”];<br>```</p>
-<h4 id="Core_Data"><a href="#Core_Data" class="headerlink" title="Core Data"></a>Core Data</h4><p>新建一个 Core Data 工程, 在 <code>Choose a template for your new progect</code> 时, 勾选 <code>Use Core Data</code>.<br><img src="" alt=""></p>
-<p>项目建立后会发现 Frameworks 中已经有了 CoreData.framework 一项，并且还多了一个<em>**</em>.xcdatamodeld 文件，该文件定义了数据模型结构，你可以使用XCode内置的可视化建模工具进行构建。点开它你会发现左侧有三项：<code>Entities</code>，<code>Fetch Request</code>、<code>Configurations</code>。<em>Entities</em>: 可以简单的将 Entity 理解为数据库中的一张表. 点击下方 <code>Add Entity</code> 新增 <code>Entities</code>. 表中 <code>Attributes</code> 相当于一张表的列属性,可以设置其数据类型，默认值，最大最小值等，类似数据库可视化建表. <code>Fetch Request</code> 可以用来描述数据请求, 用 <code>NSFetchRequest</code> 封装一次数据请求, 通过 <code>Fetch Request</code> 将 <code>NSFetchRequest</code> 作为模板存储在被管理对象模型. </p>
-<h3 id="u6027_u80FD_u6BD4_u8F83__u56FE_u8868"><a href="#u6027_u80FD_u6BD4_u8F83__u56FE_u8868" class="headerlink" title="性能比较 图表"></a>性能比较 图表</h3><h3 id="App__u4F7F_u7528"><a href="#App__u4F7F_u7528" class="headerlink" title="App 使用"></a>App 使用</h3><p>Apple 的 News 使用了 FMDB.(笑</p>
-<h3 id="IM__u7684_u9700_u6C42"><a href="#IM__u7684_u9700_u6C42" class="headerlink" title="IM 的需求"></a>IM 的需求</h3><ol>
-<li>单条写</li>
-<li>小批量读</li>
-<li>小批量写</li>
-<li><h3 id="u6709_u4EC0_u4E48_u4F18_u7F3A_u70B9"><a href="#u6709_u4EC0_u4E48_u4F18_u7F3A_u70B9" class="headerlink" title="有什么优缺点"></a>有什么优缺点</h3><del>FMDB</del><br>优点:<br>对多线程的并发操作进行处理，所以是线程安全的；<br>以OC的方式封装了SQLite的C语言API，使用起来更加的方便；<br>FMDB是轻量级的框架，使用灵活。</li>
-</ol>
-<p>缺点:<br>因为它是OC的语言封装的，只能在ios开发的时候使用，所以在实现跨平台操作的时候存在局限性。</p>
-<p><a href="http://yulingtianxia.com/blog/2014/05/01/chu-shi-core-data-1/" target="_blank" rel="external">CoreData</a><br><a href="https://realm.io/cn/docs/objc/latest/#section" target="_blank" rel="external">Realm</a></p>
+<p>RLMResults <em>nameResults = [RealmModel objectsWhere:@”nickname = ‘broccoliii’”];<br>RLMResults </em>results = [nameResults objectsWhere:@”age = 23”];<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#### Core Data</span><br><span class="line">新建一个 Core Data 工程, 在 <span class="escape">`C</span>hoose <span class="literal">a</span> template for your new progect<span class="escape">` </span>时, 勾选 <span class="escape">` </span>Use Core Data<span class="escape">`.</span></span><br><span class="line"><span class="label">![](https:</span>//raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_database/Use_Core_Data.png)</span><br><span class="line"></span><br><span class="line"><span class="label">项目建立后会发现 Frameworks 中已经有了 CoreData.framework 一项，并且还多了一个****.xcdatamodeld 文件，该文件定义了数据模型结构，你可以使用XCode内置的可视化建模工具进行构建。点开它你会发现左侧有三项：`Entities`，`Fetch Request`、`Configurations`。*Entities*:</span> 可以简单的将 Entity 理解为数据库中的一张表. 点击下方 <span class="escape">`A</span>dd Entity<span class="escape">` </span>新增 <span class="escape">`E</span>ntities<span class="escape">`.</span> 表中 <span class="escape">`A</span>ttributes<span class="escape">` </span>相当于一张表的列属性,可以设置其数据类型，默认值，最大最小值等，类似数据库可视化建表. *Fetch Request* 相当于 SQL 查询语句的包装类, 用 <span class="escape">`N</span>SFetchRequest<span class="escape">` </span>封装一次数据请求, 通过 <span class="escape">`F</span>etch Request<span class="escape">` </span>将 <span class="escape">`N</span>SFetchRequest<span class="escape">` </span>作为模板存储在被管理对象模型. </span><br><span class="line"></span><br><span class="line">因为我们在工程创建时, 勾选了 <span class="escape">`U</span>se Core Data<span class="escape">`,</span> 在 AppDelegate.h 中多了几个 <span class="escape">`p</span>roperty<span class="escape">`,</span> <span class="escape">`m</span>ethod`</span><br></pre></td></tr></table></figure></p>
+<p>#import <uikit uikit.h=""></uikit></p>
+<p>#import <coredata coredata.h=""></coredata></p>
+<p>@interface AppDelegate : UIResponder <uiapplicationdelegate></uiapplicationdelegate></p>
+<p>@property (strong, nonatomic) UIWindow *window;</p>
+<p>@property (readonly, strong, nonatomic) NSManagedObjectContext <em>managedObjectContext;<br>@property (readonly, strong, nonatomic) NSManagedObjectModel </em>managedObjectModel;<br>@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;</p>
+<ul>
+<li>(void)saveContext;</li>
+<li>(NSURL *)applicationDocumentsDirectory;</li>
+</ul>
+<p>@end<br><figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="escape">`N</span>SManagedObjectModel<span class="escape">` </span>可以把它看做为一个 Core Data 的 schema。生成这个类的来源就是在 xCode 里的.xcdatamodeld文件，我们可以可视化的对这个文件进行操作，实际上这个文件也就相当于数据库的 schema，这个文件编译后就是.momd或.mom文件</span><br><span class="line"><span class="escape">`N</span>SPersistentStoreCoordinator<span class="escape">` </span>是一个位于本地存储文件与缓存层(NSManagedObjectContext)之间的一个持久化层，他是真实操作数据库本地文件。</span><br><span class="line"><span class="escape">`N</span>SManagedObjectContext<span class="escape">` </span>是一个被管理数据的上下文，他实际上是对你所有数据库操作的一个缓存层，把你所有的操作都先缓存起来避免大量磁盘 IO 造成不流畅，你在操作完数据库后调用其save方法，就可以把你的数据库操作提交给持久化层(NSPersistentStoreCoordinator)，由持久化层一次性写入数据库文件。</span><br><span class="line"></span><br><span class="line">**NSManagedObjectContext 创建**</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>(void)configureContext {<br>  _context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];<br>  NSPersistentStoreCoordinator *store = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[NSManagedObjectModel mergedModelFromBundles:nil]];</p>
+<p>  NSString *sqlitePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@”t_CoreDataMessageModel.sqlite”];</p>
+<p>  NSError *error = nil;</p>
+<p>  [store addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:[NSURL fileURLWithPath:sqlitePath] options:nil error:&amp;error];</p>
+<p>  if (error) {</p>
+<pre><code>NSLog(@&quot;%@&quot;,error);
+</code></pre><p>  }</p>
+<p>  _context.persistentStoreCoordinator = store;<br>}</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">*</span><span class="keyword">*</span>数据增删改查<span class="keyword">*</span><span class="keyword">*</span></span><br><span class="line">1) <span class="keyword">*</span>增<span class="keyword">*</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>(void)insert:(CoreDataMessageModel <em>)model {<br>  CoreDataMessageModel </em>message = [NSEntityDescription insertNewObjectForEntityForName:@”CoreDataMessageModel” inManagedObjectContext:_context];</p>
+<p>  message.sender_id = model.sender_id;<br>  message.msg_type = model.msg_type;<br>  message.sender_avatar = model.sender_avatar;<br>  message.sender_nickname = model.sender_nickname;<br>  message.msg_id = model.msg_id;<br>  message.content = model.content;<br>  message.operate_time = model.operate_time;<br>  message.create_time = model.create_time;<br>  message.conversation_id = model.conversation_id;</p>
+<p>  NSError *error = nil;<br>  [_context save:&amp;error];</p>
+<p>  if (error) {</p>
+<pre><code>NSLog(@&quot;%@&quot;,error);
+</code></pre><p>  }<br>}</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2) <span class="keyword">*</span>删<span class="keyword">*</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>(void)deleteMultiple {<br>  NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@”CoreDataMessageModel”];</p>
+<p>  request.predicate = [NSPredicate predicateWithFormat:@”msg_id &gt; %@”,@”0”];</p>
+<p>  NSArray *resultSet =  [_context executeFetchRequest:request error:nil];</p>
+<p>  for (CoreDataMessageModel *message in resultSet) {</p>
+<pre><code>[_context deleteObject:message];
+</code></pre><p>  }</p>
+<p>  [_context save:nil];<br>}</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3) <span class="keyword">*</span>改<span class="keyword">*</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>(void)updateSingle:(CoreDataMessageModel <em>)model {<br>  NSFetchRequest </em>request = [NSFetchRequest fetchRequestWithEntityName:@”CoreDataMessageModel”];<br>  request.predicate = [NSPredicate predicateWithFormat:@”msg_id = %@”,model.msg_id];</p>
+<p>  NSArray *resultSet = [_context executeFetchRequest:request error:nil];</p>
+<p>  for (CoreDataMessageModel *message in resultSet) {</p>
+<pre><code>message.sender_id = model.sender_id;
+message.msg_type = model.msg_type;
+message.sender_avatar = model.sender_avatar;
+message.sender_nickname = model.sender_nickname;
+message.msg_id = model.msg_id;
+message.content = model.content;
+message.operate_time = model.operate_time;
+message.create_time = model.create_time;
+message.conversation_id = model.conversation_id;
+</code></pre><p>  }</p>
+<p>  [_context save:nil];<br>}</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4) <span class="keyword">*</span>查<span class="keyword">*</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>(NSArray <em>)selectSingle {<br>  NSFetchRequest </em>request = [NSFetchRequest fetchRequestWithEntityName:@”CoreDataMessageModel”];</p>
+<p>  request.predicate = [NSPredicate predicateWithFormat:@”msg_id &lt; %@”,@”10000”];</p>
+<p>  return [_context executeFetchRequest:request error:nil];<br>}</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">### 性能比较(稍后添加图表)</span></span><br><span class="line">循环插入<span class="number">10000</span>次，每次插入一条数据：</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>FMDB                 110782 ms;<br>Realm                 65983 ms;<br>CoreData            74987 ms;<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">批量插入<span class="number">10000</span>条数据：</span><br></pre></td></tr></table></figure></p>
+<p>FMDB                 834 ms;<br>Realm                 446 ms;<br>CoreData            不支持批量操作;<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">循环更新<span class="number">10000</span>次，每次更新一条数据：</span><br></pre></td></tr></table></figure></p>
+<p>FMDB                 898 ms;<br>Realm                 35899 ms;<br>CoreData            16483 ms;<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">批量更新<span class="number">10000</span>条数据为：</span><br></pre></td></tr></table></figure></p>
+<p>FMDB                 135 ms;<br>Realm                 47 ms;<br>CoreData            不支持批量操作;<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">循环查询<span class="number">10000</span>条数据，每次查询一条数据：</span><br></pre></td></tr></table></figure></p>
+<p>FMDB                 457 ms;<br>Realm                 564 ms;<br>CoreData            55 ms;<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">批量查询<span class="number">10000</span>条数据：</span><br></pre></td></tr></table></figure></p>
+<p>FMDB                 0.186 ms;<br>Realm                 0.2 ms;<br>CoreData            80 ms;<br><code>``
+注释: CoreData 在 iOS 8 才开始支持批量操作(批量更新(Bench Update)</code>NSBatchUpdateRequest`)</p>
+<h3 id="App__u4F7F_u7528"><a href="#App__u4F7F_u7528" class="headerlink" title="App 使用"></a>App 使用</h3><p>多看阅读,手机淘宝,手机 QQ,微博, iOS 中的 News 使用了 FMDB.</p>
+<h3 id="IM__u7684_u9700_u6C42"><a href="#IM__u7684_u9700_u6C42" class="headerlink" title="IM 的需求"></a>IM 的需求</h3><p>IM 中使用数据库主要的需求是: 大量的单次写入一条数据, 小批量的读取数据已经小批量的写入.</p>
+<h3 id="u5404_u81EA_u4F18_u7F3A_u70B9"><a href="#u5404_u81EA_u4F18_u7F3A_u70B9" class="headerlink" title="各自优缺点"></a>各自优缺点</h3><p><strong>FMDB</strong></p>
+<table>
+<thead>
+<tr>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>对多线程的并发操作进行处理，所以是线程安全的,FMDB是轻量级的框架，使用灵活。</td>
+<td>不支持 ORM 需要手写 SQLite 语句</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Realm</strong></p>
+<table>
+<thead>
+<tr>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>入门门槛低,支持 NSPredicate, 支持 ORM</td>
+<td>关联关系弱, 强制内省容错机制导致存储文件不断变大, 没有细粒化通知,增加包体积</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Core Data</strong></p>
+<table>
+<thead>
+<tr>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系统自带, 官方支持; 强大的关联关系; 精细化的通知</td>
+<td>入门门槛高; 不支持批量操作</td>
+</tr>
+</tbody>
+</table>
+<h3 id="u5F15_u7528"><a href="#u5F15_u7528" class="headerlink" title="引用"></a>引用</h3><p><a href="http://yulingtianxia.com/blog/2014/05/01/chu-shi-core-data-1/" target="_blank" rel="external">yulingtianxia’s blog</a><br><a href="https://realm.io/cn/docs/objc/latest/#section" target="_blank" rel="external">realm 官网</a><br><a href="http://iiiyu.com/2016/01/19/CoreData-VS-Realm/" target="_blank" rel="external">CoreData VS Realm</a></p>
 </div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://broccolii.github.io/2015/12/31/iOS_database/" data-id="cilu877mc0008ez20d1l2w688" class="article-share-link">分享到</a><div class="tags"><a href="/tags/Database/">Database</a></div><div class="post-nav"><a href="/2016/01/26/UITableView_Optimization/" class="pre">UITableView 性能优化</a><a href="/2015/12/31/ReactiveCocoa_exploration/" class="next">ReactiveCocoa 整理</a></div><div id="disqus_thread"><script>var disqus_shortname = 'broccoliii';
 var disqus_identifier = '2015/12/31/iOS_database/';
 var disqus_title = 'Core Data, FMDB, Realm 性能对比';
