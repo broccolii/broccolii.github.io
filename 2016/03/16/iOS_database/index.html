@@ -87,7 +87,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FMDB         		<span class="number">461</span> ms;</span><br><span class="line">Realm         		<span class="number">547</span> ms;</span><br><span class="line">CoreData        	<span class="number">16072</span> ms;</span><br></pre></td></tr></table></figure>
 <p>批量查询10000条数据：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">FMDB         		<span class="number">8.6</span> ms;</span><br><span class="line">Realm         		<span class="number">0.2</span> ms;</span><br><span class="line">CoreData        	<span class="number">27</span> ms;</span><br></pre></td></tr></table></figure>
-<p>注释: CoreData 在 iOS 8 才开始支持批量操作(批量更新(Bench Update) <code>NSBatchUpdateRequest</code>)</p>
+<p><img src="" alt=""><br>注释: CoreData 在 iOS 8 才开始支持批量操作(批量更新(Bench Update) <code>NSBatchUpdateRequest</code>)</p>
 <h3 id="App__u4F7F_u7528"><a href="#App__u4F7F_u7528" class="headerlink" title="App 使用"></a>App 使用</h3><p>多看阅读,手机淘宝,手机 QQ,微博, iOS 中的 News 使用了 FMDB.</p>
 <h3 id="IM__u7684_u9700_u6C42"><a href="#IM__u7684_u9700_u6C42" class="headerlink" title="IM 的需求"></a>IM 的需求</h3><p>IM 中使用数据库主要的需求是: 大量的单次写入一条数据, 小批量的读取数据以及小批量的写入.</p>
 <h3 id="u5404_u81EA_u4F18_u7F3A_u70B9"><a href="#u5404_u81EA_u4F18_u7F3A_u70B9" class="headerlink" title="各自优缺点"></a>各自优缺点</h3><p><strong>FMDB</strong></p>
