@@ -7,8 +7,83 @@
     <link>http://broccolii.github.io/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     <description><![CDATA[不求深刻,但求简单.]]></description>
-    <pubDate>Thu, 17 Mar 2016 06:25:50 GMT</pubDate>
+    <pubDate>Mon, 21 Mar 2016 05:37:39 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title><![CDATA[Auto Layout 绘制流程]]></title>
+      <link>http://broccolii.github.io/2016/03/22/Autolayout_flow/</link>
+      <guid>http://broccolii.github.io/2016/03/22/Autolayout_flow/</guid>
+      <pubDate>Tue, 22 Mar 2016 01:51:23 GMT</pubDate>
+      <description>
+      <![CDATA[<p>和朋友讨论 <code>layout</code> 和 <code>constraint</code> 之间的关系, 发现自己并不是很理解 <code>constraint</code> 绘制页面的顺序. </p>
+<h3 id="Auto_Layout__u7ED8_u5]]>
+      </description>
+      <content:encoded><![CDATA[<p>和朋友讨论 <code>layout</code> 和 <code>constraint</code> 之间的关系, 发现自己并不是很理解 <code>constraint</code> 绘制页面的顺序. </p>
+<h3 id="Auto_Layout__u7ED8_u5236_u6D41_u7A0B"><a href="#Auto_Layout__u7ED8_u5236_u6D41_u7A0B" class="headerlink" title="Auto Layout 绘制流程"></a>Auto Layout 绘制流程</h3><p>Auto Layout 显示一个 view 时, 会经过 <code>update constraints -&gt; layout views -&gt; display</code> 这三步. 详情请点<a href="http://stackoverflow.com/questions/20609206/setneedslayout-vs-setneedsupdateconstraints-and-layoutifneeded-vs-updateconstra" target="_blank" rel="external">Stackoverflow</a> </p>
+<blockquote>
+<p>引用自:<a href="http://objccn.io/issue-3-5/" target="_blank" rel="external">objc.io 先进的自动布局工具箱</a><br>第一步：update constraints,可以被认为是一个“计量传递 (measurement pass)”.这是自下而上（从子视图到父视图）发生的,它为布局准备好必要的信息,而这些布局将在实际设置视图的 frame 时被传递过去并被使用.你可以通过调用 <code>setNeedsUpdateConstraints</code> 来触发这个操作.同时,你对约束条件系统做出的任何改变都将自动触发这个方法.无论如何,通知自动布局关于自定义视图中任何可能影响布局的改变是非常有用的.谈到自定义视图,你可以在这个阶段重写 <code>updateConstraints</code> 来为你的视图增加需要的本地约束.</p>
+<p>第二步：layout views,这是个自上而下（从父视图到子视图）的过程,这种布局操作实际上是通过设置 frame（在 OS X 中）或者 center 和 bounds（在 iOS 中）将约束条件系统的解决方案应用到视图上.你可以通过调用 setNeedsLayout 来触发一个操作请求,这并不会立刻应用布局,而是在稍后再进行处理.因为所有的布局请求将会被合并到一个布局操作中去,所以你不需要为经常调用这个方法而担心.</p>
+<p>第三步：display,将 view 渲染到屏幕上,它与是否使用 Auto Layout 无关,其操作是从上向下(从父视图到子视图),通过调用 <code>setNeedsDisplay</code> 触发.</p>
+</blockquote>
+<p>如下图所示:</p>
+<div style="text-align: center"><br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Autolayout_flow/constraint_layoutSubview_display.png"><br></div>
+
+<p>在图中我们看见,<code>layout views</code> 会触发 <code>updating constraints</code>, 从而触发新的一轮绘制. 原因是: 当 <code>layoutSubviews</code> 被调用时, 会触发 <code>updateConstraintsIfNeeded</code>, 如果进行了 <code>constraint</code> 修改的操作, 那么会调用 <code>updating constraints</code>. 这也就解释了为什么 <code>UIView</code> 动画中,修改了 <code>constraint</code> 需要调用 <code>layoutIfNeeded</code>.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 修改了约束</span></span><br><span class="line">UIView.animateWithDuration(<span class="number">1.0</span>) &#123;</span><br><span class="line">    aniamtionView.layoutIfNeeded()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints"></a>Constraints</h3><p>系统提供了几个关于 <code>constraint</code> 的方法 分别是</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">setNeedsUpdateConstraints</span><span class="params">()</span> &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>当一个 view 的某个属性发生改变,并且可能影响到 <code>constraint</code> 时, 则标记被修改的 <code>constraint</code>. 此方法标记的 <code>constraints</code> 会在未来的某个时间点更新，系统然后调用 <code>updateConstraints</code>.</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">needsUpdateConstraints</span><span class="params">()</span> -&gt; <span class="title">Bool</span> &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>系统通过这个方法的返回值判断 <code>constraint</code> 是否需要更新.</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">updateConstraintsIfNeeded</span><span class="params">()</span> &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>立即更新被标记 <code>setNeedsUpdateConstraints</code> 的 <code>constraint</code></p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">updateConstraints</span><span class="params">()</span> &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>自定义 view 时,我们可以重写这个方法做约束修改进行相应的操作. 但必须在 <code>viewDidLoad</code> 之后, <code>viewWillLayoutSubviews</code> 之前调用 <strong>注意: 重写这个方法时,一定要调用 super.updateConstraints()</strong><br><strong>总结:</strong><br>标记 view 的 <code>setNeedsUpdateConstraints</code>, 在未来的某个时刻系统调用 <code>needsUpdateConstraints</code> 根据返回值, 会触发 <code>updateConstraints</code>, 然后更新约束. 使用 <code>updateConstraintsIfNeeded</code> 则是立即更新所有被标记的 <code>constraint</code>.</p>
+<h3 id="layout"><a href="#layout" class="headerlink" title="layout"></a>layout</h3><p>关于 <code>Layout</code> 也有类似 <code>constraint</code> 的几个方法</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">setNeedsLayout</span><span class="params">()</span> &#123;&#125;</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">layoutIfNeeded</span><span class="params">()</span> &#123;&#125; </span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">layoutSubviews</span><span class="params">()</span> &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>系统会在 <code>RunLoop</code> 周期中的某个时刻自动调用 <code>layoutSubviews</code>.开发者不需要手动调用 <code>layoutSubviews</code>, 只需要重写该方法. <strong>此时并不会发生屏幕绘制.</strong></p>
+<blockquote>
+<p>The default implementation of this method does nothing on iOS 5.1 and earlier. Otherwise, the default implementation uses any constraints you have set to determine the size and position of any subviews.</p>
+<p>Subclasses can override this method as needed to perform more precise layout of their subviews.<strong> You should override this method only if the autoresizing and constraint-based behaviors of the subviews do not offer the behavior you want.</strong> You can use your implementation to set the frame rectangles of your subviews directly.</p>
+<p>You should not call this method directly. If you want to force a layout update, call the setNeedsLayout method instead to do so prior to the next drawing update. If you want to update the layout of your views immediately, call the layoutIfNeeded method.</p>
+</blockquote>
+<p>官方文档中说明,不要直接调用此方法.如果你想强制更新布局,先调用 <code>setNeedsLayout</code> 方法接着立即调用 <code>layoutIfNeeded</code>.</p>
+<p>以下几种情况系统会调用<code>layoutSubviews</code>:</p>
+<ul>
+<li><code>addSubview</code> 会触发 <code>layoutSubviews</code></li>
+<li>修改了 view 的 frame 会触发自身以及父视图的 <code>layoutSubviews</code>.</li>
+<li>滚动一个 UIScrollView 会触发 <code>layoutSubviews</code></li>
+<li>旋转 Screen 会触发当前 view 的 <code>layoutSubviews</code></li>
+</ul>
+<h3 id="display"><a href="#display" class="headerlink" title="display"></a>display</h3><p>关于 <code>display</code> 就只有两个方法</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func drawRect(rect: CGRect) &#123;&#125;&#10;func setNeedsDisplay() &#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>之所以没有 <code>ifNeeded</code> 方法是因为 <code>display</code> 的绘制周期是 1/60 秒. 关于 <code>drawRect</code> 的一些内容可以看一下 <a href="http://bihongbo.com/2016/01/03/memoryGhostdrawRect/" target="_blank" rel="external">内存恶鬼drawRect</a></p>
+<h3 id="frame__u548C_bounds"><a href="#frame__u548C_bounds" class="headerlink" title="frame 和 bounds"></a>frame 和 bounds</h3><p>在 display 到页面上时,有两个容易不清的属性: <code>frame</code> 和 <code>bounds</code>. 为了更好了理解 <code>frame</code> 和 <code>bounds</code>,我们先来看一下一张图:<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/CAlayer_frame.jpg" alt=""></p>
+<ol>
+<li>UIView 的 center 直接调用 rootLayer 的 position </li>
+<li>UIView 的 bounds 直接调用 rootLayer 的 bounds</li>
+<li>UIView 的 frame 直接调用 rootLayer 的 frame</li>
+<li>rootLayer 的 frame 又是 <code>anchorPoint</code>, <code>position</code>, <code>bounds</code>, <code>transform</code> 四个属性的派生属性<br>既然九九归一,最后都是这四个属性在影响着 frame 的大小.我们先从 <code>anchorPoint</code> 和 <code>position</code> 着手,因为 <code>position</code> 是 <code>anchorPoint</code> 在 superLayer 上的投影坐标.<br><strong>anchorPoint</strong><br><code>anchorPoint</code> (锚点) 顾名思义是一个固定点,在做 transform 时,会以 <code>anchorPoint</code> 作为固定点旋转.在 iOS 中,anchorPoint 的值是以相对 bounds 的比例值来确定的.默认是(0.5，0.5),如果觉得太抽象可以看下图:</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/layer_coords_anchorpoint_position_2x-2.png" alt=""><br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/anchorpoint2.jpg" alt=""></p>
+<p><strong>position</strong><br><code>position</code> 的定义是 <code>The position in the superlayer that the anchor point of the layer&#39;s bounds rect is aligned t</code> position 是 layer 相对 superLayer 坐标空间的位置.我们可以想象一下,我们是一条很大很大的邮轮停在大西洋上,我们向陆地发送的坐标就是船锚的位置.船锚的位置只能是相对于船身来说的,类比 <code>anchorPoint 的值是以相对 bounds 的比例值来确定的</code>.是不是很好理解呢(捂脸逃<br>PS: 这有一篇更好的文章 <a href="http://wonderffee.github.io/blog/2013/10/13/understand-anchorpoint-and-position/" target="_blank" rel="external">彻底理解position与anchorPoint</a></p>
+<p><strong>bounds</strong><br>bounds 分为两部分: origin 和 size.bounds.size 定义了图层的大小,bounds.origin 却并不表示图层的位置,而是定了内部坐标系的原点.那什么是内部坐标系的原点呢?指的是图层内部子图层的坐标系,就是说如果修改了 bounds.origin 的自身不会发生任何变化,但是在其内部的子图层会发生位移.</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIView</span> *lightGrayView = [[<span class="built_in">UIView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>)];</span><br><span class="line">lightGrayView<span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> lightGrayColor];</span><br><span class="line">[<span class="keyword">self</span><span class="variable">.view</span> addSubview:lightGrayView];</span><br><span class="line">    </span><br><span class="line"><span class="built_in">UIView</span> *orangeView = [[<span class="built_in">UIView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">25</span>, <span class="number">25</span>, <span class="number">50</span>, <span class="number">50</span>)];</span><br><span class="line">orangeView<span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> orangeColor];</span><br><span class="line">[lightGrayView addSubview:orangeView];</span><br></pre></td></tr></table></figure>
+<p><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/bounds_demo1.png" alt=""><br>修改 bounds 追加以下代码<br><code>lightGrayView.layer.bounds = CGRectMake(20, 20, 100, 100);</code><br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/bounds_demo2.png" alt=""></p>
+<p><strong>transform</strong><br>为什么 <code>transform</code> 会影响 frame 呢? 让我们来动手试一下吧</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UIView</span> *redView = [[<span class="built_in">UIView</span> alloc] initWithFrame:<span class="built_in">CGRectMake</span>(<span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>)];</span><br><span class="line">redView<span class="variable">.backgroundColor</span> = [<span class="built_in">UIColor</span> redColor];</span><br><span class="line">[<span class="keyword">self</span><span class="variable">.view</span> addSubview:redView];</span><br><span class="line">redView<span class="variable">.transform</span> = <span class="built_in">CGAffineTransformMakeRotation</span>(M_PI_4);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"redView.frame : --- %@"</span>, <span class="built_in">NSStringFromCGRect</span>(redView<span class="variable">.frame</span>));</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"redView.bounds : --- %@"</span>, <span class="built_in">NSStringFromCGRect</span>(redView<span class="variable">.bounds</span>));</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"redView.layer.frame : --- %@"</span>, <span class="built_in">NSStringFromCGRect</span>(redView<span class="variable">.layer</span><span class="variable">.frame</span>));</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"redView.layer.bounds : --- %@"</span>, <span class="built_in">NSStringFromCGRect</span>(redView<span class="variable">.layer</span><span class="variable">.frame</span>));</span><br></pre></td></tr></table></figure>
+<p>输出如下:</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">redView.frame : --- <span class="expansion">&#123;&#123;<span class="number">79.289321881345259</span>, <span class="number">79.289321881345245</span>&#125;, &#123;<span class="number">141.42135623730951</span>, <span class="number">141.42135623730951</span>&#125;&#125;</span></span><br><span class="line">redView.bounds : --- <span class="expansion">&#123;&#123;<span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">100</span>, <span class="number">100</span>&#125;&#125;</span></span><br><span class="line">redView.layer.frame : --- <span class="expansion">&#123;&#123;<span class="number">79.289321881345259</span>, <span class="number">79.289321881345245</span>&#125;, &#123;<span class="number">141.42135623730951</span>, <span class="number">141.42135623730951</span>&#125;&#125;</span></span><br><span class="line">redView.layer.bounds : --- <span class="expansion">&#123;&#123;<span class="number">0</span>, <span class="number">0</span>&#125;, &#123;<span class="number">100</span>, <span class="number">100</span>&#125;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>frame 的大小是一个包含了经过转换后的顶点的最小矩形,如下图灰框所示:<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/transform_demo.png" alt=""></p>
+<p>那么 frame 和这四个属性之间到底是什么关系呢? 在不考虑 transform 的情况下是(三角函数实在是太难了啊!摔:</p>
+<blockquote>
+<p>frame.origin.x = position.x - anchorPoint.x * bounds.size.width<br>frame.origin.y = position.y - anchorPoint.y * bounds.size.height<br>frame.size.width = bounds.size.width<br>frame.size.height = bounds.size.height</p>
+</blockquote>
+<p><strong>Q&amp;A</strong><br>问: 使用 Auto Layout 之后什么时候才能获得正确的 frame?<br>答: <code>viewDidLayoutSubviews</code> 之后</p>
+]]></content:encoded>
+      <comments>http://broccolii.github.io/2016/03/22/Autolayout_flow/#disqus_thread</comments>
+    </item>
     
     <item>
       <title><![CDATA[Core Data, FMDB, Realm 性能对比]]></title>
@@ -225,59 +300,6 @@
 <h3 id="Remote"><a href="#Remote" class="headerlink" title="Remote"></a>Remote</h3><p>Alfred Remote 在 iOS 端售价 ¥30.0, 还未购买测试.</p>
 ]]></content:encoded>
       <comments>http://broccolii.github.io/2016/03/02/Alfred_3_config/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title><![CDATA[Auto Layout 绘制流程]]></title>
-      <link>http://broccolii.github.io/2016/03/02/Autolayout_flow/</link>
-      <guid>http://broccolii.github.io/2016/03/02/Autolayout_flow/</guid>
-      <pubDate>Tue, 01 Mar 2016 21:01:46 GMT</pubDate>
-      <description>
-      <![CDATA[<p>和朋友讨论 <code>layout</code> 和 <code>constraint</code> 之间的关系, 发现自己并不是很理解 <code>constraint</code> 布局页面的顺序. </p>
-<h3 id="Auto_Layout__u7ED8_u5]]>
-      </description>
-      <content:encoded><![CDATA[<p>和朋友讨论 <code>layout</code> 和 <code>constraint</code> 之间的关系, 发现自己并不是很理解 <code>constraint</code> 布局页面的顺序. </p>
-<h3 id="Auto_Layout__u7ED8_u5236_u6D41_u7A0B"><a href="#Auto_Layout__u7ED8_u5236_u6D41_u7A0B" class="headerlink" title="Auto Layout 绘制流程"></a>Auto Layout 绘制流程</h3><p>Auto Layout 显示一个 view 时, 会经过 <code>update constraints -&gt; layout views -&gt; display</code> 这三步. 详情请点<a href="http://stackoverflow.com/questions/20609206/setneedslayout-vs-setneedsupdateconstraints-and-layoutifneeded-vs-updateconstra" target="_blank" rel="external">Stackoverflow</a> 如下图所示:</p>
-<p><div style="text-align: center"><br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Autolayout_flow/constraint_layoutSubview_display.png"><br></div></p>
-<blockquote>
-<p>引用自:<a href="http://objccn.io/issue-3-5/" target="_blank" rel="external">objc.io 先进的自动布局工具箱</a><br>第一步：update constraints,可以被认为是一个“计量传递 (measurement pass)”.这是自下而上（从子视图到父视图）发生的,它为布局准备好必要的信息,而这些布局将在实际设置视图的 frame 时被传递过去并被使用.你可以通过调用 <code>setNeedsUpdateConstraints</code> 来触发这个操作.同时,你对约束条件系统做出的任何改变都将自动触发这个方法.无论如何,通知自动布局关于自定义视图中任何可能影响布局的改变是非常有用的.谈到自定义视图,你可以在这个阶段重写 <code>updateConstraints</code> 来为你的视图增加需要的本地约束.</p>
-<p>第二步：layout views,这是个自上而下（从父视图到子视图）的过程,这种布局操作实际上是通过设置 frame（在 OS X 中）或者 center 和 bounds（在 iOS 中）将约束条件系统的解决方案应用到视图上.你可以通过调用 setNeedsLayout 来触发一个操作请求,这并不会立刻应用布局,而是在稍后再进行处理.因为所有的布局请求将会被合并到一个布局操作中去,所以你不需要为经常调用这个方法而担心.</p>
-<p>第三步：display,将 view 渲染到屏幕上,它与是否使用 Auto Layout 无关,其操作是从上向下(从父视图到子视图),通过调用 <code>setNeedsDisplay</code> 触发.</p>
-</blockquote>
-<p>在图中我们看见,<code>layout views</code> 会触发 <code>updating constraints</code>, 从而触发新的一轮绘制. 原因是: 当 <code>layoutSubviews</code> 被调用时, 会触发 <code>updateConstraintsIfNeeded</code>, 如果进行了 <code>constraint</code> 修改的操作, 那么会调用 <code>updating constraints</code>. 这也就解释了为什么 <code>UIView</code> 动画中,如果修改了 <code>constraint</code> 需要调用 <code>layoutIfNeeded</code>.</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 修改了约束</span></span><br><span class="line">UIView.animateWithDuration(<span class="number">1.0</span>) &#123;</span><br><span class="line">    aniamtionView.layoutIfNeeded()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Constraints"><a href="#Constraints" class="headerlink" title="Constraints"></a>Constraints</h3><p>系统提供了几个关于 <code>constraint</code> 的方法 分别是</p>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">setNeedsUpdateConstraints</span><span class="params">()</span> &#123;&#125;</span></span><br></pre></td></tr></table></figure>
-<p>当一个 view 的某个属性发生改变,并且可能影响到 <code>constraint</code> 时. 此方法标记的 <code>constraints</code> 会在未来的某个时间点更新，系统然后调用 <code>updateConstraints</code>.</p>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">needsUpdateConstraints</span><span class="params">()</span> -&gt; <span class="title">Bool</span> &#123;&#125;</span></span><br></pre></td></tr></table></figure>
-<p>系统通过这个方法的返回值判断 <code>constraint</code> 是否需要更新.</p>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">updateConstraintsIfNeeded</span><span class="params">()</span> &#123;&#125;</span></span><br></pre></td></tr></table></figure>
-<p>立即更新被标记 <code>setNeedsUpdateConstraints</code> 的 <code>constraint</code></p>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">updateConstraints</span><span class="params">()</span> &#123;&#125;</span></span><br></pre></td></tr></table></figure>
-<p>自定义 view 时,我们可以重写这个方法做约束修改进行相应的操作.在 <code>viewDidLoad</code> 之后, <code>viewWillLayoutSubviews</code> 之前调用 <strong>注意: 重写这个方法时,一定要调用 super.updateConstraints()</strong></p>
-<p>标记 view 的 <code>setNeedsUpdateConstraints</code>,在未来的某个时刻系统调用 <code>needsUpdateConstraints</code> 根据返回值, 会触发 <code>updateConstraints</code>, 然后更新约束. <code>updateConstraintsIfNeeded</code> 则是立即更新所有被标记的 <code>constraint</code>.</p>
-<h3 id="layout"><a href="#layout" class="headerlink" title="layout"></a>layout</h3><p>关于 <code>Layout</code> 也有类似 <code>constraint</code> 的几个方法</p>
-<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">setNeedsLayout</span><span class="params">()</span> &#123;&#125;</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">layoutIfNeeded</span><span class="params">()</span> &#123;&#125; </span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">layoutSubviews</span><span class="params">()</span> &#123;&#125;</span></span><br></pre></td></tr></table></figure>
-<p>系统会在 <code>RunLoop</code> 周期中的某个时刻自动调用 <code>layoutSubviews</code>.开发者不需要手动调用 <code>layoutSubviews</code>, 只需要重写该方法. <strong>此时并不会发生屏幕绘制.</strong></p>
-<blockquote>
-<p>The default implementation of this method does nothing on iOS 5.1 and earlier. Otherwise, the default implementation uses any constraints you have set to determine the size and position of any subviews.</p>
-<p>Subclasses can override this method as needed to perform more precise layout of their subviews. You should override this method only if the autoresizing and constraint-based behaviors of the subviews do not offer the behavior you want. You can use your implementation to set the frame rectangles of your subviews directly.</p>
-<p>You should not call this method directly. If you want to force a layout update, call the setNeedsLayout method instead to do so prior to the next drawing update. If you want to update the layout of your views immediately, call the layoutIfNeeded method.</p>
-</blockquote>
-<p>官方文档中说明,不要直接调用此方法.如果你想强制更新布局,先调用 <code>setNeedsLayout</code> 方法接着立即调用 <code>layoutIfNeeded</code>.</p>
-<p>以下几种情况系统会调用<code>layoutSubviews</code>:</p>
-<ul>
-<li><code>addSubview</code> 会触发 <code>layoutSubviews</code></li>
-<li>修改了 view 的 frame 会触发自身以及父视图的 <code>layoutSubviews</code>.</li>
-<li>滚动一个 UIScrollView 会触发 <code>layoutSubviews</code></li>
-<li>旋转 Screen 会触发 view 上的 <code>layoutSubviews</code> 事件</li>
-</ul>
-<h3 id="display"><a href="#display" class="headerlink" title="display"></a>display</h3><p>关于 <code>display</code> 就只有两个方法</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">drawRect</span><span class="params">(rect: CGRect)</span></span> &#123;&#125;</span><br><span class="line"><span class="func"><span class="keyword">func</span> <span class="title">setNeedsDisplay</span><span class="params">()</span></span> &#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>之所以没有 <code>ifNeeded</code> 方法是因为 <code>display</code> 的绘制周期是 1/60 秒. 关于 <code>drawRect</code> 的一些问题可以看一下 <a href="http://bihongbo.com/2016/01/03/memoryGhostdrawRect/" target="_blank" rel="external">内存恶鬼drawRect</a></p>
-<p><strong>Q&amp;A</strong><br>问: 使用 Auto Layout 之后什么时候才能获得正确的 frame?<br>答: <code>viewDidLayoutSubviews</code> 之后</p>
-]]></content:encoded>
-      <comments>http://broccolii.github.io/2016/03/02/Autolayout_flow/#disqus_thread</comments>
     </item>
     
     <item>
