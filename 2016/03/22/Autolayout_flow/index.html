@@ -38,7 +38,7 @@
 <h3 id="display"><a href="#display" class="headerlink" title="display"></a>display</h3><p>关于 <code>display</code> 就只有两个方法</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func drawRect(rect: CGRect) &#123;&#125;&#10;func setNeedsDisplay() &#123;&#125;</span><br></pre></td></tr></table></figure>
 <p>之所以没有 <code>ifNeeded</code> 方法是因为 <code>display</code> 的绘制周期是 1/60 秒. 关于 <code>drawRect</code> 的一些内容可以看一下 <a href="http://bihongbo.com/2016/01/03/memoryGhostdrawRect/" target="_blank" rel="external">内存恶鬼drawRect</a></p>
-<h3 id="frame__u548C_bounds"><a href="#frame__u548C_bounds" class="headerlink" title="frame 和 bounds"></a>frame 和 bounds</h3><p>在 display 到页面上时,有两个容易不清的属性: <code>frame</code> 和 <code>bounds</code>. 为了更好了理解 <code>frame</code> 和 <code>bounds</code>,我们先来看一下一张图:<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/CAlayer_frame.jpg" alt=""></p>
+<h3 id="frame__u548C_bounds"><a href="#frame__u548C_bounds" class="headerlink" title="frame 和 bounds"></a>frame 和 bounds</h3><p>在 display 到页面上后,有两个容易不清的属性: <code>frame</code> 和 <code>bounds</code>. 先看一下两者关系的一张图:<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/CAlayer_frame.jpg" alt=""></p>
 <ol>
 <li>UIView 的 center 直接调用 rootLayer 的 position </li>
 <li>UIView 的 bounds 直接调用 rootLayer 的 bounds</li>
@@ -60,7 +60,7 @@
 <p>frame.origin.x = position.x - anchorPoint.x * bounds.size.width<br>frame.origin.y = position.y - anchorPoint.y * bounds.size.height<br>frame.size.width = bounds.size.width<br>frame.size.height = bounds.size.height</p>
 </blockquote>
 <p><strong>Q&amp;A</strong><br>问: 使用 Auto Layout 之后什么时候才能获得正确的 frame?<br>答: <code>viewDidLayoutSubviews</code> 之后</p>
-</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://broccolii.github.io/2016/03/22/Autolayout_flow/" data-id="cim1kbsj400117b20152160x5" class="article-share-link">分享到</a><div class="tags"><a href="/tags/UITableView/">UITableView</a></div><div class="post-nav"><a href="/2016/03/16/iOS_database/" class="next">Core Data, FMDB, Realm 性能对比</a></div><div id="disqus_thread"><script>var disqus_shortname = 'broccoliii';
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://broccolii.github.io/2016/03/22/Autolayout_flow/" data-id="cim1o5j7r0011mv20q5qnce4i" class="article-share-link">分享到</a><div class="tags"><a href="/tags/UITableView/">UITableView</a></div><div class="post-nav"><a href="/2016/03/16/iOS_database/" class="next">Core Data, FMDB, Realm 性能对比</a></div><div id="disqus_thread"><script>var disqus_shortname = 'broccoliii';
 var disqus_identifier = '2016/03/22/Autolayout_flow/';
 var disqus_title = 'Auto Layout 绘制流程';
 var disqus_url = 'http://broccolii.github.io/2016/03/22/Autolayout_flow/';

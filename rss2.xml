@@ -7,7 +7,7 @@
     <link>http://broccolii.github.io/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     <description><![CDATA[不求深刻,但求简单.]]></description>
-    <pubDate>Mon, 21 Mar 2016 05:37:39 GMT</pubDate>
+    <pubDate>Mon, 21 Mar 2016 07:26:33 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -59,7 +59,7 @@
 <h3 id="display"><a href="#display" class="headerlink" title="display"></a>display</h3><p>关于 <code>display</code> 就只有两个方法</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func drawRect(rect: CGRect) &#123;&#125;&#10;func setNeedsDisplay() &#123;&#125;</span><br></pre></td></tr></table></figure>
 <p>之所以没有 <code>ifNeeded</code> 方法是因为 <code>display</code> 的绘制周期是 1/60 秒. 关于 <code>drawRect</code> 的一些内容可以看一下 <a href="http://bihongbo.com/2016/01/03/memoryGhostdrawRect/" target="_blank" rel="external">内存恶鬼drawRect</a></p>
-<h3 id="frame__u548C_bounds"><a href="#frame__u548C_bounds" class="headerlink" title="frame 和 bounds"></a>frame 和 bounds</h3><p>在 display 到页面上时,有两个容易不清的属性: <code>frame</code> 和 <code>bounds</code>. 为了更好了理解 <code>frame</code> 和 <code>bounds</code>,我们先来看一下一张图:<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/CAlayer_frame.jpg" alt=""></p>
+<h3 id="frame__u548C_bounds"><a href="#frame__u548C_bounds" class="headerlink" title="frame 和 bounds"></a>frame 和 bounds</h3><p>在 display 到页面上后,有两个容易不清的属性: <code>frame</code> 和 <code>bounds</code>. 先看一下两者关系的一张图:<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_UIView_CALayer/CAlayer_frame.jpg" alt=""></p>
 <ol>
 <li>UIView 的 center 直接调用 rootLayer 的 position </li>
 <li>UIView 的 bounds 直接调用 rootLayer 的 bounds</li>
