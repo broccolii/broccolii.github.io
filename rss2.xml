@@ -7,8 +7,59 @@
     <link>http://broccolii.github.io/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     <description><![CDATA[不求深刻,但求简单.]]></description>
-    <pubDate>Mon, 21 Mar 2016 07:26:33 GMT</pubDate>
+    <pubDate>Sun, 03 Apr 2016 05:37:30 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title><![CDATA[Objective-C 中的 load 和 initialize]]></title>
+      <link>http://broccolii.github.io/2016/04/03/Objective-C_initialize_load/</link>
+      <guid>http://broccolii.github.io/2016/04/03/Objective-C_initialize_load/</guid>
+      <pubDate>Sun, 03 Apr 2016 05:11:34 GMT</pubDate>
+      <description>
+      <![CDATA[<p>水叔在技术分享的周会上提到了这两个方法 <code>+ (void)load;</code> 和 <code>+ (void)initialize;</code> 的区别。还是对一些继承或者 <code>category</code> 调用先后顺序并不是很清楚，所以搜罗了一]]>
+      </description>
+      <content:encoded><![CDATA[<p>水叔在技术分享的周会上提到了这两个方法 <code>+ (void)load;</code> 和 <code>+ (void)initialize;</code> 的区别。还是对一些继承或者 <code>category</code> 调用先后顺序并不是很清楚，所以搜罗了一些博文整理出这篇文章。</p>
+<h3 id="u4E24_u8005_u533A_u522B"><a href="#u4E24_u8005_u533A_u522B" class="headerlink" title="两者区别"></a>两者区别</h3><p>在官方文档中（Documentation and API Reference）两者的描述分别是：<br><strong>+ (void)load;</strong></p>
+<blockquote>
+<p>The load message is sent to classes and categories that are both dynamically loaded and statically linked, but <em>only if the newly loaded class or category implements a method that can respond.</em><br>The order of initialization is as follows:</p>
+<ol>
+<li>All initializers in any framework you link to.</li>
+<li>All +load methods in your image.</li>
+<li>All C++ static initializers and C/C++ <strong>attribute</strong>(constructor) functions in your image.</li>
+<li>All initializers in frameworks that link to you.</li>
+</ol>
+<p>In addition:</p>
+<ul>
+<li>A class’s +load method is called after all of its superclasses’ +load  methods.</li>
+<li>A category +load method is called after the class’s own +load method.</li>
+</ul>
+<p>In a custom implementation of load you can therefore safely message other unrelated classes from the same image, but any load methods implemented by those classes may not have run yet.</p>
+</blockquote>
+<ol>
+<li><code>+ (void)load;</code> 在类文件被加载到 runtime 时被调用，即使没有被 <code>#import</code> 引用。调用顺序是 <code>super class</code> -&gt; <code>self class</code> -&gt; <code>category</code>。 每次 <code>runtime</code> 启动只会调用一次该方法。</li>
+<li><code>+ (void)load;</code> 调用的时候尚未有自动释放池，所以如果 <code>+ (void)load;</code> 中的内容使用到了自动释放池，则代码需要用 <code>@autoreleasepool{}</code> 包含。</li>
+<li>对应Category中的 <code>+ (void)load;</code> 方法并不会覆盖类自身中的 <code>+ (void)load;</code> 方法，两个 <code>+ (void)load;</code> 方法都会调用，而且Category的 <code>+ (void)load;</code> 方法在类自身的 <code>+ (void)load;</code> 方法之后调用。</li>
+</ol>
+<p><strong>+ (void)initialize;</strong></p>
+<blockquote>
+<p><em>The runtime sends initialize to each class in a program just before the class, or any class that inherits from it, is sent its first message from within the program.</em> The runtime sends the initialize message to classes in a thread-safe manner. Superclasses receive this message before their subclasses.The superclass implementation may be called multiple times if subclasses do not implement initialize—the runtime will call the inherited implementation—or if subclasses explicitly call [super initialize]. </p>
+</blockquote>
+<ol>
+<li><code>+ (void)initialize;</code> 在该类第一次发送消息（<code>objc_msgSend(receiver, selector)</code>）时被调用。</li>
+<li><p>在应用程序的生命周期中，<code>runtime</code> 只会向每个类发送一次 <code>+ (void)initialize;</code> 消息，如果该类是子类，且该子类中没有实现 <code>+ (void)initialize;</code> 方法，或者子类显示调用父类实现 <code>[super initialize]</code>, 那么则会调用其父类的实现。也就是说，父类的 <code>+ (void)initialize;</code> 可能会被调用多次。<br>  如果不想子类使用父类的 <code>+ (void)initialize;</code> 方法可以</p>
+  <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="keyword">void</span>)initialize &#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">self</span> == [ClassName <span class="keyword">self</span>]) &#123;</span><br><span class="line">		<span class="comment">// ... do the initialization ...</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果类包含分类，且分类重写了 <code>+ (void)initialize;</code> 方法，那么则会调用分类的 <code>+ (void)initialize;</code> 实现，而原类的该方法实现不会被调用，这个机制同 NSObject 的其他方法(除 + (void)load 方法) 一样，即如果原类同该类的分类包含有相同的方法实现，那么原类的该方法被隐藏而无法被调用。</p>
+</li>
+<li>父类的 <code>+ (void)initialize;</code> 方法先于子类的 <code>+ (void)initialize;</code> 方法调用。</li>
+</ol>
+<p>放一张系统启动时的流程图：</p>
+<div style="text-align: center"><br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Objective-C_initialize_load/startupMain.png"><br></div>
+
+<p><a href="">本文Demo</a></p>
+]]></content:encoded>
+      <comments>http://broccolii.github.io/2016/04/03/Objective-C_initialize_load/#disqus_thread</comments>
+    </item>
     
     <item>
       <title><![CDATA[Auto Layout 绘制流程]]></title>
@@ -235,57 +286,6 @@
 <h3 id="u5F15_u7528"><a href="#u5F15_u7528" class="headerlink" title="引用"></a>引用</h3><p><a href="http://yulingtianxia.com/blog/2014/05/01/chu-shi-core-data-1/" target="_blank" rel="external">yulingtianxia’s blog</a><br><a href="https://realm.io/cn/docs/objc/latest/#section" target="_blank" rel="external">realm 官网</a><br><a href="http://iiiyu.com/2016/01/19/CoreData-VS-Realm/" target="_blank" rel="external">CoreData VS Realm</a></p>
 ]]></content:encoded>
       <comments>http://broccolii.github.io/2016/03/16/iOS_database/#disqus_thread</comments>
-    </item>
-    
-    <item>
-      <title><![CDATA[Objective-C 中的 load 和 initialize]]></title>
-      <link>http://broccolii.github.io/2016/03/15/Objective-C_initialize_load/</link>
-      <guid>http://broccolii.github.io/2016/03/15/Objective-C_initialize_load/</guid>
-      <pubDate>Mon, 14 Mar 2016 18:11:34 GMT</pubDate>
-      <description>
-      <![CDATA[<p>水叔在技术分享的周会上提到了这两个方法 <code>+ (void)load;</code> 和 <code>+ (void)initialize;</code> 的区别。还是对一些继承或者 <code>category</code> 调用先后顺序并不是很清楚，所以搜罗了一]]>
-      </description>
-      <content:encoded><![CDATA[<p>水叔在技术分享的周会上提到了这两个方法 <code>+ (void)load;</code> 和 <code>+ (void)initialize;</code> 的区别。还是对一些继承或者 <code>category</code> 调用先后顺序并不是很清楚，所以搜罗了一些博文整理出这篇文章。</p>
-<h3 id="u4E24_u8005_u533A_u522B"><a href="#u4E24_u8005_u533A_u522B" class="headerlink" title="两者区别"></a>两者区别</h3><p>在官方文档中（Documentation and API Reference）两者的描述分别是：<br><strong>+ (void)load;</strong></p>
-<blockquote>
-<p>The load message is sent to classes and categories that are both dynamically loaded and statically linked, but <em>only if the newly loaded class or category implements a method that can respond.</em><br>The order of initialization is as follows:</p>
-<ol>
-<li>All initializers in any framework you link to.</li>
-<li>All +load methods in your image.</li>
-<li>All C++ static initializers and C/C++ <strong>attribute</strong>(constructor) functions in your image.</li>
-<li>All initializers in frameworks that link to you.</li>
-</ol>
-<p>In addition:</p>
-<ul>
-<li>A class’s +load method is called after all of its superclasses’ +load  methods.</li>
-<li>A category +load method is called after the class’s own +load method.</li>
-</ul>
-<p>In a custom implementation of load you can therefore safely message other unrelated classes from the same image, but any load methods implemented by those classes may not have run yet.</p>
-</blockquote>
-<ol>
-<li><code>+ (void)load;</code> 在类文件被加载到 runtime 时被调用，即使没有被 <code>#import</code> 引用。调用顺序是 <code>super class</code> -&gt; <code>self class</code> -&gt; <code>category</code>。 每次 <code>runtime</code> 启动只会调用一次该方法。</li>
-<li><code>+ (void)load;</code> 调用的时候尚未有自动释放池，所以如果 <code>+ (void)load;</code> 中的内容使用到了自动释放池，则代码需要用 <code>@autoreleasepool{}</code> 包含。</li>
-<li>对应Category中的 <code>+ (void)load;</code> 方法并不会覆盖类自身中的 <code>+ (void)load;</code> 方法，两个 <code>+ (void)load;</code> 方法都会调用，而且Category的 <code>+ (void)load;</code> 方法在类自身的 <code>+ (void)load;</code> 方法之后调用。</li>
-</ol>
-<p><strong>+ (void)initialize;</strong></p>
-<blockquote>
-<p><em>The runtime sends initialize to each class in a program just before the class, or any class that inherits from it, is sent its first message from within the program.</em> The runtime sends the initialize message to classes in a thread-safe manner. Superclasses receive this message before their subclasses.The superclass implementation may be called multiple times if subclasses do not implement initialize—the runtime will call the inherited implementation—or if subclasses explicitly call [super initialize]. </p>
-</blockquote>
-<ol>
-<li><code>+ (void)initialize;</code> 在该类第一次发送消息（<code>objc_msgSend(receiver, selector)</code>）时被调用。</li>
-<li><p>在应用程序的生命周期中，<code>runtime</code> 只会向每个类发送一次 <code>+ (void)initialize;</code> 消息，如果该类是子类，且该子类中没有实现 <code>+ (void)initialize;</code> 方法，或者子类显示调用父类实现 <code>[super initialize]</code>, 那么则会调用其父类的实现。也就是说，父类的 <code>+ (void)initialize;</code> 可能会被调用多次。<br>  如果不想子类使用父类的 <code>+ (void)initialize;</code> 方法可以</p>
-  <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+ (<span class="keyword">void</span>)initialize &#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="keyword">self</span> == [ClassName <span class="keyword">self</span>]) &#123;</span><br><span class="line">		<span class="comment">// ... do the initialization ...</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果类包含分类，且分类重写了 <code>+ (void)initialize;</code> 方法，那么则会调用分类的 <code>+ (void)initialize;</code> 实现，而原类的该方法实现不会被调用，这个机制同 NSObject 的其他方法(除 + (void)load 方法) 一样，即如果原类同该类的分类包含有相同的方法实现，那么原类的该方法被隐藏而无法被调用。</p>
-</li>
-<li>父类的 <code>+ (void)initialize;</code> 方法先于子类的 <code>+ (void)initialize;</code> 方法调用。</li>
-</ol>
-<p>放一张系统启动时的流程图：</p>
-<div style="text-align: center"><br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Objective-C_initialize_load/startupMain.png"><br></div>
-
-<p><a href="">本文Demo</a></p>
-]]></content:encoded>
-      <comments>http://broccolii.github.io/2016/03/15/Objective-C_initialize_load/#disqus_thread</comments>
     </item>
     
     <item>
