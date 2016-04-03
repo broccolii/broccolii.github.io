@@ -7,7 +7,7 @@
     <link>http://broccolii.github.io/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     <description><![CDATA[不求深刻,但求简单.]]></description>
-    <pubDate>Sun, 03 Apr 2016 05:37:30 GMT</pubDate>
+    <pubDate>Sun, 03 Apr 2016 05:40:36 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -19,8 +19,8 @@
       <![CDATA[<p>水叔在技术分享的周会上提到了这两个方法 <code>+ (void)load;</code> 和 <code>+ (void)initialize;</code> 的区别。还是对一些继承或者 <code>category</code> 调用先后顺序并不是很清楚，所以搜罗了一]]>
       </description>
       <content:encoded><![CDATA[<p>水叔在技术分享的周会上提到了这两个方法 <code>+ (void)load;</code> 和 <code>+ (void)initialize;</code> 的区别。还是对一些继承或者 <code>category</code> 调用先后顺序并不是很清楚，所以搜罗了一些博文整理出这篇文章。</p>
-<h3 id="u4E24_u8005_u533A_u522B"><a href="#u4E24_u8005_u533A_u522B" class="headerlink" title="两者区别"></a>两者区别</h3><p>在官方文档中（Documentation and API Reference）两者的描述分别是：<br><strong>+ (void)load;</strong></p>
-<blockquote>
+<h3 id="u4E24_u8005_u533A_u522B"><a href="#u4E24_u8005_u533A_u522B" class="headerlink" title="两者区别"></a>两者区别</h3><p>在官方文档中（Documentation and API Reference）两者的描述分别是：</p>
+<h4 id="+__28void_29load_3B"><a href="#+__28void_29load_3B" class="headerlink" title="+ (void)load;"></a>+ (void)load;</h4><blockquote>
 <p>The load message is sent to classes and categories that are both dynamically loaded and statically linked, but <em>only if the newly loaded class or category implements a method that can respond.</em><br>The order of initialization is as follows:</p>
 <ol>
 <li>All initializers in any framework you link to.</li>
@@ -40,8 +40,7 @@
 <li><code>+ (void)load;</code> 调用的时候尚未有自动释放池，所以如果 <code>+ (void)load;</code> 中的内容使用到了自动释放池，则代码需要用 <code>@autoreleasepool{}</code> 包含。</li>
 <li>对应Category中的 <code>+ (void)load;</code> 方法并不会覆盖类自身中的 <code>+ (void)load;</code> 方法，两个 <code>+ (void)load;</code> 方法都会调用，而且Category的 <code>+ (void)load;</code> 方法在类自身的 <code>+ (void)load;</code> 方法之后调用。</li>
 </ol>
-<p><strong>+ (void)initialize;</strong></p>
-<blockquote>
+<h4 id="+__28void_29initialize_3B"><a href="#+__28void_29initialize_3B" class="headerlink" title="+ (void)initialize;"></a>+ (void)initialize;</h4><blockquote>
 <p><em>The runtime sends initialize to each class in a program just before the class, or any class that inherits from it, is sent its first message from within the program.</em> The runtime sends the initialize message to classes in a thread-safe manner. Superclasses receive this message before their subclasses.The superclass implementation may be called multiple times if subclasses do not implement initialize—the runtime will call the inherited implementation—or if subclasses explicitly call [super initialize]. </p>
 </blockquote>
 <ol>
@@ -53,8 +52,7 @@
 </li>
 <li>父类的 <code>+ (void)initialize;</code> 方法先于子类的 <code>+ (void)initialize;</code> 方法调用。</li>
 </ol>
-<p>放一张系统启动时的流程图：</p>
-<div style="text-align: center"><br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Objective-C_initialize_load/startupMain.png"><br></div>
+<h5 id="u653E_u4E00_u5F20_u7CFB_u7EDF_u542F_u52A8_u65F6_u7684_u6D41_u7A0B_u56FE_uFF1A"><a href="#u653E_u4E00_u5F20_u7CFB_u7EDF_u542F_u52A8_u65F6_u7684_u6D41_u7A0B_u56FE_uFF1A" class="headerlink" title="放一张系统启动时的流程图："></a>放一张系统启动时的流程图：</h5><div style="text-align: center"><br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Objective-C_initialize_load/startupMain.png"><br></div>
 
 <p><a href="">本文Demo</a></p>
 ]]></content:encoded>

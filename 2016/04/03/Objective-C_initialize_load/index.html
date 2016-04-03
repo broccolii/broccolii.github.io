@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="不求深刻,但求简单."><title>Objective-C 中的 load 和 initialize | 一朵西兰花</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/3.0.3/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/rss+xml" href="/rss2.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Objective-C 中的 load 和 initialize</h1><a id="logo" href="/.">一朵西兰花</a><p class="description">不求深刻,但求简单.</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">Objective-C 中的 load 和 initialize</h1><div class="post-meta">Apr 3, 2016<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> Hits</span></span></div><a data-disqus-identifier="2016/04/03/Objective-C_initialize_load/" href="/2016/04/03/Objective-C_initialize_load/#disqus_thread" class="disqus-comment-count"></a><div class="post-content"><p>水叔在技术分享的周会上提到了这两个方法 <code>+ (void)load;</code> 和 <code>+ (void)initialize;</code> 的区别。还是对一些继承或者 <code>category</code> 调用先后顺序并不是很清楚，所以搜罗了一些博文整理出这篇文章。</p>
-<h3 id="u4E24_u8005_u533A_u522B"><a href="#u4E24_u8005_u533A_u522B" class="headerlink" title="两者区别"></a>两者区别</h3><p>在官方文档中（Documentation and API Reference）两者的描述分别是：<br><strong>+ (void)load;</strong></p>
-<blockquote>
+<h3 id="u4E24_u8005_u533A_u522B"><a href="#u4E24_u8005_u533A_u522B" class="headerlink" title="两者区别"></a>两者区别</h3><p>在官方文档中（Documentation and API Reference）两者的描述分别是：</p>
+<h4 id="+__28void_29load_3B"><a href="#+__28void_29load_3B" class="headerlink" title="+ (void)load;"></a>+ (void)load;</h4><blockquote>
 <p>The load message is sent to classes and categories that are both dynamically loaded and statically linked, but <em>only if the newly loaded class or category implements a method that can respond.</em><br>The order of initialization is as follows:</p>
 <ol>
 <li>All initializers in any framework you link to.</li>
@@ -20,8 +20,7 @@
 <li><code>+ (void)load;</code> 调用的时候尚未有自动释放池，所以如果 <code>+ (void)load;</code> 中的内容使用到了自动释放池，则代码需要用 <code>@autoreleasepool{}</code> 包含。</li>
 <li>对应Category中的 <code>+ (void)load;</code> 方法并不会覆盖类自身中的 <code>+ (void)load;</code> 方法，两个 <code>+ (void)load;</code> 方法都会调用，而且Category的 <code>+ (void)load;</code> 方法在类自身的 <code>+ (void)load;</code> 方法之后调用。</li>
 </ol>
-<p><strong>+ (void)initialize;</strong></p>
-<blockquote>
+<h4 id="+__28void_29initialize_3B"><a href="#+__28void_29initialize_3B" class="headerlink" title="+ (void)initialize;"></a>+ (void)initialize;</h4><blockquote>
 <p><em>The runtime sends initialize to each class in a program just before the class, or any class that inherits from it, is sent its first message from within the program.</em> The runtime sends the initialize message to classes in a thread-safe manner. Superclasses receive this message before their subclasses.The superclass implementation may be called multiple times if subclasses do not implement initialize—the runtime will call the inherited implementation—or if subclasses explicitly call [super initialize]. </p>
 </blockquote>
 <ol>
@@ -33,11 +32,10 @@
 </li>
 <li>父类的 <code>+ (void)initialize;</code> 方法先于子类的 <code>+ (void)initialize;</code> 方法调用。</li>
 </ol>
-<p>放一张系统启动时的流程图：</p>
-<div style="text-align: center"><br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Objective-C_initialize_load/startupMain.png"><br></div>
+<h5 id="u653E_u4E00_u5F20_u7CFB_u7EDF_u542F_u52A8_u65F6_u7684_u6D41_u7A0B_u56FE_uFF1A"><a href="#u653E_u4E00_u5F20_u7CFB_u7EDF_u542F_u52A8_u65F6_u7684_u6D41_u7A0B_u56FE_uFF1A" class="headerlink" title="放一张系统启动时的流程图："></a>放一张系统启动时的流程图：</h5><div style="text-align: center"><br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Objective-C_initialize_load/startupMain.png"><br></div>
 
 <p><a href="">本文Demo</a></p>
-</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://broccolii.github.io/2016/04/03/Objective-C_initialize_load/" data-id="cimk4zi6s000rg520dna8u1nc" class="article-share-link">分享到</a><div class="tags"><a href="/tags/Objective-C/">Objective-C</a></div><div class="post-nav"><a href="/2016/03/22/Autolayout_flow/" class="next">Auto Layout 绘制流程</a></div><div id="disqus_thread"><script>var disqus_shortname = 'broccoliii';
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://broccolii.github.io/2016/04/03/Objective-C_initialize_load/" data-id="cimk53dci000rk220qmxno1cy" class="article-share-link">分享到</a><div class="tags"><a href="/tags/Objective-C/">Objective-C</a></div><div class="post-nav"><a href="/2016/03/22/Autolayout_flow/" class="next">Auto Layout 绘制流程</a></div><div id="disqus_thread"><script>var disqus_shortname = 'broccoliii';
 var disqus_identifier = '2016/04/03/Objective-C_initialize_load/';
 var disqus_title = 'Objective-C 中的 load 和 initialize';
 var disqus_url = 'http://broccolii.github.io/2016/04/03/Objective-C_initialize_load/';
