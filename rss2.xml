@@ -60,192 +60,6 @@
     </item>
     
     <item>
-      <title><![CDATA[Vimium 的快捷键]]></title>
-      <link>http://broccolii.github.io/2016/04/03/Vimium_hot_key/</link>
-      <guid>http://broccolii.github.io/2016/04/03/Vimium_hot_key/</guid>
-      <pubDate>Sun, 03 Apr 2016 05:11:34 GMT</pubDate>
-      <description>
-      <![CDATA[<p><a href="https://vimium.github.io/" target="_blank" rel="external">Vimium</a> 是一款能在 Chrome 里运用 Vim 快捷键的扩展。(键盘党必备<br>这里是一张 Vimium 的快捷键列表：<]]>
-      </description>
-      <content:encoded><![CDATA[<p><a href="https://vimium.github.io/" target="_blank" rel="external">Vimium</a> 是一款能在 Chrome 里运用 Vim 快捷键的扩展。(键盘党必备<br>这里是一张 Vimium 的快捷键列表：<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Vimium_hot_key/Vimium_hot_key.png" alt=""></p>
-<h3 id="Navigating_the_page"><a href="#Navigating_the_page" class="headerlink" title="Navigating the page"></a>Navigating the page</h3><table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Note</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>j</td>
-<td>向下滚动一点</td>
-</tr>
-<tr>
-<td>k</td>
-<td>向上滚动一点</td>
-</tr>
-<tr>
-<td>gg</td>
-<td>到页面最上部</td>
-</tr>
-<tr>
-<td>G</td>
-<td>到页面最底部</td>
-</tr>
-<tr>
-<td>d</td>
-<td>向下翻一屏</td>
-</tr>
-<tr>
-<td>u</td>
-<td>向上翻一屏</td>
-</tr>
-<tr>
-<td>r</td>
-<td>重载页面    </td>
-</tr>
-<tr>
-<td>gs</td>
-<td>查看页面源代码    </td>
-</tr>
-<tr>
-<td>yy</td>
-<td>复制当前 URL 到剪贴板</td>
-</tr>
-<tr>
-<td>p</td>
-<td>在当前标签页打开剪贴板中的 URL</td>
-</tr>
-<tr>
-<td>P</td>
-<td>在新标签页打开剪贴板中的 URL</td>
-</tr>
-<tr>
-<td>gu</td>
-<td>跳转到当前 URL 的上一层</td>
-</tr>
-<tr>
-<td>gU</td>
-<td>跳转到当前 URL 的最高层</td>
-</tr>
-<tr>
-<td>f</td>
-<td>在当前标签页中打开一个链接</td>
-</tr>
-<tr>
-<td>F</td>
-<td>在新标签页中打开一个链接</td>
-</tr>
-</tbody>
-</table>
-<h3 id="Using_the_vomnibar"><a href="#Using_the_vomnibar" class="headerlink" title="Using the vomnibar"></a>Using the vomnibar</h3><table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Note</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>o</td>
-<td>在当前标签页中打开 URl、书签或历史记录</td>
-</tr>
-<tr>
-<td>O</td>
-<td>在新标签页中打开 URl、书签或历史记录</td>
-</tr>
-<tr>
-<td>T</td>
-<td>搜索已打开的标签页</td>
-</tr>
-<tr>
-<td>b</td>
-<td>在当前标签页打开书签</td>
-</tr>
-<tr>
-<td>B</td>
-<td>在新窗口中打开书签</td>
-</tr>
-</tbody>
-</table>
-<h3 id="Navigating_history"><a href="#Navigating_history" class="headerlink" title="Navigating history"></a>Navigating history</h3><table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Note</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>H</td>
-<td>根据浏览历史后退一页</td>
-</tr>
-<tr>
-<td>L</td>
-<td>根据浏览历史前进一页</td>
-</tr>
-</tbody>
-</table>
-<h3 id="Manipulating_tabs"><a href="#Manipulating_tabs" class="headerlink" title="Manipulating tabs"></a>Manipulating tabs</h3><table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Note</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>K, gt</td>
-<td>向右移动一个标签页</td>
-</tr>
-<tr>
-<td>J, gT</td>
-<td>向左移动一个标签页</td>
-</tr>
-<tr>
-<td>g0</td>
-<td>移动到第一个标签页</td>
-</tr>
-<tr>
-<td>g$</td>
-<td>移动到最后一个标签页</td>
-</tr>
-<tr>
-<td>t</td>
-<td>创建一个新标签页</td>
-</tr>
-<tr>
-<td>yt</td>
-<td>复制当前标签页</td>
-</tr>
-<tr>
-<td>x</td>
-<td>关闭当前标签页</td>
-</tr>
-<tr>
-<td>X</td>
-<td>恢复已关闭的标签页</td>
-</tr>
-<tr>
-<td>W</td>
-<td>将标签页移动到新窗口</td>
-</tr>
-<tr>
-<td>&lt;&lt;</td>
-<td>向左移动标签页</td>
-</tr>
-<tr>
-<td>&gt;&gt;</td>
-<td>向右移动标签页</td>
-</tr>
-</tbody>
-</table>
-<p><a href="https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb" target="_blank" rel="external">点我下载</a></p>
-]]></content:encoded>
-      <comments>http://broccolii.github.io/2016/04/03/Vimium_hot_key/#disqus_thread</comments>
-    </item>
-    
-    <item>
       <title><![CDATA[Auto Layout 绘制流程]]></title>
       <link>http://broccolii.github.io/2016/03/22/Autolayout_flow/</link>
       <guid>http://broccolii.github.io/2016/03/22/Autolayout_flow/</guid>
@@ -1226,6 +1040,192 @@
 <p>将网页发布到 GitHub 上,然后可以在 <a href="http://GitHub用户名.github.io" target="_blank" rel="external">http://GitHub用户名.github.io</a> 看到发布成功的 Blog</p>
 ]]></content:encoded>
       <comments>http://broccolii.github.io/2014/07/08/GitHub_Hexo-Blog/#disqus_thread</comments>
+    </item>
+    
+    <item>
+      <title><![CDATA[Vimium 的快捷键]]></title>
+      <link>http://broccolii.github.io/2014/06/01/Vimium_hot_key/</link>
+      <guid>http://broccolii.github.io/2014/06/01/Vimium_hot_key/</guid>
+      <pubDate>Sun, 01 Jun 2014 15:01:14 GMT</pubDate>
+      <description>
+      <![CDATA[<p><a href="https://vimium.github.io/" target="_blank" rel="external">Vimium</a> 是一款能在 Chrome 里运用 Vim 快捷键的扩展。(键盘党必备<br>这里是一张 Vimium 的快捷键列表：<]]>
+      </description>
+      <content:encoded><![CDATA[<p><a href="https://vimium.github.io/" target="_blank" rel="external">Vimium</a> 是一款能在 Chrome 里运用 Vim 快捷键的扩展。(键盘党必备<br>这里是一张 Vimium 的快捷键列表：<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Vimium_hot_key/Vimium_hot_key.png" alt=""></p>
+<h3 id="Navigating_the_page"><a href="#Navigating_the_page" class="headerlink" title="Navigating the page"></a>Navigating the page</h3><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>j</td>
+<td>向下滚动一点</td>
+</tr>
+<tr>
+<td>k</td>
+<td>向上滚动一点</td>
+</tr>
+<tr>
+<td>gg</td>
+<td>到页面最上部</td>
+</tr>
+<tr>
+<td>G</td>
+<td>到页面最底部</td>
+</tr>
+<tr>
+<td>d</td>
+<td>向下翻一屏</td>
+</tr>
+<tr>
+<td>u</td>
+<td>向上翻一屏</td>
+</tr>
+<tr>
+<td>r</td>
+<td>重载页面    </td>
+</tr>
+<tr>
+<td>gs</td>
+<td>查看页面源代码    </td>
+</tr>
+<tr>
+<td>yy</td>
+<td>复制当前 URL 到剪贴板</td>
+</tr>
+<tr>
+<td>p</td>
+<td>在当前标签页打开剪贴板中的 URL</td>
+</tr>
+<tr>
+<td>P</td>
+<td>在新标签页打开剪贴板中的 URL</td>
+</tr>
+<tr>
+<td>gu</td>
+<td>跳转到当前 URL 的上一层</td>
+</tr>
+<tr>
+<td>gU</td>
+<td>跳转到当前 URL 的最高层</td>
+</tr>
+<tr>
+<td>f</td>
+<td>在当前标签页中打开一个链接</td>
+</tr>
+<tr>
+<td>F</td>
+<td>在新标签页中打开一个链接</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Using_the_vomnibar"><a href="#Using_the_vomnibar" class="headerlink" title="Using the vomnibar"></a>Using the vomnibar</h3><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>o</td>
+<td>在当前标签页中打开 URl、书签或历史记录</td>
+</tr>
+<tr>
+<td>O</td>
+<td>在新标签页中打开 URl、书签或历史记录</td>
+</tr>
+<tr>
+<td>T</td>
+<td>搜索已打开的标签页</td>
+</tr>
+<tr>
+<td>b</td>
+<td>在当前标签页打开书签</td>
+</tr>
+<tr>
+<td>B</td>
+<td>在新窗口中打开书签</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Navigating_history"><a href="#Navigating_history" class="headerlink" title="Navigating history"></a>Navigating history</h3><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H</td>
+<td>根据浏览历史后退一页</td>
+</tr>
+<tr>
+<td>L</td>
+<td>根据浏览历史前进一页</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Manipulating_tabs"><a href="#Manipulating_tabs" class="headerlink" title="Manipulating tabs"></a>Manipulating tabs</h3><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K, gt</td>
+<td>向右移动一个标签页</td>
+</tr>
+<tr>
+<td>J, gT</td>
+<td>向左移动一个标签页</td>
+</tr>
+<tr>
+<td>g0</td>
+<td>移动到第一个标签页</td>
+</tr>
+<tr>
+<td>g$</td>
+<td>移动到最后一个标签页</td>
+</tr>
+<tr>
+<td>t</td>
+<td>创建一个新标签页</td>
+</tr>
+<tr>
+<td>yt</td>
+<td>复制当前标签页</td>
+</tr>
+<tr>
+<td>x</td>
+<td>关闭当前标签页</td>
+</tr>
+<tr>
+<td>X</td>
+<td>恢复已关闭的标签页</td>
+</tr>
+<tr>
+<td>W</td>
+<td>将标签页移动到新窗口</td>
+</tr>
+<tr>
+<td>&lt;&lt;</td>
+<td>向左移动标签页</td>
+</tr>
+<tr>
+<td>&gt;&gt;</td>
+<td>向右移动标签页</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb" target="_blank" rel="external">点我下载</a></p>
+]]></content:encoded>
+      <comments>http://broccolii.github.io/2014/06/01/Vimium_hot_key/#disqus_thread</comments>
     </item>
     
   </channel>
