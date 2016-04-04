@@ -66,10 +66,10 @@
       <pubDate>Sun, 03 Apr 2016 05:11:34 GMT</pubDate>
       <description>
       <![CDATA[<p><a href="https://vimium.github.io/" target="_blank" rel="external">Vimium</a> 是一款能在 Chrome 里运用 Vim 快捷键的扩展。(键盘党必备</p>
-<h4 id="u5FEB_u6377_]]>
+<h3 id="u5FEB_u6377_]]>
       </description>
       <content:encoded><![CDATA[<p><a href="https://vimium.github.io/" target="_blank" rel="external">Vimium</a> 是一款能在 Chrome 里运用 Vim 快捷键的扩展。(键盘党必备</p>
-<h4 id="u5FEB_u6377_u952E"><a href="#u5FEB_u6377_u952E" class="headerlink" title="快捷键"></a>快捷键</h4><p>这里是一张 Vimium 的快捷键列表：<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Vimium_hot_key/Vimium_hot_key.png" alt=""></p>
+<h3 id="u5FEB_u6377_u952E"><a href="#u5FEB_u6377_u952E" class="headerlink" title="快捷键"></a>快捷键</h3><p>这里是一张 Vimium 的快捷键列表：<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Vimium_hot_key/Vimium_hot_key.png" alt=""></p>
 <ol>
 <li><strong>Navigating the page</strong><br> 浏览任何一个页面时，不管你想向上滚动，向下滚动，到页面最底部……都只用按一两个键就可以搞    定：</li>
 </ol>
@@ -145,7 +145,7 @@
 </table>
 <ol>
 <li><p><strong>Using the vomnibar</strong></p>
-<p> Command          | Note<br> ————- | ————-<br> o    |    在当前标签页中打开 URl、书签或历史记录    O    |    在新标签页中打开 URl、书签或历史记录    T    |    搜索已打开的标签页<br> b    |    在当前标签页打开书签<br> B    |    在新窗口中打开书签</p>
+<p> Command          | Note<br> ————- | ————-<br> o    |    在当前标签页中打开 URl、书签或历史记录<br> O    |    在新标签页中打开 URl、书签或历史记录<br> T    |    搜索已打开的标签页<br> b    |    在当前标签页打开书签<br> B    |    在新窗口中打开书签</p>
 </li>
 <li><p><strong>Navigating history</strong></p>
 <p> Command|    Note<br> ————- | ————-<br> H    | 根据浏览历史后退一页<br> L    | 根据浏览历史前进一页</p>
