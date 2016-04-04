@@ -70,10 +70,7 @@
       </description>
       <content:encoded><![CDATA[<p><a href="https://vimium.github.io/" target="_blank" rel="external">Vimium</a> 是一款能在 Chrome 里运用 Vim 快捷键的扩展。(键盘党必备</p>
 <h3 id="u5FEB_u6377_u952E"><a href="#u5FEB_u6377_u952E" class="headerlink" title="快捷键"></a>快捷键</h3><p>这里是一张 Vimium 的快捷键列表：<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Vimium_hot_key/Vimium_hot_key.png" alt=""></p>
-<ol>
-<li><strong>Navigating the page</strong><br> 浏览任何一个页面时，不管你想向上滚动，向下滚动，到页面最底部……都只用按一两个键就可以搞    定：</li>
-</ol>
-<table>
+<h4 id="Navigating_the_page"><a href="#Navigating_the_page" class="headerlink" title="<strong>Navigating the page</strong>"></a><strong>Navigating the page</strong></h4><table>
 <thead>
 <tr>
 <th>Command</th>
@@ -143,10 +140,7 @@
 </tr>
 </tbody>
 </table>
-<ol>
-<li><strong>Using the vomnibar</strong></li>
-</ol>
-<table>
+<h4 id="Using_the_vomnibar"><a href="#Using_the_vomnibar" class="headerlink" title="<strong>Using the vomnibar</strong>"></a><strong>Using the vomnibar</strong></h4><table>
 <thead>
 <tr>
 <th>Command</th>
@@ -176,19 +170,78 @@
 </tr>
 </tbody>
 </table>
-<ol>
-<li><p><strong>Navigating history</strong></p>
-<p> Command|    Note<br> ————- | ————-<br> H    | 根据浏览历史后退一页<br> L    | 根据浏览历史前进一页</p>
-</li>
-<li><p><strong>Manipulating tabs</strong></p>
-<p> Command    | Note<br> ————- | ————-<br> K, gt    |向右移动一个标签页<br> J, gT    |向左移动一个标签页<br> g0    |移动到第一个标签页<br> g$    |移动到最后一个标签页<br> t    |创建一个新标签页<br> yt    |复制当前标签页<br> x    |关闭当前标签页<br> X    |恢复已关闭的标签页<br> W    |将标签页移动到新窗口<br> &lt;&lt;    | 向左移动标签页</p>
-<blockquote>
-<blockquote>
-<p>   |向右移动标签页</p>
-</blockquote>
-</blockquote>
-</li>
-</ol>
+<h4 id="Navigating_history"><a href="#Navigating_history" class="headerlink" title="<strong>Navigating history</strong>"></a><strong>Navigating history</strong></h4><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H</td>
+<td>根据浏览历史后退一页</td>
+</tr>
+<tr>
+<td>L</td>
+<td>根据浏览历史前进一页</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Manipulating_tabs"><a href="#Manipulating_tabs" class="headerlink" title="<strong>Manipulating tabs</strong>"></a><strong>Manipulating tabs</strong></h4><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K, gt</td>
+<td>向右移动一个标签页</td>
+</tr>
+<tr>
+<td>J, gT</td>
+<td>向左移动一个标签页</td>
+</tr>
+<tr>
+<td>g0</td>
+<td>移动到第一个标签页</td>
+</tr>
+<tr>
+<td>g$</td>
+<td>移动到最后一个标签页</td>
+</tr>
+<tr>
+<td>t</td>
+<td>创建一个新标签页</td>
+</tr>
+<tr>
+<td>yt</td>
+<td>复制当前标签页</td>
+</tr>
+<tr>
+<td>x</td>
+<td>关闭当前标签页</td>
+</tr>
+<tr>
+<td>X</td>
+<td>恢复已关闭的标签页</td>
+</tr>
+<tr>
+<td>W</td>
+<td>将标签页移动到新窗口</td>
+</tr>
+<tr>
+<td>&lt;&lt;</td>
+<td>向左移动标签页</td>
+</tr>
+<tr>
+<td>/&gt;&gt;</td>
+<td>向右移动标签页</td>
+</tr>
+</tbody>
+</table>
 <p><a href="https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb" target="_blank" rel="external">点我下载</a></p>
 <table>
 <thead>
