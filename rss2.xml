@@ -85,7 +85,66 @@ p    |    在当前标签页打开剪贴板中的 URL    P    |    在新标签�
 gu    | 跳转到当前 URL 的上一层
 gU    | 跳转到当前 URL 的最高层
 f    |    在当前标签页中打开一个链接    F    |    在新标签页中打开一个链接
-</code></pre><ol>
+</code></pre><table>
+<thead>
+<tr>
+<th>Option name</th>
+<th>Markup</th>
+<th>Result if enabled</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Intra-word emphasis</td>
+<td>So A*maz*ing</td>
+<td>So A<em>maz</em>ing</td>
+<td></td>
+</tr>
+<tr>
+<td>Strikethrough</td>
+<td>~~Much wow~~</td>
+<td><del>Much wow</del></td>
+<td></td>
+</tr>
+<tr>
+<td>Underline [^under]</td>
+<td>_So doge_</td>
+<td><u>So doge</u></td>
+<td></td>
+</tr>
+<tr>
+<td>Quote [^quote]</td>
+<td>\”Such editor\”</td>
+<td><q>Such editor</q></td>
+<td></td>
+</tr>
+<tr>
+<td>Highlight</td>
+<td>\==So good\==</td>
+<td><mark>So good</mark></td>
+<td></td>
+</tr>
+<tr>
+<td>Superscript</td>
+<td>hoge\^(fuga)</td>
+<td>hoge<sup>fuga</sup></td>
+<td></td>
+</tr>
+<tr>
+<td>Autolink</td>
+<td><a href="http://t.co" target="_blank" rel="external">http://t.co</a></td>
+<td><a href="http://t.co" target="_blank" rel="external">http://t.co</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Footnotes</td>
+<td>[\^4] and [\^4]:</td>
+<td>[^4] and footnote 4</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol>
 <li><strong>Navigating the page</strong><br> 浏览任何一个页面时，不管你想向上滚动，向下滚动，到页面最底部……都只用按一两个键就可以搞    定：</li>
 </ol>
 <table>
