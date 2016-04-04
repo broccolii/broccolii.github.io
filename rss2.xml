@@ -70,7 +70,7 @@
       </description>
       <content:encoded><![CDATA[<p><a href="https://vimium.github.io/" target="_blank" rel="external">Vimium</a> 是一款能在 Chrome 里运用 Vim 快捷键的扩展。(键盘党必备</p>
 <h3 id="u5FEB_u6377_u952E"><a href="#u5FEB_u6377_u952E" class="headerlink" title="快捷键"></a>快捷键</h3><p>这里是一张 Vimium 的快捷键列表：<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Vimium_hot_key/Vimium_hot_key.png" alt=""></p>
-<h4 id="Navigating_the_page"><a href="#Navigating_the_page" class="headerlink" title="Navigating the page"></a>Navigating the page</h4><table>
+<h3 id="Navigating_the_page"><a href="#Navigating_the_page" class="headerlink" title="Navigating the page"></a>Navigating the page</h3><table>
 <thead>
 <tr>
 <th>Command</th>
