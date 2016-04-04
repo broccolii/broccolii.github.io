@@ -65,12 +65,10 @@
       <guid>http://broccolii.github.io/2016/04/03/Vimium_hot_key/</guid>
       <pubDate>Sun, 03 Apr 2016 05:11:34 GMT</pubDate>
       <description>
-      <![CDATA[<p><a href="https://vimium.github.io/" target="_blank" rel="external">Vimium</a> 是一款能在 Chrome 里运用 Vim 快捷键的扩展。(键盘党必备</p>
-<h3 id="u5FEB_u6377_]]>
+      <![CDATA[<p><a href="https://vimium.github.io/" target="_blank" rel="external">Vimium</a> 是一款能在 Chrome 里运用 Vim 快捷键的扩展。(键盘党必备<br>这里是一张 Vimium 的快捷键列表：<]]>
       </description>
-      <content:encoded><![CDATA[<p><a href="https://vimium.github.io/" target="_blank" rel="external">Vimium</a> 是一款能在 Chrome 里运用 Vim 快捷键的扩展。(键盘党必备</p>
-<h3 id="u5FEB_u6377_u952E"><a href="#u5FEB_u6377_u952E" class="headerlink" title="快捷键"></a>快捷键</h3><p>这里是一张 Vimium 的快捷键列表：<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Vimium_hot_key/Vimium_hot_key.png" alt=""></p>
-<h2 id="Navigating_the_page"><a href="#Navigating_the_page" class="headerlink" title="Navigating the page"></a>Navigating the page</h2><table>
+      <content:encoded><![CDATA[<p><a href="https://vimium.github.io/" target="_blank" rel="external">Vimium</a> 是一款能在 Chrome 里运用 Vim 快捷键的扩展。(键盘党必备<br>这里是一张 Vimium 的快捷键列表：<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Vimium_hot_key/Vimium_hot_key.png" alt=""></p>
+<h3 id="Navigating_the_page"><a href="#Navigating_the_page" class="headerlink" title="Navigating the page"></a>Navigating the page</h3><table>
 <thead>
 <tr>
 <th>Command</th>
@@ -140,7 +138,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="Using_the_vomnibar"><a href="#Using_the_vomnibar" class="headerlink" title="Using the vomnibar"></a>Using the vomnibar</h4><table>
+<h3 id="Using_the_vomnibar"><a href="#Using_the_vomnibar" class="headerlink" title="Using the vomnibar"></a>Using the vomnibar</h3><table>
 <thead>
 <tr>
 <th>Command</th>
@@ -170,7 +168,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="Navigating_history"><a href="#Navigating_history" class="headerlink" title="Navigating history"></a>Navigating history</h4><table>
+<h3 id="Navigating_history"><a href="#Navigating_history" class="headerlink" title="Navigating history"></a>Navigating history</h3><table>
 <thead>
 <tr>
 <th>Command</th>
@@ -188,7 +186,7 @@
 </tr>
 </tbody>
 </table>
-<h4 id="Manipulating_tabs"><a href="#Manipulating_tabs" class="headerlink" title="Manipulating tabs"></a>Manipulating tabs</h4><table>
+<h3 id="Manipulating_tabs"><a href="#Manipulating_tabs" class="headerlink" title="Manipulating tabs"></a>Manipulating tabs</h3><table>
 <thead>
 <tr>
 <th>Command</th>
