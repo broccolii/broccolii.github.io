@@ -71,20 +71,20 @@
       <content:encoded><![CDATA[<p><a href="https://vimium.github.io/" target="_blank" rel="external">Vimium</a> 是一款能在 Chrome 里运用 Vim 快捷键的扩展。(键盘党必备</p>
 <h4 id="u5FEB_u6377_u952E"><a href="#u5FEB_u6377_u952E" class="headerlink" title="快捷键"></a>快捷键</h4><p>这里是一张 Vimium 的快捷键列表：<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Vimium_hot_key/Vimium_hot_key.png" alt=""></p>
 <pre><code>Command          | Note
-------------- | -------------
+-------------     | -------------
 j                  | 向下滚动一点
 k                     | 向上滚动一点
 gg                  | 到页面最上部
 G                  | 到页面最底部
 d                  | 向下翻一屏
 u                  | 向上翻一屏
-r    |    重载页面    
-gs    |    查看页面源代码    
-yy    |    复制当前 URL 到剪贴板
-p    |    在当前标签页打开剪贴板中的 URL    P    |    在新标签页打开剪贴板中的 URL
-gu    | 跳转到当前 URL 的上一层
-gU    | 跳转到当前 URL 的最高层
-f    |    在当前标签页中打开一个链接    F    |    在新标签页中打开一个链接
+r                    |    重载页面    
+gs                    |    查看页面源代码
+yy                    |    复制当前 URL 到剪贴板
+p                    |    在当前标签页打开剪贴板中的 URL    P                    |    在新标签页打开剪贴板中的 URL
+gu                    | 跳转到当前 URL 的上一层
+gU                    | 跳转到当前 URL 的最高层
+f                    |    在当前标签页中打开一个链接    F                    |    在新标签页中打开一个链接
 </code></pre><table>
 <thead>
 <tr>
