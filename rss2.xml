@@ -60,6 +60,41 @@
     </item>
     
     <item>
+      <title><![CDATA[Vimium 的快捷键]]></title>
+      <link>http://broccolii.github.io/2016/04/03/Vimium_hot_key/</link>
+      <guid>http://broccolii.github.io/2016/04/03/Vimium_hot_key/</guid>
+      <pubDate>Sun, 03 Apr 2016 05:11:34 GMT</pubDate>
+      <description>
+      <![CDATA[<p><a href="https://vimium.github.io/" target="_blank" rel="external">Vimium</a> 是一款能在 Chrome 里运用 Vim 快捷键的扩展。(键盘党必备</p>
+<h4 id="u5FEB_u6377_]]>
+      </description>
+      <content:encoded><![CDATA[<p><a href="https://vimium.github.io/" target="_blank" rel="external">Vimium</a> 是一款能在 Chrome 里运用 Vim 快捷键的扩展。(键盘党必备</p>
+<h4 id="u5FEB_u6377_u952E"><a href="#u5FEB_u6377_u952E" class="headerlink" title="快捷键"></a>快捷键</h4><p>这里是一张 Vimium 的快捷键列表：<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Vimium_hot_key/Vimium_hot_key.png" alt=""></p>
+<ol>
+<li><p><strong>Navigating the page</strong><br> 浏览任何一个页面时，不管你想向上滚动，向下滚动，到页面最底部……都只用按一两个键就可以搞    定：</p>
+<p> Command          | Note<br> ————- | ————-<br> j                  | 向下滚动一点<br> k                     | 向上滚动一点<br> gg                  | 到页面最上部<br> G                  | 到页面最底部<br> d                  | 向下翻一屏<br> u                  | 向上翻一屏<br> r    |    重载页面<br> gs    |    查看页面源代码<br> yy    |    复制当前 URL 到剪贴板<br> p    |    在当前标签页打开剪贴板中的 URL    P    |    在新标签页打开剪贴板中的 URL<br> gu    | 跳转到当前 URL 的上一层<br> gU    | 跳转到当前 URL 的最高层<br> f    |    在当前标签页中打开一个链接    F    |    在新标签页中打开一个链接</p>
+</li>
+<li><p><strong>Using the vomnibar</strong></p>
+<p> Command          | Note<br> ————- | ————-<br> o    |    在当前标签页中打开 URl、书签或历史记录    O    |    在新标签页中打开 URl、书签或历史记录    T    |    搜索已打开的标签页<br> b    |    在当前标签页打开书签<br> B    |    在新窗口中打开书签</p>
+</li>
+<li><p><strong>Navigating history</strong></p>
+<p> Command|    Note<br> ————- | ————-<br> H    | 根据浏览历史后退一页<br> L    | 根据浏览历史前进一页</p>
+</li>
+<li><p><strong>Manipulating tabs</strong></p>
+<p> Command    | Note<br> ————- | ————-<br> K, gt    |向右移动一个标签页<br> J, gT    |向左移动一个标签页<br> g0    |移动到第一个标签页<br> g$    |移动到最后一个标签页<br> t    |创建一个新标签页<br> yt    |复制当前标签页<br> x    |关闭当前标签页<br> X    |恢复已关闭的标签页<br> W    |将标签页移动到新窗口<br> &lt;&lt;    | 向左移动标签页</p>
+<blockquote>
+<blockquote>
+<p>   |向右移动标签页</p>
+</blockquote>
+</blockquote>
+</li>
+</ol>
+<p><a href="https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb" target="_blank" rel="external">点我下载</a></p>
+]]></content:encoded>
+      <comments>http://broccolii.github.io/2016/04/03/Vimium_hot_key/#disqus_thread</comments>
+    </item>
+    
+    <item>
       <title><![CDATA[Auto Layout 绘制流程]]></title>
       <link>http://broccolii.github.io/2016/03/22/Autolayout_flow/</link>
       <guid>http://broccolii.github.io/2016/03/22/Autolayout_flow/</guid>
