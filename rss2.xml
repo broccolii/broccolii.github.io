@@ -7,7 +7,7 @@
     <link>http://broccolii.github.io/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     <description><![CDATA[不求深刻,但求简单.]]></description>
-    <pubDate>Wed, 13 Apr 2016 04:52:09 GMT</pubDate>
+    <pubDate>Wed, 13 Apr 2016 04:53:26 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -16,9 +16,9 @@
       <guid>http://broccolii.github.io/2016/04/12/iOS_debug/</guid>
       <pubDate>Tue, 12 Apr 2016 12:01:32 GMT</pubDate>
       <description>
-      <![CDATA[<h2 id="iOS__u5F00_u53D1_u4E2D_u7684_u8C03_u8BD5_u5C0F_u6280_u5DE7"><a href="#iOS__u5F00_u53D1_u4E2D_u7684_u8C03_u8BD5_u5C0F_u6280_u5DE7" cl]]>
+      <![CDATA[<h3 id="Breakpoint"><a href="#Breakpoint" class="headerlink" title="Breakpoint"></a>Breakpoint</h3><h4 id="u666E_u901A_u65AD_u70B9"><a href=]]>
       </description>
-      <content:encoded><![CDATA[<h2 id="iOS__u5F00_u53D1_u4E2D_u7684_u8C03_u8BD5_u5C0F_u6280_u5DE7"><a href="#iOS__u5F00_u53D1_u4E2D_u7684_u8C03_u8BD5_u5C0F_u6280_u5DE7" class="headerlink" title="iOS 开发中的调试小技巧"></a>iOS 开发中的调试小技巧</h2><h3 id="Breakpoint"><a href="#Breakpoint" class="headerlink" title="Breakpoint"></a>Breakpoint</h3><h4 id="u666E_u901A_u65AD_u70B9"><a href="#u666E_u901A_u65AD_u70B9" class="headerlink" title="普通断点"></a>普通断点</h4><p><strong>Edit Breakpoint</strong><br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_Debug/Edit_Breakpoint.png" alt=""></p>
+      <content:encoded><![CDATA[<h3 id="Breakpoint"><a href="#Breakpoint" class="headerlink" title="Breakpoint"></a>Breakpoint</h3><h4 id="u666E_u901A_u65AD_u70B9"><a href="#u666E_u901A_u65AD_u70B9" class="headerlink" title="普通断点"></a>普通断点</h4><p><strong>Edit Breakpoint</strong><br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_Debug/Edit_Breakpoint.png" alt=""></p>
 <ol>
 <li><p>Condition （需要返回 Bool 值）</p>
 <p> <code>num &gt; 4</code> 等价于下方代码 </p>
