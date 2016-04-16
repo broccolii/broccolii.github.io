@@ -474,9 +474,11 @@
       <guid>http://broccolii.github.io/2016/02/04/CocoaPods_private_library/</guid>
       <pubDate>Thu, 04 Feb 2016 04:52:39 GMT</pubDate>
       <description>
-      <![CDATA[<h3 id="u914D_u7F6E_-podspec__u6587_u4EF6"><a href="#u914D_u7F6E_-podspec__u6587_u4EF6" class="headerlink" title="配置 .podspec 文件"></a>配置 .po]]>
+      <![CDATA[<p>最近在整理公司代码时打算用 CocoaPods 的私有库来管理一些公共代码。遇到一些问题特此记录。</p>
+<h3 id="u914D_u7F6E_-podspec__u6587_u4EF6"><a href="#u914D_u7F6E_-podspec__u6587_u4]]>
       </description>
-      <content:encoded><![CDATA[<h3 id="u914D_u7F6E_-podspec__u6587_u4EF6"><a href="#u914D_u7F6E_-podspec__u6587_u4EF6" class="headerlink" title="配置 .podspec 文件"></a>配置 .podspec 文件</h3><h5 id="1-__u521B_u5EFA_-podspec__u6587_u4EF6"><a href="#1-__u521B_u5EFA_-podspec__u6587_u4EF6" class="headerlink" title="1. 创建 .podspec 文件"></a>1. 创建 .podspec 文件</h5><p>首先在终端运行</p>
+      <content:encoded><![CDATA[<p>最近在整理公司代码时打算用 CocoaPods 的私有库来管理一些公共代码。遇到一些问题特此记录。</p>
+<h3 id="u914D_u7F6E_-podspec__u6587_u4EF6"><a href="#u914D_u7F6E_-podspec__u6587_u4EF6" class="headerlink" title="配置 .podspec 文件"></a>配置 .podspec 文件</h3><h5 id="1-__u521B_u5EFA_-podspec__u6587_u4EF6"><a href="#1-__u521B_u5EFA_-podspec__u6587_u4EF6" class="headerlink" title="1. 创建 .podspec 文件"></a>1. 创建 .podspec 文件</h5><p>首先在终端运行</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pod spec create &lt;name&gt;</span><br></pre></td></tr></table></figure>
 <p>创建一个 <code>&lt;name&gt;.podspec</code> 文件,创建的文件是初始化模板,不过我们并不需要用到那么多配置.<br>如果有不清楚的地方可以在<a href="https://guides.cocoapods.org/making/specs-and-specs-repo.html" target="_blank" rel="external">CocoaPods 官网</a>查看.下面是我修改过的</p>
 <figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">Pod:</span><span class="symbol">:Spec</span>.new <span class="keyword">do</span> |s|</span><br><span class="line"></span><br><span class="line">  s.name         = <span class="string">"PrivateLibrary"</span></span><br><span class="line">  s.version      = <span class="string">"0.0.1"</span>                  <span class="comment">#版本号</span></span><br><span class="line">  s.summary      = <span class="string">"私有库的描述"</span></span><br><span class="line"></span><br><span class="line">  s.description  = &lt;&lt;-<span class="constant">DESC</span></span><br><span class="line">                   私有库的描述</span><br><span class="line">                   <span class="constant">DESC</span></span><br><span class="line"></span><br><span class="line">  s.homepage     = <span class="string">"https://github.com/broccolii/blog_demo_PrivateLibrary"</span></span><br><span class="line">  s.license      = &#123; <span class="symbol">:type</span> =&gt; <span class="string">"MIT"</span>, <span class="symbol">:file</span> =&gt; <span class="string">"LICENSE"</span> &#125;</span><br><span class="line">  s.author       = &#123; <span class="string">"broccoliii"</span> =&gt; <span class="string">"broccoliii@163.com"</span> &#125;</span><br><span class="line">  s.platform     = <span class="symbol">:ios</span>, <span class="string">"8.0"</span></span><br><span class="line">  s.source       = &#123; <span class="symbol">:git</span> =&gt; <span class="string">"https://github.com/broccolii/blog_demo_PrivateLibrary.git"</span>, <span class="symbol">:tag</span> =&gt; <span class="string">"0.0.1"</span> &#125;</span><br><span class="line">  s.source_files  = <span class="string">"SourceCode/*"</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 如果私有库中使用了 系统系统的 Framework 可以在这里添加 </span></span><br><span class="line">  <span class="comment"># s.framework  = "SomeFramework" </span></span><br><span class="line">  <span class="comment"># s.frameworks = "SomeFramework", "AnotherFramework"</span></span><br><span class="line"></span><br><span class="line">  s.requires_arc = <span class="keyword">true</span> <span class="comment">#开启 ARC</span></span><br><span class="line">  <span class="comment"># s.dependency "&lt;library name&gt;", "~&gt; &lt;version code&gt;" #这里可以添加其他的一些第三方库</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
@@ -532,9 +534,9 @@
       <guid>http://broccolii.github.io/2015/12/31/ReactiveCocoa_exploration/</guid>
       <pubDate>Wed, 30 Dec 2015 19:52:39 GMT</pubDate>
       <description>
-      <![CDATA[<h3 id="ReactiveCocoa__u662F_u4EC0_u4E48"><a href="#ReactiveCocoa__u662F_u4EC0_u4E48" class="headerlink" title="ReactiveCocoa 是什么"></a>React]]>
+      <![CDATA[<p><a href="https://github.com/ReactiveCocoa/ReactiveCocoa" target="_blank" rel="external">ReactiveCocoa</a>（简称为RAC）,是由 Github 开源的一个应用于iOS和O]]>
       </description>
-      <content:encoded><![CDATA[<h3 id="ReactiveCocoa__u662F_u4EC0_u4E48"><a href="#ReactiveCocoa__u662F_u4EC0_u4E48" class="headerlink" title="ReactiveCocoa 是什么"></a>ReactiveCocoa 是什么</h3><p><a href="https://github.com/ReactiveCocoa/ReactiveCocoa" target="_blank" rel="external">ReactiveCocoa</a>（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.(注: 文本例子使用 ReactiveCocoa 2.5)</p>
+      <content:encoded><![CDATA[<p><a href="https://github.com/ReactiveCocoa/ReactiveCocoa" target="_blank" rel="external">ReactiveCocoa</a>（简称为RAC）,是由 Github 开源的一个应用于iOS和OS开发的新框架.是一个 iOS 中的函数式响应式编程框架.(注: 文本例子使用 ReactiveCocoa 2.5)</p>
 <h3 id="ReactiveCocoa__u7684_u4F5C_u7528"><a href="#ReactiveCocoa__u7684_u4F5C_u7528" class="headerlink" title="ReactiveCocoa 的作用"></a>ReactiveCocoa 的作用</h3><p>在 iOS 开发过程中,我们需要监听不同的事件,并作出反应,例如对 <code>UIButton</code> 的点击事件使用 <code>TA</code> 模式,对 <code>UIScrollView</code> 的滚动事件使用 <code>delegate</code>,对属性变化监听使用 <code>KVO</code>.那么我们可能会想能不能使用同一的标准? <code>ReactiveCocoa</code> 为我们提供了一个单独的、统一的方法来这些行为.它可以把要处理的事情,和监听的事情的代码放在一起,便于我们管理代码,非常符合我们开发中<code>高聚合,低耦合</code>的思想.</p>
 <h3 id="u7F16_u7A0B_u8303_u5F0F_3A__u51FD_u6570_u5F0F_u7F16_u7A0B_/__u54CD_u5E94_u5F0F_u7F16_u7A0B"><a href="#u7F16_u7A0B_u8303_u5F0F_3A__u51FD_u6570_u5F0F_u7F16_u7A0B_/__u54CD_u5E94_u5F0F_u7F16_u7A0B" class="headerlink" title="编程范式: 函数式编程 / 响应式编程"></a>编程范式: 函数式编程 / 响应式编程</h3><p><em>ReactiveCocoa被描述为函数响应式编程（FRP）框架,使用 FRP 有两个好处: 直观和灵活.</em><br><strong>函数式编程(Functional Programming)</strong><br>函数式编程(functional programming)简单的来说就是一种编程范型,主要思想是把运算过程尽量写成一系列嵌套的函数调用.函数编程语言最重要的基础是 λ 演算(lambda calculus),而且 λ 演算的函数可以接受函数当作输入和输出.函数式编程更加强调程序执行的结果而非执行的过程,倡导利用若干简单的执行单元让计算结果不断渐进,逐层推导复杂的运算,而不是设计一个复杂的执行过程.<br>阮一峰老师有一个关于<a href="http://www.ruanyifeng.com/blog/2012/04/functional_programming.html" target="_blank" rel="external">函数式编程</a>的例子,如下:</p>
 <blockquote>
@@ -793,9 +795,11 @@
       <guid>http://broccolii.github.io/2015/06/01/Vimium_hot_key/</guid>
       <pubDate>Mon, 01 Jun 2015 15:01:14 GMT</pubDate>
       <description>
-      <![CDATA[<p><a href="https://vimium.github.io/" target="_blank" rel="external">Vimium</a> 是一款能在 Chrome 里运用 Vim 快捷键的扩展。(键盘党必备<br>这里是一张 Vimium 的快捷键列表：<]]>
+      <![CDATA[<p><a href="https://vimium.github.io/" target="_blank" rel="external">Vimium</a> 是一款能在 Chrome 里运用 Vim 快捷键的扩展。(键盘党必备</p>
+<h2 id="u5FEB_u6377_]]>
       </description>
-      <content:encoded><![CDATA[<p><a href="https://vimium.github.io/" target="_blank" rel="external">Vimium</a> 是一款能在 Chrome 里运用 Vim 快捷键的扩展。(键盘党必备<br>这里是一张 Vimium 的快捷键列表：<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Vimium_hot_key/Vimium_hot_key.png" alt=""></p>
+      <content:encoded><![CDATA[<p><a href="https://vimium.github.io/" target="_blank" rel="external">Vimium</a> 是一款能在 Chrome 里运用 Vim 快捷键的扩展。(键盘党必备</p>
+<h2 id="u5FEB_u6377_u952E_u5217_u8868"><a href="#u5FEB_u6377_u952E_u5217_u8868" class="headerlink" title="快捷键列表"></a>快捷键列表</h2><p>这里是一张 Vimium 的快捷键列表：<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Vimium_hot_key/Vimium_hot_key.png" alt=""></p>
 <h3 id="Navigating_the_page"><a href="#Navigating_the_page" class="headerlink" title="Navigating the page"></a>Navigating the page</h3><table>
 <thead>
 <tr>
@@ -979,9 +983,11 @@
       <guid>http://broccolii.github.io/2015/04/21/iOS_UIView_CALayer/</guid>
       <pubDate>Tue, 21 Apr 2015 03:34:21 GMT</pubDate>
       <description>
-      <![CDATA[<h3 id="UIView__u548C_CALayer"><a href="#UIView__u548C_CALayer" class="headerlink" title="UIView 和 CALayer"></a>UIView 和 CALayer</h3><p><str]]>
+      <![CDATA[<p>最近微博上讨论 UIView 和 CALayer 的区别，争论的还是蛮激烈的。我整理了一下自己的一些看法。</p>
+<h3 id="UIView__u548C_CALayer"><a href="#UIView__u548C_CALayer" class="headerli]]>
       </description>
-      <content:encoded><![CDATA[<h3 id="UIView__u548C_CALayer"><a href="#UIView__u548C_CALayer" class="headerlink" title="UIView 和 CALayer"></a>UIView 和 CALayer</h3><p><strong>UIView 可以响应事件</strong><br>点进 UIView.h 文件,可以看到 UIView : UIResponder.UIView 是继承 UIResponder 的,在 iOS 中 UIResponder 做为响应系统中事件的传递者和处理者,提供了大量事件处理的接口,比如我们经常使用的:</p>
+      <content:encoded><![CDATA[<p>最近微博上讨论 UIView 和 CALayer 的区别，争论的还是蛮激烈的。我整理了一下自己的一些看法。</p>
+<h3 id="UIView__u548C_CALayer"><a href="#UIView__u548C_CALayer" class="headerlink" title="UIView 和 CALayer"></a>UIView 和 CALayer</h3><p><strong>UIView 可以响应事件</strong><br>点进 UIView.h 文件,可以看到 UIView : UIResponder.UIView 是继承 UIResponder 的,在 iOS 中 UIResponder 做为响应系统中事件的传递者和处理者,提供了大量事件处理的接口,比如我们经常使用的:</p>
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)touchesBegan:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(nullable <span class="built_in">UIEvent</span> *)event;</span><br><span class="line">- (<span class="keyword">void</span>)touchesMoved:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(nullable <span class="built_in">UIEvent</span> *)event;</span><br><span class="line">- (<span class="keyword">void</span>)touchesEnded:(<span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(nullable <span class="built_in">UIEvent</span> *)event;</span><br><span class="line">- (<span class="keyword">void</span>)touchesCancelled:(nullable <span class="built_in">NSSet</span>&lt;<span class="built_in">UITouch</span> *&gt; *)touches withEvent:(nullable <span class="built_in">UIEvent</span> *)event;</span><br></pre></td></tr></table></figure>
 <p>以及关于第一响应者的一些方法:</p>
 <figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby"> (<span class="constant">BOOL</span>)canBecomeFirstResponder;    <span class="regexp">//</span> default is <span class="constant">NO</span></span><br><span class="line"></span>-<span class="ruby"> (<span class="constant">BOOL</span>)becomeFirstResponder;</span><br><span class="line"></span>-<span class="ruby"> (<span class="constant">BOOL</span>)canResignFirstResponder;    <span class="regexp">//</span> default is <span class="constant">YES</span></span><br><span class="line"></span>-<span class="ruby"> (<span class="constant">BOOL</span>)resignFirstResponder;</span><br><span class="line"></span>-<span class="ruby"> (<span class="constant">BOOL</span>)isFirstResponder;</span></span><br></pre></td></tr></table></figure>
@@ -1020,9 +1026,11 @@
       <guid>http://broccolii.github.io/2015/02/19/Objective-C_Runtime/</guid>
       <pubDate>Thu, 19 Feb 2015 08:31:53 GMT</pubDate>
       <description>
-      <![CDATA[<h3 id="Runtime__u662F_u4EC0_u4E48"><a href="#Runtime__u662F_u4EC0_u4E48" class="headerlink" title="Runtime 是什么"></a>Runtime 是什么</h3><p>Obje]]>
+      <![CDATA[<p>整理了一下 Objective-C 中 runtime 的内容，虽然实际开发中用到的地方不多，但是对解决一些特殊问题或者理解一些代码会有一些帮助，每一个 iOS 开发者都需要认真学习 runtime 相关的知识。</p>
+<h3 id="Runtime__u662F_u4E]]>
       </description>
-      <content:encoded><![CDATA[<h3 id="Runtime__u662F_u4EC0_u4E48"><a href="#Runtime__u662F_u4EC0_u4E48" class="headerlink" title="Runtime 是什么"></a>Runtime 是什么</h3><p>Objective-C 是基于 C 语言加入了面向对象特性和消息转发机制的动态语言,因此它尽可能地将一些工作从编译链接推迟到运行时.这意味着仅仅有编译器是不够的,还需要一套运行时系统来执行编译后的代码.这个运行时系统就是一个用 C 和汇编写的 Runtime 库,它是 Objective-C 作为一门动态语言的是基础.虽然这些特性在开发中使用的较少，但是理解 Objective-C 的 Runtime 机制可以帮我们更好的了解这个语言,合理的运用还能在系统层面上解决一些技术问题.<br>你可以<a href="http://opensource.apple.com/tarballs/objc4/" target="_blank" rel="external">这里</a>在下载到 Apple 维护的 Runtime 源码,开始我们的探索.</p>
+      <content:encoded><![CDATA[<p>整理了一下 Objective-C 中 runtime 的内容，虽然实际开发中用到的地方不多，但是对解决一些特殊问题或者理解一些代码会有一些帮助，每一个 iOS 开发者都需要认真学习 runtime 相关的知识。</p>
+<h3 id="Runtime__u662F_u4EC0_u4E48"><a href="#Runtime__u662F_u4EC0_u4E48" class="headerlink" title="Runtime 是什么"></a>Runtime 是什么</h3><p>Objective-C 是基于 C 语言加入了面向对象特性和消息转发机制的动态语言,因此它尽可能地将一些工作从编译链接推迟到运行时.这意味着仅仅有编译器是不够的,还需要一套运行时系统来执行编译后的代码.这个运行时系统就是一个用 C 和汇编写的 Runtime 库,它是 Objective-C 作为一门动态语言的是基础.虽然这些特性在开发中使用的较少，但是理解 Objective-C 的 Runtime 机制可以帮我们更好的了解这个语言,合理的运用还能在系统层面上解决一些技术问题.<br>你可以<a href="http://opensource.apple.com/tarballs/objc4/" target="_blank" rel="external">这里</a>在下载到 Apple 维护的 Runtime 源码,开始我们的探索.</p>
 <h3 id="Runtime_NSObject_/_Class"><a href="#Runtime_NSObject_/_Class" class="headerlink" title="Runtime NSObject / Class"></a>Runtime NSObject / Class</h3><p>我们打开刚刚下载的源码,选择 NSObject.h 这个文件.我们可以看到 NSObject 就是一个包含 isa 指针的结构体:</p>
 <figure class="highlight monkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@<span class="class"><span class="keyword">interface</span> <span class="title">NSObject</span> &lt;<span class="title">NSObject</span>&gt; &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">Class</span> <span class="title">isa</span>  <span class="title">OBJC_ISA_AVAILABILITY</span>;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -1257,9 +1265,11 @@
       <guid>http://broccolii.github.io/2014/07/28/Objective-C_Block/</guid>
       <pubDate>Sun, 27 Jul 2014 17:11:02 GMT</pubDate>
       <description>
-      <![CDATA[<h3 id="u4EC0_u4E48_u662F_Block"><a href="#u4EC0_u4E48_u662F_Block" class="headerlink" title="什么是 Block"></a>什么是 Block</h3><p>Block 翻译成中文就是块]]>
+      <![CDATA[<p>Block 翻译成中文就是块,顾名思义指的是代码块.与函数类似,有参数,有返回值.只不过是直接实现在另一个函数里的,同时可以获取该函数的局部变量. Block 只是 Objective-C 对闭包的实现.</p>
+<blockquote>
+<p>讲人话:  Block 就是]]>
       </description>
-      <content:encoded><![CDATA[<h3 id="u4EC0_u4E48_u662F_Block"><a href="#u4EC0_u4E48_u662F_Block" class="headerlink" title="什么是 Block"></a>什么是 Block</h3><p>Block 翻译成中文就是块,顾名思义指的是代码块.与函数类似,有参数,有返回值.只不过是直接实现在另一个函数里的,同时可以获取该函数的局部变量. Block 只是 Objective-C 对闭包的实现.</p>
+      <content:encoded><![CDATA[<p>Block 翻译成中文就是块,顾名思义指的是代码块.与函数类似,有参数,有返回值.只不过是直接实现在另一个函数里的,同时可以获取该函数的局部变量. Block 只是 Objective-C 对闭包的实现.</p>
 <blockquote>
 <p>讲人话:  Block 就是一段能够在将来被执行的代码. Block 本身就是一个普通的 Objective-C 对象.正因为它是对象，Block 可以被作为参数传递，可以作为返回值从一个方法返回，可以用来给变量赋值</p>
 </blockquote>
