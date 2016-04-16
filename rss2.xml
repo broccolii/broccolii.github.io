@@ -40,9 +40,10 @@
       <guid>http://broccolii.github.io/2016/04/12/iOS_debug/</guid>
       <pubDate>Tue, 12 Apr 2016 12:01:32 GMT</pubDate>
       <description>
-      <![CDATA[<h3 id="Breakpoint"><a href="#Breakpoint" class="headerlink" title="Breakpoint"></a>Breakpoint</h3><h4 id="u666E_u901A_u65AD_u70B9"><a href=]]>
+      <![CDATA[<h3 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h3><p>公司周会的技术分享，因为时间仓促就简单准备了一下平时开发中的调试小技巧。主要是的内容是介绍了一下 Fac]]>
       </description>
-      <content:encoded><![CDATA[<h3 id="Breakpoint"><a href="#Breakpoint" class="headerlink" title="Breakpoint"></a>Breakpoint</h3><h4 id="u666E_u901A_u65AD_u70B9"><a href="#u666E_u901A_u65AD_u70B9" class="headerlink" title="普通断点"></a>普通断点</h4><p><strong>Edit Breakpoint</strong><br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_Debug/Edit_Breakpoint.png" alt=""></p>
+      <content:encoded><![CDATA[<h3 id="u524D_u8A00"><a href="#u524D_u8A00" class="headerlink" title="前言"></a>前言</h3><p>公司周会的技术分享，因为时间仓促就简单准备了一下平时开发中的调试小技巧。主要是的内容是介绍了一下 FaceBook 的 Chisel 库的内容，在 lldb 的基础上进行的一些封装。一些系统调试工具同样也是基于 lldb 的，有机会深入研究 lldb 补充这篇博文。</p>
+<h3 id="Breakpoint"><a href="#Breakpoint" class="headerlink" title="Breakpoint"></a>Breakpoint</h3><h4 id="u666E_u901A_u65AD_u70B9"><a href="#u666E_u901A_u65AD_u70B9" class="headerlink" title="普通断点"></a>普通断点</h4><p><strong>Edit Breakpoint</strong><br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_Debug/Edit_Breakpoint.png" alt=""></p>
 <ol>
 <li><p>Condition （需要返回 Bool 值）</p>
 <p> <code>num &gt; 4</code> 等价于下方代码 </p>
