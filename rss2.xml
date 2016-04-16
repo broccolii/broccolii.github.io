@@ -7,13 +7,13 @@
     <link>http://broccolii.github.io/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     <description><![CDATA[不求深刻,但求简单.]]></description>
-    <pubDate>Sat, 16 Apr 2016 04:26:17 GMT</pubDate>
+    <pubDate>Sat, 16 Apr 2016 05:06:25 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
       <title><![CDATA[Swift 中简单的算法题]]></title>
-      <link>http://broccolii.github.io/2016/04/16/Swift_Invert_Binary_Tree/</link>
-      <guid>http://broccolii.github.io/2016/04/16/Swift_Invert_Binary_Tree/</guid>
+      <link>http://broccolii.github.io/2016/04/16/Swift_algorithm/</link>
+      <guid>http://broccolii.github.io/2016/04/16/Swift_algorithm/</guid>
       <pubDate>Sat, 16 Apr 2016 01:12:34 GMT</pubDate>
       <description>
       <![CDATA[<p>最近在看数据结构和算法，想到去年 <a href="https://twitter.com/mxcl/status/608682016205344768" target="_blank" rel="external">@Max Howell</a> 大神因为没有做出翻转二叉]]>
@@ -31,7 +31,7 @@
 <p><a href="https://github.com/hollance/swift-algorithm-club" target="_blank" rel="external">Swift algorithm club</a> 里有一些算法可供学习参考。</p>
 <p><strong>PS：这两题还是蛮基础的，之所以要写 blog 记录一下是想警醒自己，基础知识太薄弱。道阻且长，多学多做</strong></p>
 ]]></content:encoded>
-      <comments>http://broccolii.github.io/2016/04/16/Swift_Invert_Binary_Tree/#disqus_thread</comments>
+      <comments>http://broccolii.github.io/2016/04/16/Swift_algorithm/#disqus_thread</comments>
     </item>
     
     <item>
