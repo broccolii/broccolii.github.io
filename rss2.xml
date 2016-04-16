@@ -7,21 +7,28 @@
     <link>http://broccolii.github.io/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     <description><![CDATA[不求深刻,但求简单.]]></description>
-    <pubDate>Sat, 16 Apr 2016 07:39:58 GMT</pubDate>
+    <pubDate>Sat, 16 Apr 2016 07:42:51 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
       <title></title>
       <link>http://broccolii.github.io/2016/04/16/im/</link>
       <guid>http://broccolii.github.io/2016/04/16/im/</guid>
-      <pubDate>Sat, 16 Apr 2016 07:39:58 GMT</pubDate>
+      <pubDate>Sat, 16 Apr 2016 07:42:51 GMT</pubDate>
       <description>
       <![CDATA[<p>本文主要以Android客户端为例，记录了有赞旗下App中使用自研IM SDK 设计思路，由有赞移动开发组IM SDK团队共同讨论完成。</p>
-<p><a href="http://0.0.0.0:4000/2016/04/16/im/### UIKit设计" targe]]>
+<ul>
+<li><a href="#1">1.语法示例</a></li>
+</ul>
+<h2 id="1">1.语法示例</h]]>
       </description>
       <content:encoded><![CDATA[<p>本文主要以Android客户端为例，记录了有赞旗下App中使用自研IM SDK 设计思路，由有赞移动开发组IM SDK团队共同讨论完成。</p>
-<p><a href="http://0.0.0.0:4000/2016/04/16/im/### UIKit设计" target="_blank" rel="external">UIKit 设计</a></p>
-<h1 id="u80CC_u666F_uFF1A"><a href="#u80CC_u666F_uFF1A" class="headerlink" title="背景："></a>背景：</h1><p>在有赞产品中，存在大量需要交易双方沟通交流的场景，比如，客户咨询商家产品信息，售前售后简单的答疑和维权等。此时需要较为完善的即时通信（IM）解决方案，但是由于有赞针对不同的商户和使用场景有多个APP，APP自行实现IM功能代价较大，且维护起来人力分散，于是，IM SDK 项目便应运而生了，APP 通过接入此SDK，可以快速实现IM基本功能。</p>
+<ul>
+<li><a href="#1">1.语法示例</a></li>
+</ul>
+<h2 id="1">1.语法示例</h2>
+
+<p>在有赞产品中，存在大量需要交易双方沟通交流的场景，比如，客户咨询商家产品信息，售前售后简单的答疑和维权等。此时需要较为完善的即时通信（IM）解决方案，但是由于有赞针对不同的商户和使用场景有多个APP，APP自行实现IM功能代价较大，且维护起来人力分散，于是，IM SDK 项目便应运而生了，APP 通过接入此SDK，可以快速实现IM基本功能。</p>
 <h1 id="u8BBE_u8BA1_u76EE_u6807"><a href="#u8BBE_u8BA1_u76EE_u6807" class="headerlink" title="设计目标"></a>设计目标</h1><ul>
 <li>IM 主流程稳定可用：消息传输具有高可靠性。</li>
 <li>UI 组件直接集成进入SDK，并支持可定制化。</li>
