@@ -7,8 +7,40 @@
     <link>http://broccolii.github.io/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     <description><![CDATA[不求深刻,但求简单.]]></description>
-    <pubDate>Sat, 16 Apr 2016 05:06:25 GMT</pubDate>
+    <pubDate>Tue, 03 May 2016 23:01:21 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title><![CDATA[GCD 中的 dispatch_semaphore]]></title>
+      <link>http://broccolii.github.io/2016/05/03/GCD_dispatch_semaphore/</link>
+      <guid>http://broccolii.github.io/2016/05/03/GCD_dispatch_semaphore/</guid>
+      <pubDate>Tue, 03 May 2016 12:41:23 GMT</pubDate>
+      <description>
+      <![CDATA[<p>今天在写 <code>FMDB</code> 时，遇到了一个异步调用中等待的问题需要用到 <code>dispatch_semaphore</code>。碰巧之前土豆面试我时，问到 <code>dispatch_barrier_async</code> 我搞混成了前者。所以]]>
+      </description>
+      <content:encoded><![CDATA[<p>今天在写 <code>FMDB</code> 时，遇到了一个异步调用中等待的问题需要用到 <code>dispatch_semaphore</code>。碰巧之前土豆面试我时，问到 <code>dispatch_barrier_async</code> 我搞混成了前者。所以写篇 blog 整理一下 <code>dispatch_semaphore</code> 和 <code>dispatch_barrier_async</code> 两者的区别。</p>
+<h3 id="u8D77_u56E0"><a href="#u8D77_u56E0" class="headerlink" title="起因"></a>起因</h3><p>在使用 <code>FMDB</code> 的 <code>FMDatabaseQueue</code> 进行查询操作时，代码如下：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">__block FMResultSet *resultSet = <span class="literal">nil</span>;</span><br><span class="line">[databaseQueue inDatabase:^(FMDatabase *database) &#123;</span><br><span class="line">   <span class="keyword">if</span> (![database open]) &#123;</span><br><span class="line">       <span class="keyword">return</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="built_in">NSString</span> *sqlString = [<span class="keyword">self</span> createSQLStringWithCondition:condition];</span><br><span class="line">   <span class="keyword">@try</span> &#123;</span><br><span class="line">       resultSet = [database executeQuery:sqlString];</span><br><span class="line">   &#125; <span class="keyword">@catch</span> (<span class="built_in">NSException</span> *exception) &#123;</span><br><span class="line">       <span class="built_in">NSLog</span>(<span class="string">@"FMDB ---: 查询数据出错 exception: %@"</span>, exception);</span><br><span class="line">   &#125; <span class="keyword">@finally</span> &#123;</span><br><span class="line">       [database close];</span><br><span class="line">   &#125;</span><br><span class="line">&#125;];</span><br></pre></td></tr></table></figure>
+<p><em>问题</em> 是我需要在查询完数据后把数据 <code>return</code> 回去。可是查询操作又在一个异步的 <code>block</code> 中。</p>
+<h4 id="u89E3_u51B3_u529E_u6CD5_uFF1A_u4F7F_u7528_dispatch_semaphore"><a href="#u89E3_u51B3_u529E_u6CD5_uFF1A_u4F7F_u7528_dispatch_semaphore" class="headerlink" title="解决办法：使用 <code>dispatch_semaphore</code>"></a>解决办法：使用 <code>dispatch_semaphore</code></h4><p><code>dispatch_semaphore</code> 简单理解就是信号量。了解过 <a href="https://github.com/ReactiveCocoa/ReactiveCocoa" target="_blank" rel="external">RAC</a> 的同学应该都不会陌生。先上解决办法</p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">__block dispatch_semaphore_t sem = dispatch_semaphore_create(0)<span class="comment">;</span></span><br><span class="line">__block FMResultSet *resultSet = nil<span class="comment">;</span></span><br><span class="line">[databaseQueue inDatabase:^(FMDatabase *database) &#123;</span><br><span class="line">   if (![database open]) &#123;</span><br><span class="line">       return<span class="comment">;</span></span><br><span class="line">   &#125;</span><br><span class="line">   [self createSQLStringWithCondition:condition]<span class="comment">;</span></span><br><span class="line">   @try &#123;</span><br><span class="line">       resultSet = [database executeQuery:sql]<span class="comment">;</span></span><br><span class="line">   &#125; @catch (NSException *exception) &#123;</span><br><span class="line">       NSLog(@"FMDB ---: 查询数据出错 exception: %@", exception)<span class="comment">;</span></span><br><span class="line">       dispatch_semaphore_signal(sem)<span class="comment">;</span></span><br><span class="line">   &#125; @finally &#123;</span><br><span class="line">       [database close]<span class="comment">;</span></span><br><span class="line">       dispatch_semaphore_signal(sem)<span class="comment">;</span></span><br><span class="line">   &#125;</span><br><span class="line">&#125;]<span class="comment">;</span></span><br><span class="line">dispatch_time_t  timeout = dispatch_time(DISPATCH_TIME_NOW, <span class="number">1*1000*100</span>0*1000)<span class="comment">;</span></span><br><span class="line">dispatch_semaphore_wait(sem, timeout)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><div style="color: #2b2a27;"><code>dispatch_semaphore_t dispatch_semaphore_create(long value);</code></div></li>
+<li><div style="color: #2b2a27;"><code>long dispatch_semaphore_signal(dispatch_semaphore_t dsema);</code></div></li>
+<li><div style="color: #2b2a27;"><code>long dispatch_semaphore_wait(dispatch_semaphore_t dsema, dispatch_time_t timeout);</code></div>
+
+</li>
+</ul>
+<p>简单的来说：</p>
+<ul>
+<li><code>dispatch_semaphore_create</code> 创建一个信号，传入是 <code>value</code> 代表可用资源数。当资源数等于零时进入等待状态，大于零表示有资源则线程可以进行下去。*</li>
+<li><code>dispatch_semaphore_wait</code> 表示等待状态设置超时时间（时间单位是十亿分之一秒）。</li>
+<li><code>dispatch_semaphore_signal</code> 传入之前的 <code>dsema</code> 信号量资源数加一，那么线程得以继续运行下去。</li>
+</ul>
+<h4 id="dispatch_barrier_async"><a href="#dispatch_barrier_async" class="headerlink" title="dispatch_barrier_async"></a>dispatch_barrier_async</h4><p><code>barrier</code> 的中文意思是： <code>障碍物</code>。<code>dispatch_barrier_async</code>可以在并发队列中创建一个同步点。即在 <code>dispatch_barrier_async</code> 之前的异步操作执行完才会进入 <code>barrier block</code>，在执行 <code>barrier block</code> 队列中只允许存在此操作。如下图所示：</p>
+]]></content:encoded>
+      <comments>http://broccolii.github.io/2016/05/03/GCD_dispatch_semaphore/#disqus_thread</comments>
+    </item>
     
     <item>
       <title><![CDATA[Swift 中简单的算法题]]></title>
@@ -1327,7 +1359,9 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="operator"><span class="keyword">install</span> -<span class="keyword">g</span> hexo-cli</span></span><br></pre></td></tr></table></figure>
 <p>如果因为权限问题可以使用</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo npm <span class="operator"><span class="keyword">install</span> -<span class="keyword">g</span> hexo-cli</span></span><br></pre></td></tr></table></figure>
-<h4 id="Hexo__u8BBE_u7F6E"><a href="#Hexo__u8BBE_u7F6E" class="headerlink" title="Hexo 设置"></a>Hexo 设置</h4><p>以下操作需要在你希望 blog 生成的路径下进行<br>1.新建博客目录 </p>
+<h4 id="Hexo__u8BBE_u7F6E"><a href="#Hexo__u8BBE_u7F6E" class="headerlink" title="Hexo 设置"></a>Hexo 设置</h4><p>以下操作需要在你希望 blog 生成的路径下进行</p>
+<p><strong>请注意一定要按以下步骤安装, 前人血的教训</strong></p>
+<p>1.新建博客目录 </p>
 <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo init <span class="variable">$&#123;</span>blog 的本地目录名&#125;</span><br></pre></td></tr></table></figure>
 <p>2.根据当前目录下的文件生成静态网页</p>
 <figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>hexo generate</span><br></pre></td></tr></table></figure>
