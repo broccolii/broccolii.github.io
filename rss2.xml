@@ -71,7 +71,19 @@
 <li>写了一个创建 <code>NSMutableURLRequest</code> 的 <code>Convenience method</code></li>
 <li>封装了 <code>Manager</code> 的三类方法：<code>request</code>、<code>upload</code>、<code>download</code></li>
 </ol>
-<p>先来说一下两个协议 <code>URLStringConvertible</code> 和 <code>URLRequestConvertible</code>，两个协议的后缀都是 <code>-Convertible</code>。系统协议后缀一般常使用 <code>-Type</code>、<code>-able</code>、<code>-Convertible</code> 这三种。我们可以看一下 Array 和 </p>
+<p>来说一下两个协议 <code>URLStringConvertible</code> 和 <code>URLRequestConvertible</code>，两个协议的后缀都是 <code>-Convertible</code>。系统协议后缀一般常使用 <code>-Type</code>、<code>-able</code>、<code>-Convertible</code> 这三种。</p>
+<blockquote>
+<p>我们可以看一下 Swift 的 Array 和 Dictionary 的源码中默认实现的协议：</p>
+</blockquote>
+<div style="text-align: center">Array</div><br><div style="text-align: center"><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Learning_Swift_from_Alamofire_source/Array_Protocol.png"></div>
+
+<div style="text-align: center">Dictionary</div><br><div style="text-align: center"><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/Learning_Swift_from_Alamofire_source/Dictionary_Protocol.png"></div>
+
+<p>顾名思义: <code>-Type</code> 指的是一种类型，<code>-able</code>指的是能够实现怎么样一种行为，<code>-Convertible</code>指的是能进行类型转换。</p>
+<h4 id="Core"><a href="#Core" class="headerlink" title="Core"></a>Core</h4><h5 id="Manager-swift"><a href="#Manager-swift" class="headerlink" title="Manager.swift"></a>Manager.swift</h5><p>Manager 使用了单例设计模式，与传统 Objective-C 中使用 <code>dispatch_once</code> 实现的单例不同，在 Swift 中实现单例只需要简单的一句代码就可以了 <code>static let sharedInstance = Manager()</code>。接着定义了几个属性值：其中 <code>defaultHTTPHeaders</code> 里面是一些 HTTP 相关的知识，如果你不熟悉的话，推荐你看<a href="https://book.douban.com/subject/25863515/" target="_blank" rel="external">图解HTTP</a>。还有一个 <code>SessionDelegate</code> 类型是属性类似与 <code>AFNetworking</code> 的 <code>AFURLSessionManagerTaskDelegate</code> 将 <code>NSURLSession</code> 相关的 delegate 以闭包的形式回调。</p>
+<p>初始化函数中有一个 <code>init？</code> 方法，可能返回为 nil。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">init</span>?(</span><br><span class="line">   session: <span class="type">NSURLSession</span>,</span><br><span class="line">   delegate: <span class="type">SessionDelegate</span>,</span><br><span class="line">   serverTrustPolicyManager: <span class="type">ServerTrustPolicyManager</span>? = <span class="literal">nil</span>)</span><br><span class="line">&#123;</span><br><span class="line">   <span class="keyword">self</span>.delegate = delegate</span><br><span class="line">   <span class="keyword">self</span>.session = session</span><br><span class="line"></span><br><span class="line">   <span class="keyword">guard</span> delegate === session.delegate <span class="keyword">else</span> &#123; <span class="keyword">return</span> <span class="literal">nil</span> &#125;</span><br><span class="line"></span><br><span class="line">   commonInit(serverTrustPolicyManager: serverTrustPolicyManager)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当传入的参数 <code>delegate</code> 不等于 <code>session.delegate</code> 时，初始化失败返回 nil。为什么要使用 <code>===</code> 呢？因为需要判断两个对象是否引用自同一个对象，而不是判断两个对象的值是否相等。</p>
 <h3 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h3><p>Elegant HTTP Networking in Swift</p>
 ]]></content:encoded>
       <comments>http://broccolii.github.io/2016/05/03/Learning_Swift_from_Alamofire_source/#disqus_thread</comments>
