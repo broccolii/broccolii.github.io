@@ -7,7 +7,7 @@
     <link>http://broccolii.github.io/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     <description><![CDATA[不求深刻,但求简单.]]></description>
-    <pubDate>Sat, 07 May 2016 12:53:03 GMT</pubDate>
+    <pubDate>Sat, 07 May 2016 12:59:55 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -36,7 +36,8 @@
 <li>写了一个创建 <code>NSMutableURLRequest</code> 的 <code>Convenience method</code></li>
 <li>封装了 <code>Manager</code> 的三类方法：<code>request</code>、<code>upload</code>、<code>download</code></li>
 </ol>
-<p>来说一下两个协议 <code>URLStringConvertible</code> 和 <code>URLRequestConvertible</code>，两个协议的后缀都是 <code>-Convertible</code>。系统协议后缀一般常使用 <code>-Type</code>、<code>-able</code>、<code>-Convertible</code> 这三种。</p>
+<p>来说一下两个协议 <code>URLStringConvertible</code> 和 <code>URLRequestConvertible</code>，两个协议的后缀都是 <code>-Convertible</code>。</p>
+<p>系统协议后缀一般常使用 <code>-Type</code>、<code>-able</code>、<code>-Convertible</code> 这三种。</p>
 <blockquote>
 <p>我们可以看一下 Swift 的 Array 和 Dictionary 的源码中默认实现的协议：</p>
 </blockquote>
