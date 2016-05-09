@@ -7,13 +7,13 @@
     <link>http://broccolii.github.io/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     <description><![CDATA[不求深刻,但求简单.]]></description>
-    <pubDate>Mon, 09 May 2016 16:16:16 GMT</pubDate>
+    <pubDate>Mon, 09 May 2016 16:17:23 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
       <title><![CDATA[上手 Raspberry Pi]]></title>
-      <link>http://broccolii.github.io/2016/05/10/OS_X_install_raspbian/</link>
-      <guid>http://broccolii.github.io/2016/05/10/OS_X_install_raspbian/</guid>
+      <link>http://broccolii.github.io/2016/05/10/Raspberry_Pi_%20start/</link>
+      <guid>http://broccolii.github.io/2016/05/10/Raspberry_Pi_%20start/</guid>
       <pubDate>Tue, 10 May 2016 04:16:55 GMT</pubDate>
       <description>
       <![CDATA[<p>最近买了一个树莓派玩。记录一下自己的一些心得体会和一些经验吧，以后可以分享给小伙伴。</p>
@@ -44,7 +44,7 @@
 <p>大功告成。</p>
 <p>今天就先到这，欲知后事如何，且听下回分解。</p>
 ]]></content:encoded>
-      <comments>http://broccolii.github.io/2016/05/10/OS_X_install_raspbian/#disqus_thread</comments>
+      <comments>http://broccolii.github.io/2016/05/10/Raspberry_Pi_%20start/#disqus_thread</comments>
     </item>
     
     <item>
