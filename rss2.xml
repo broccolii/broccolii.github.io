@@ -672,6 +672,30 @@
     </item>
     
     <item>
+      <title><![CDATA[iOS 中的静态库和动态库]]></title>
+      <link>http://broccolii.github.io/2016/02/23/iOS_library/</link>
+      <guid>http://broccolii.github.io/2016/02/23/iOS_library/</guid>
+      <pubDate>Tue, 23 Feb 2016 03:51:23 GMT</pubDate>
+      <description>
+      <![CDATA[<p>iOS 开发中我们会使用一些包管理工具，比如： <code>CocoaPods</code>，<code>Carthage</code> 还有在 Swift 开源时发布的 <code>Swift package manager</code>。这些工具可以帮我们管理导入第三方]]>
+      </description>
+      <content:encoded><![CDATA[<p>iOS 开发中我们会使用一些包管理工具，比如： <code>CocoaPods</code>，<code>Carthage</code> 还有在 Swift 开源时发布的 <code>Swift package manager</code>。这些工具可以帮我们管理导入第三方库，开发中用到的库有一些是动态库，有一些是静态库，这之间又有一些什么区别么？</p>
+<h3 id="u52A8_u6001_u5E93__u548C__u9759_u6001_u5E93"><a href="#u52A8_u6001_u5E93__u548C__u9759_u6001_u5E93" class="headerlink" title="动态库 和 静态库"></a>动态库 和 静态库</h3><p><strong>库：</strong><br>一些时候我们要把不想开源我们的代码给别人用的时候，就需要以库的形式进行包装，只暴露一些必要的头文件。库其实就是编译好的二进制文件，库在被加载到 App 中时，有两种方式分别是静态和动态。</p>
+<p><strong>静态库：</strong><br>静态库指的是一系列从源码编译出来的目标文件，也就是 .o 文件的集合，它是源码实现所对应的二进制。我们在开发中常见到的 .a 文件就是静态库，我们需要配合暴露的 .h 文件使用。在最后编译到 App 中 .a 文件会被链接到最终的可执行二进制文件中，随着每次 App 的可执行二进制被加载到内存中，.a 文件也一同被加载进内存。</p>
+<p><strong>动态库：</strong><br>与静态库相对应的是动态库。平时我们开发中常用到的：<code>UIKit</code>、<code>Foundation</code> 等等。这些动态库，并不会打包到 App 中，而是在 App 启动时候检查需要的动态库是否已经被加载到了内存中，我们平时使用的一些库已经被在内存中。</p>
+<h3 id="iOS__u4E2D_u7684_Framework"><a href="#iOS__u4E2D_u7684_Framework" class="headerlink" title="iOS 中的 Framework"></a>iOS 中的 Framework</h3><p>在 iOS 中 Framework 只是一个打包方式，就是我们平时在桌面系统上用的文件夹一样。系统的 <code>UIKit</code>、<code>Foundation</code> 可以使用 <code>Framewrok</code> 结尾，同样静态库也可以。因为当我们生成静态库时，不能将资源文件打包到 .a 文件中，之前开发时常常需要我们手动拉入资源文件。所以我们需要 <code>Framework</code> 替我们管理资源文件。</p>
+<p>在 iOS 8 后，iOS 添加了动态库（Cocoa Touch Framework）的支持。主要是两方面原因：</p>
+<p><strong>iOS 8 中引入新功能 extension</strong><br>extension 和 App 是两个分开的可执行文件。如果使用静态库导入，相同的库会被导入两次，这样会造成极大的资源浪费。</p>
+<p><strong>Swift</strong><br>还有一个原因是 Swift在开源之前只支持动态库，开源之后也能支持静态库导入，但是在 Swift 3.0 之前 <code>ABI</code> 都不稳定，所以还是建议使用动态库导入。</p>
+<p>不过 <code>Cocoa Touch Framework</code> 和系统的 <code>UIKit.framework</code> 不同，因为前者只能被加载到自己的 <code>bundle</code> 中，并不能加载到系统的内存中。也就是说不同 App 只见还是不能共享同一个第三库动态库（摔桌。</p>
+<h3 id="CocoaPods_/_Carthage_/_Swift_package_manager"><a href="#CocoaPods_/_Carthage_/_Swift_package_manager" class="headerlink" title="CocoaPods / Carthage / Swift package manager"></a>CocoaPods / Carthage / Swift package manager</h3><p>CocoaPods 使用编译静态库 .a 方法将代码集成到项目中。在 Pods 项目中的每个 target 都对应一个第三方库的静态库。不过你要是想要在 Swift 项目中使用 CocoaPods 的话你需要使用 <code>use_frameworks！</code> 用于生成 Swift 使用的动态库。</p>
+<p><a href="https://github.com/Carthage" target="_blank" rel="external">Carthage</a>诞生之初就是针对动态框架的包管理工具。它做为一个去中心化的包管理工具，与 CocoaPods 不同的是，他不需要开发者配置一些烦人的 <code>PodSpec</code>，不需要使用 CocoaPods 的 <code>Trunk</code> 上传库的内容。更不需要开发者在使用 <code>pod update</code> 时，等待大量的时候去更新本地的中心仓库。Carthage 的工作原理很简单，他从 Git 仓库中 clone 源代码，然后生成动态 Framework 库，需要开发者手动将生成好的 <code>Framework</code> 拉入项目中。 </p>
+<p><a href="https://github.com/apple/swift-package-manager" target="_blank" rel="external">Swift package manager</a> 的工作原理和 Carthage 差不多，它通过 <code>low level build system</code> 这个跨平台编译工具将 Swift 代码编译成 .a 静态库。</p>
+]]></content:encoded>
+      <comments>http://broccolii.github.io/2016/02/23/iOS_library/#disqus_thread</comments>
+    </item>
+    
+    <item>
       <title><![CDATA[使用 CocoaPods 管理私有库]]></title>
       <link>http://broccolii.github.io/2016/02/04/CocoaPods_private_library/</link>
       <guid>http://broccolii.github.io/2016/02/04/CocoaPods_private_library/</guid>
