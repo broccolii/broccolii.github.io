@@ -98,6 +98,42 @@
     </item>
     
     <item>
+      <title><![CDATA[TextField字数限制处理]]></title>
+      <link>http://broccolii.github.io/2016/05/07/TextField_gongcheng/</link>
+      <guid>http://broccolii.github.io/2016/05/07/TextField_gongcheng/</guid>
+      <pubDate>Sat, 07 May 2016 14:40:44 GMT</pubDate>
+      <description>
+      <![CDATA[<p>在第三方键盘加入之后，对于字数限制的处理不再像之前那么简单了</p>]]>
+      
+      </description>
+      <content:encoded><![CDATA[<p>在第三方键盘加入之后，对于字数限制的处理不再像之前那么简单了</p>
+<a id="more"></a>
+<p>纯数字、字符输入（不包括粘贴）这样的字数限制还是相对比较简单的，你可以用两种方法进行处理</p>
+<p>第一种是<strong>textfield的delegate</strong>实现：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string &#123;&#10;    if (range.length + range.location &#62; textField.text.length) &#123;&#10;        return NO;&#10;    &#125;&#10;    NSUInteger newLength = textField.text.length + string.length - range.length;&#10;    return newLength&#60;=kMaxCharacterCount;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>第二种<strong>是注册一个通知</strong>，在textfield编辑时做处理：</p>
+<p>首先你在viewDidLoad中注册通知</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFiledEditChanged:) name:UITextFieldTextDidChangeNotification object:self.shopName];</span><br></pre></td></tr></table></figure>
+<p>再实现通知里面的方法，在超过最大值时，取最大的字数</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (self.shopName.text.length &#62; kMaxCharacterCount) &#123;&#10;        self.shopName.text = [self.shopName.text substringToIndex:kMaxCharacterCount];&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>但是，在中文的限制上面情况就复杂了，当时在调试的时候，因为使用的是第三方键盘，所以当时没有发现问题，但是在使用系统键盘的时候，一下子就蛋疼了….</p>
+<p>下面我开始分析一下，两者的区别：</p>
+<p>1、第三方键盘在输入字符时，一般是不会将字符直接输入到textfield中，而是将字符显示在它自己的view上方，但是系统键盘会直接输入到textfield中，而且它会占2个字符长度，比如你输入”abcd”，在textfield中显示的是”a b c d”，并且”a b c d”是处在高亮中的，并不算是真正输入到textfield中，所以我们不应把高亮的字符计算在内，我们应该计算真正输入的字符</p>
+<p>2、如果我们使用的是delegate做处理的时候，系统中文输入的时候会有联想，但是联想的那个字并不会调用delegate，比如你输入一个”你”，在系统的联想里面可能会出现”的”,”们”这样的联想，但是你选择”的”的时候，delegate并不会调用，（尼玛….），我猜想联想输入应该不算做keyboard所触发的事件，所以他并不会触发delegate，但是如果你注册的是通知，他倒是会调用，（还好有救）</p>
+<p>另外提醒一下，有时候在自测输入的时候，要考虑全面，比如粘贴这也是一种输入，当时没考虑，我也是跪了</p>
+<p>好了，分析了主要的区别下面我们就来看看具体怎么实现吧~</p>
+<p>在实现注册通知方法里面：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#pragma mark - UITextViewDelegate&#10;- (void)textViewDidChange:(UITextView *)textView &#123;&#10;    if (textView.text.length == 0) &#123;&#10;        self.recommendTips.hidden = NO;&#10;    &#125;else&#123;&#10;        self.recommendTips.hidden = YES;&#10;    &#125;&#10;    &#10;    NSString *toBeString = textView.text;&#10;    NSString *lang = self.textInputMode.primaryLanguage; // &#38190;&#30424;&#36755;&#20837;&#27169;&#24335;&#10;    if ([lang isEqualToString:@&#34;zh-Hans&#34;]) &#123; // &#31616;&#20307;&#20013;&#25991;&#36755;&#20837;&#65292;&#21253;&#25324;&#31616;&#20307;&#25340;&#38899;&#65292;&#20581;&#20307;&#20116;&#31508;&#65292;&#31616;&#20307;&#25163;&#20889;&#10;        UITextRange *selectedRange = [textView markedTextRange];&#10;        //&#33719;&#21462;&#39640;&#20142;&#37096;&#20998;&#10;        UITextPosition *position = [textView positionFromPosition:selectedRange.start offset:0];&#10;        // &#27809;&#26377;&#39640;&#20142;&#36873;&#25321;&#30340;&#23383;&#65292;&#21017;&#23545;&#24050;&#36755;&#20837;&#30340;&#25991;&#23383;&#36827;&#34892;&#23383;&#25968;&#32479;&#35745;&#21644;&#38480;&#21046;&#10;        if (!position || !selectedRange) &#123;&#10;            if (toBeString.length &#62; 200) &#123;&#10;                textView.text = [toBeString substringToIndex:200];&#10;            &#125;&#10;        &#125;&#10;        // &#26377;&#39640;&#20142;&#36873;&#25321;&#30340;&#23383;&#31526;&#20018;&#65292;&#21017;&#26242;&#19981;&#23545;&#25991;&#23383;&#36827;&#34892;&#32479;&#35745;&#21644;&#38480;&#21046;&#10;        else&#123;&#10;            &#10;        &#125;&#10;    &#125;&#10;    // &#20013;&#25991;&#36755;&#20837;&#27861;&#20197;&#22806;&#30340;&#30452;&#25509;&#23545;&#20854;&#32479;&#35745;&#38480;&#21046;&#21363;&#21487;&#65292;&#19981;&#32771;&#34385;&#20854;&#20182;&#35821;&#31181;&#24773;&#20917;&#10;    else&#123;&#10;        if (toBeString.length &#62; 200) &#123;&#10;            textView.text = [toBeString substringToIndex:200];&#10;        &#125;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>首先，我们根据键盘的输入模式进行区分，英文的比较简单就和上面一样，直接取最大的字符数就好了，在中文输入的时候，我们用markedTextRange方法获取到当前的光标位置，再用textField positionFromPosition:selectedRange.start offset:0获取到高亮部分，然后判断是否有高亮，这个时候系统会调用两次通知方法，第一次是将高亮的字符输入，第二次是将高亮的字符转换成中文输入（这个时候就没有高亮了，然后再取最大的字符数），但是在iOS7的设备上测试时发现，position都不会为nil，在iOS8以上都正常，但是获取到光标的range，却是正常的</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NS_CLASS_AVAILABLE_IOS(3_2) @interface UITextRange : NSObject&#10;&#10;@property (nonatomic, readonly, getter=isEmpty) BOOL empty;     //  Whether the range is zero-length.&#10;@property (nonatomic, readonly) UITextPosition *start;&#10;@property (nonatomic, readonly) UITextPosition *end;&#10;&#10;@end</span><br></pre></td></tr></table></figure>
+<p>我们可以看到系统的UITextRange，有两个变量，一个是start，一个是end，这正是对于的高亮区域！</p>
+<p>所以既然position不能使用，那我们干脆就使用range，通过判断range的存在，来对文字进行限制处理。（粘贴也适用）</p>
+<p>结果也是棒棒的！</p>
+]]></content:encoded>
+      <comments>http://broccolii.github.io/2016/05/07/TextField_gongcheng/#disqus_thread</comments>
+    </item>
+    
+    <item>
       <title><![CDATA[从 Alamofire 源码学习 Swift]]></title>
       <link>http://broccolii.github.io/2016/05/07/Learning_Swift_from_Alamofire_source/</link>
       <guid>http://broccolii.github.io/2016/05/07/Learning_Swift_from_Alamofire_source/</guid>
