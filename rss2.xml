@@ -691,6 +691,16 @@
 <h2 id="CocoaPods_/_Carthage_/_Swift_package_manager"><a href="#CocoaPods_/_Carthage_/_Swift_package_manager" class="headerlink" title="CocoaPods / Carthage / Swift package manager"></a>CocoaPods / Carthage / Swift package manager</h2><p>CocoaPods 使用编译静态库 .a 方法将代码集成到项目中。在 Pods 项目中的每个 target 都对应一个第三方库的静态库。不过你要是想要在 Swift 项目中使用 CocoaPods 的话你需要使用 <code>use_frameworks！</code> 用于生成 Swift 使用的动态库。</p>
 <p><a href="https://github.com/Carthage" target="_blank" rel="external">Carthage</a>诞生之初就是针对动态框架的包管理工具。它做为一个去中心化的包管理工具，与 CocoaPods 不同的是，他不需要开发者配置一些烦人的 <code>PodSpec</code>，不需要使用 CocoaPods 的 <code>Trunk</code> 上传库的内容。更不需要开发者在使用 <code>pod update</code> 时，等待大量的时候去更新本地的中心仓库。Carthage 的工作原理很简单，他从 Git 仓库中 clone 源代码，然后生成动态 Framework 库，需要开发者手动将生成好的 <code>Framework</code> 拉入项目中。 </p>
 <p><a href="https://github.com/apple/swift-package-manager" target="_blank" rel="external">Swift package manager</a> 的工作原理和 Carthage 差不多，它通过 <code>low level build system</code> 这个跨平台编译工具将 Swift 代码编译成 .a 静态库。</p>
+<p><strong>2016-06-27 add</strong><br>Q &amp; A</p>
+<p>问：#import &lt;&gt; 和 #import “” 什么区别<br>答：是否导入 <code>Framework</code> 的区别，前者是 导入 <code>Framework</code> 后者是导入的是文件。</p>
+<p>问：Cocoa Touch Framework（公文包）和 Cocoa Touch Static Library（房子） 什么区别<br>答：iOS 8 中拓展开发 如果使用 library 会导入两套代码，其次是 Swift 还不支持编译为静态库。</p>
+<p>问：导入 纯文件 和 导入 framework 和 library 有什么区别<br>答：依赖导入，减少导入次数等等</p>
+<p>问：CocoaPods 导入文件是什么原理 Carthage 呢？ SwiftPackage<br>答：以下三点</p>
+<ol>
+<li>CocoaPods 会创建一个新的工程来管理这些框架和它们的依赖，并把所有这些框架编译到成一个静态的 libPod.a。然后新建一个 workspace 包含你原来的项目和这个新的框架项目，最后在原来的项目中使用这个 libPods.a（.a 就是 library）不过使用了 <code>use_frameworks</code> 之后，全部都会编译成动态 framework</li>
+<li>Carthage 将 framework 以 Embedded Binary 导入到目标 App target 中去</li>
+<li>Swift Package Manager 还支持 UIKit， 它的方式和 Carthage 类似，不过是通过 llbuild （low level build system）的跨平台编译工具将 Swift 编译为 .a 静态库。</li>
+</ol>
 ]]></content:encoded>
       <comments>http://broccolii.github.io/2016/02/23/iOS_library/#disqus_thread</comments>
     </item>
