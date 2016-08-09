@@ -7,7 +7,7 @@
     <link>http://broccolii.github.io/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     <description><![CDATA[不求深刻,但求简单.]]></description>
-    <pubDate>Tue, 09 Aug 2016 13:33:33 GMT</pubDate>
+    <pubDate>Tue, 09 Aug 2016 13:39:22 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -16,10 +16,10 @@
       <guid>http://broccolii.github.io/2016/08/09/R6300_v2_Merlin/</guid>
       <pubDate>Tue, 09 Aug 2016 12:41:52 GMT</pubDate>
       <description>
-      <![CDATA[<p>之前买了一个网件 R6300 V2，不过买了就后悔了，早知道上华硕爸爸了。所幸的是可以刷 Merlin 固件，秒秒钟变华硕爸爸的 AC 86。</p>
+      <![CDATA[<p>之前买了一个网件 R6300 V2，不过买了就后悔了，早知道上华硕爸爸了。所幸的是可以刷 Merlin 固件，秒秒钟变华硕爸爸的 AC86U。</p>
 <h3 id="u52A8_u624B_u5237_Merlin"><a href="#u52A8_u624B_u5237]]>
       </description>
-      <content:encoded><![CDATA[<p>之前买了一个网件 R6300 V2，不过买了就后悔了，早知道上华硕爸爸了。所幸的是可以刷 Merlin 固件，秒秒钟变华硕爸爸的 AC 86。</p>
+      <content:encoded><![CDATA[<p>之前买了一个网件 R6300 V2，不过买了就后悔了，早知道上华硕爸爸了。所幸的是可以刷 Merlin 固件，秒秒钟变华硕爸爸的 AC86U。</p>
 <h3 id="u52A8_u624B_u5237_Merlin"><a href="#u52A8_u624B_u5237_Merlin" class="headerlink" title="动手刷 Merlin"></a>动手刷 Merlin</h3><p>先下载刷机要用的几个文件<a href="https://pan.baidu.com/s/1slPA8cl" target="_blank" rel="external">百度云链接</a> 密码: gnif<br>解压缩有以下几个文件：</p>
 <blockquote>
 <p>factory-to-dd-wrt.chk （DD 过渡固件）<br>R6300V2_merlin_1.2.trx （1.2 正式过渡固件）<br>R6300V2_380.57_X6.5.trx (最新正式版固件)<br>R6300V2-back-to-ofw.trx （刷回需要的网件原厂固件）</p>
