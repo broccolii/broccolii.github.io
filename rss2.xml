@@ -7,7 +7,7 @@
     <link>http://broccolii.github.io/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     <description><![CDATA[不求深刻,但求简单.]]></description>
-    <pubDate>Thu, 11 Aug 2016 12:16:10 GMT</pubDate>
+    <pubDate>Thu, 11 Aug 2016 12:18:02 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -54,13 +54,13 @@
 <p><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/R6300_v2_Merlin/setup_guide.png" alt=""></p>
 <p>在 高级 -&gt; 系统管理 -&gt; 固件升级 选择 <code>R6300V2_380.57_X6.5.trx</code><br>如果你看到这个文章年代有点久远了，建议你网上搜一下最新版，<a href="http://koolshare.io/merlin_8wan_firmware/R6300V2/" target="_blank" rel="external">试试看这里</a>~</p>
 <p><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/R6300_v2_Merlin/merlin_new.png" alt=""></p>
-<p>重启之后需要恢复出厂设置，如图所示：<br><img src="" alt="reset"></p>
-<p>重启后格式化JFFS分区并立即重启：<br><img src="" alt="jffs"></p>
+<p>重启之后需要恢复出厂设置，如图所示：<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/R6300_v2_Merlin/reset.png" alt="reset"></p>
+<p>重启后格式化JFFS分区并立即重启：<br><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/R6300_v2_Merlin/jffs.png" alt="jffs"></p>
 <blockquote>
 <p><code>Format JFFS partition at next boot</code> 的意思是在下次开机时格式化JFFS分区。<br><code>Enable JFFS custom scripts and configs</code> 的意思是启用JFFS分区的修改。</p>
 </blockquote>
 <p>每次更新梅林固件都需要重复这样的操作，等待重启成功之后就开始玩耍吧~</p>
-<h4 id="PS_uFF1A_u5982_u679C_u4F60_u8FD8_u60F3_u56DE_u5230_u539F_u5382"><a href="#PS_uFF1A_u5982_u679C_u4F60_u8FD8_u60F3_u56DE_u5230_u539F_u5382" class="headerlink" title="PS：如果你还想回到原厂"></a>PS：如果你还想回到原厂</h4><p>和上一步相同<br>在 高级 -&gt; 系统管理 -&gt; 固件升级 选择 <code>R6300V2_back-to-ofw.trx</code> 刷入，注意等3分钟左右，灯全部亮起后，找一根竹签或者笔，按住路由器背后的RESET开关10秒左右再松开，即可进入原厂系统。~</p>
+<h4 id="PS_uFF1A_u5982_u679C_u4F60_u8FD8_u60F3_u56DE_u5230_u539F_u5382"><a href="#PS_uFF1A_u5982_u679C_u4F60_u8FD8_u60F3_u56DE_u5230_u539F_u5382" class="headerlink" title="PS：如果你还想回到原厂"></a>PS：如果你还想回到原厂</h4><p>和上一步相同 <code>高级 -&gt; 系统管理 -&gt; 固件升级</code><br>选择 <code>R6300V2_back-to-ofw.trx</code> 刷入，注意等3分钟左右，灯全部亮起后，找一根竹签或者笔，按住路由器背后的RESET开关10秒左右再松开，即可进入原厂系统~</p>
 ]]></content:encoded>
       <comments>http://broccolii.github.io/2016/08/09/R6300_v2_Merlin/#disqus_thread</comments>
     </item>
