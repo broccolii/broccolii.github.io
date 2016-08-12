@@ -7,8 +7,54 @@
     <link>http://broccolii.github.io/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     <description><![CDATA[不求深刻,但求简单.]]></description>
-    <pubDate>Thu, 11 Aug 2016 12:18:02 GMT</pubDate>
+    <pubDate>Fri, 12 Aug 2016 00:33:56 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title><![CDATA[macOS 执行定时脚本]]></title>
+      <link>http://broccolii.github.io/2016/08/11/macOS_AutoScript/</link>
+      <guid>http://broccolii.github.io/2016/08/11/macOS_AutoScript/</guid>
+      <pubDate>Thu, 11 Aug 2016 14:51:52 GMT</pubDate>
+      <description>
+      <![CDATA[<p>有时候我们要在 Mac 上添加一些定时任务，我们可以通过 <code>crontab</code> 或者 <code>launchctl</code> 添加定时任务。</p>
+<h2 id="crontab__u547D_u4EE4"><a href="#crontab__]]>
+      </description>
+      <content:encoded><![CDATA[<p>有时候我们要在 Mac 上添加一些定时任务，我们可以通过 <code>crontab</code> 或者 <code>launchctl</code> 添加定时任务。</p>
+<h2 id="crontab__u547D_u4EE4"><a href="#crontab__u547D_u4EE4" class="headerlink" title="crontab 命令"></a>crontab 命令</h2><p><code>crontab</code> 是 Linux 下的定时任务命令：</p>
+<p><strong>基本参数</strong><br><code>crontab [-u username] [-l|-e|-r]</code></p>
+<blockquote>
+<p>-u ：只有 root 才能进行这个任务，也就是帮其他使用者建立/移除 crontab 工作排程；<br>-e ：编辑 crontab 的工作內容<br>-l ：查看 crontab 的工作內容<br>-r ：移除所有的 crontab 的工作內容，若仅仅移除一项，请用 -e 去编辑。</p>
+</blockquote>
+<p><strong>基础格式</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*		*		*		*		*	command</span><br><span class="line">分		时		日		月		周	定时执行的指令/任务</span><br><span class="line"><span class="number">0</span>-<span class="number">59</span>	<span class="number">0</span>-<span class="number">23</span>	<span class="number">1</span>-<span class="number">31</span>	<span class="number">1</span>-<span class="number">12</span>	<span class="number">0</span>-<span class="number">7</span> (数值范围)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><em>(星号)    代表任意时刻<br>,(逗号)    eg:3,6 </em> <em> </em> <em> 代表在每个小时的3分以及6分执行<br>-(减号)    代表时间范围。eg:06 8-12 </em> <em> </em> 代表在8点到12点每个小时的第6分钟执行<br>/n(除n)    n代表数字，每隔n分钟执行一次。eg:/30 <em> </em> <em> </em> command代表每半个小时执行一次</p>
+</blockquote>
+<p>如果你用 <code>crontab -e</code> 编辑完之后会提示</p>
+<p><code>crontab: “/usr/bin/vi” exited with status 1</code></p>
+<p>那么请使用 <code>EDITOR=vim crontab -e</code></p>
+<p>我们可以测试一下，使用 <code>crontab -e</code> 在文件中添加 <code>* * * * * say hello</code>，每分钟电脑就会播放 <code>hello</code>。</p>
+<h2 id="luanchctl__u5B9A_u65F6_u4EFB_u52A1"><a href="#luanchctl__u5B9A_u65F6_u4EFB_u52A1" class="headerlink" title="luanchctl 定时任务"></a>luanchctl 定时任务</h2><p>luanchctl 通过 plist 配置文件的方式来实现定时任务的。比 crontab 好用的地方在于可以间隔一秒出发定时任务。</p>
+<p>plist 配置路径：<br><code>/Library/LaunchDaemons</code> 和 <code>/Library/LaunchAgents</code>。<br>其区别是第二个路径中的脚本只有在用户登陆系统后才会被执行。<br>第一个只要系统启动了，哪怕用户不登陆系统也会被执行。</p>
+<p>可以通过两种方式来设置脚本的执行时间：</p>
+<blockquote>
+<p>StartInterval：它指定脚本每间隔多长时间（单位：秒）执行一次<br>StartCalendarInterval：它可以指定脚本在多少分钟、小时、天、星期几、月时间上执行，类似crontab</p>
+</blockquote>
+<p>首先在 <code>~/Library/LaunchAgents</code> 下建一个 plist 文件</p>
+<p><code>com.broccoliii.helloworld.plist</code></p>
+<p>内容如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="doctype">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">plist</span> <span class="attribute">version</span>=<span class="value">"1.0"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">dict</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">key</span>&gt;</span>Label<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">string</span>&gt;</span>com.broccoliii.helloworld.plist<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">key</span>&gt;</span>ProgramArguments<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">array</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">string</span>&gt;</span>/Users/broccoli/crontab/helloworld.sh<span class="tag">&lt;/<span class="title">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="title">array</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">key</span>&gt;</span>KeepAlive<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">false</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">key</span>&gt;</span>RunAtLoad<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">true</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">key</span>&gt;</span>StartInterval<span class="tag">&lt;/<span class="title">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">integer</span>&gt;</span>60<span class="tag">&lt;/<span class="title">integer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">plist</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其中 <code>/Users/broccoli/crontab/helloworld.sh</code> 路径可以修改为自己的 <code>helloworld.sh</code> 地址<br>编辑 <code>helloworld.sh</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/sh</span></span><br><span class="line">say hello</span><br></pre></td></tr></table></figure>
+<p>这样我们的定时任务就已经配置好了，那么怎么启动起来呢？</p>
+<p>我们可以使用一下几个命令操作我们的定时任务</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">launchctl load   com<span class="class">.broccoliii</span><span class="class">.helloworld</span><span class="class">.plist</span></span><br><span class="line">launchctl unload com<span class="class">.broccoliii</span><span class="class">.helloworld</span><span class="class">.plist</span></span><br><span class="line">launchctl start  com<span class="class">.broccoliii</span><span class="class">.helloworld</span><span class="class">.plist</span></span><br><span class="line">launchctl stop   com<span class="class">.broccoliii</span><span class="class">.helloworld</span><span class="class">.plist</span></span><br><span class="line">launchctl list</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>要让任务生效，必须先 load 命令加载这个 plist<br>如果任务被修改了，那么必须先 unload，然后再次 load<br>start 立即执行任务，可以用于测试定时任务是否配置成功<br>执行 start 和 unload 前，任务必须先 load<br>stop 可以停止任务<br>list 显示所有任务</p>
+</blockquote>
+]]></content:encoded>
+      <comments>http://broccolii.github.io/2016/08/11/macOS_AutoScript/#disqus_thread</comments>
+    </item>
     
     <item>
       <title><![CDATA[网件 R6300 V2 刷梅林固件]]></title>
