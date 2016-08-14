@@ -7,8 +7,65 @@
     <link>http://broccolii.github.io/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     <description><![CDATA[不求深刻,但求简单.]]></description>
-    <pubDate>Fri, 12 Aug 2016 00:33:56 GMT</pubDate>
+    <pubDate>Sun, 14 Aug 2016 13:51:28 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title><![CDATA[iOS 使用 class-dump 分析 App 类信息]]></title>
+      <link>http://broccolii.github.io/2016/08/12/iOS_class_dump_class_info/</link>
+      <guid>http://broccolii.github.io/2016/08/12/iOS_class_dump_class_info/</guid>
+      <pubDate>Thu, 11 Aug 2016 19:45:13 GMT</pubDate>
+      <description>
+      <![CDATA[<p>前段时间盘古出了 iOS 9.3.3 的越狱，尝试把手机越狱学习一下 iOS 安全方面的新知识。简单尝试了一下网上比较多教程的 class-dump 分析 App 类信息。因为实际操作的时候遇到了好一些问题，随记一篇以备日后查阅。</p>
+<h3 id="u73AF_u58]]>
+      </description>
+      <content:encoded><![CDATA[<p>前段时间盘古出了 iOS 9.3.3 的越狱，尝试把手机越狱学习一下 iOS 安全方面的新知识。简单尝试了一下网上比较多教程的 class-dump 分析 App 类信息。因为实际操作的时候遇到了好一些问题，随记一篇以备日后查阅。</p>
+<h3 id="u73AF_u5883_u51C6_u5907"><a href="#u73AF_u5883_u51C6_u5907" class="headerlink" title="环境准备"></a>环境准备</h3><p><strong>OpenSSH</strong><br>默认是越狱环境下，首先是在 Cydia 中下载安装 <code>OpenSSH</code>。</p>
+<p><img src="" alt="OpenSSH"></p>
+<p>OpenSSH 默认的密码是 <code>alpine</code>，为了安全起见，我们点击上图中的 <code>Root Password How-To</code>，有详细的教程教我们修改密码，在此就不过多介绍了。</p>
+<p><img src="" alt="OpenSSH_password"></p>
+<p><strong>BigBoss Recommendation tools</strong><br>接下去安装 <code>BigBoss Recommendation tools</code>，这个包中包含了很多工具啦~</p>
+<p><img src="" alt="BigBoss Recommendation tools"></p>
+<p><strong>SSH</strong><br>准备工作差不多了，现在我们通过 <code>SSH</code> 登录进这个越狱设备。确保你的电脑和越狱设备连接在同一个网络下。</p>
+<p><img src="" alt="IP_address"></p>
+<p>可以看到我们现在的 IP 是 192.168.1.42，我们使用刚刚修改好的密码登录 root 用户。</p>
+<p><img src="" alt="ssh_broccoliii"></p>
+<p><strong>class-dump-z</strong><br>我们在<a href="https://code.google.com/archive/p/networkpx/wikis/class_dump_z.wiki" target="_blank" rel="external">官方地址</a>下载，最新的 <code>class-dump-z</code> (class-dump-z_0.2a)。你可能看到其他教程里有写到 <code>class-dump</code> 或者 <code>class-dump-x</code>。这三者的区别具体请看<a href="http://zhiwei.li/text/2010/11/25/objective-c-class-dump/" target="_blank" rel="external">lzwjava的blog</a>这里不多做描述。</p>
+<p>解压后文件如下：</p>
+<p><img src="" alt="class-dump-z_0.2a"></p>
+<p>网上的 blog 大多数都比较早，好多讲到将 <code>class-dump-z</code> 放到 iOS 设备上使用。其实 <code>class-dump-z</code> 只支持 32bit的设备。具体请看<a href="https://code.google.com/archive/p/networkpx/wikis/class_dump_z.wiki" target="_blank" rel="external">文档</a></p>
+<blockquote>
+<p>Instead of a generic-purpose class dumper, class-dump-z was written with iPhoneOS development in mind. Therefore, the following features will probably never be implemented: <em> 64-bit support. (Unless there is a 4 GiB RAM iPhone.) </em> Objective-C 1.0 ABI. In general, if you want to dump Mac OS X, you should use the original class-dump. But if you’re dumping iPhoneOS binaries, class-dump-z is definitely the better choice.</p>
+</blockquote>
+<p>那我们还是乖乖用 Mac 吧，把 <code>mac_x86</code> 中的 class-dump-z 复制到 <code>/usr/bin</code> 路径下。</p>
+<p>测试一下：<br><img src="" alt="test_class-dump-z"></p>
+<p>bingo~</p>
+<h3 id="u5BFC_u51FA_WeChat__u7684_u7C7B_u4FE1_u606F"><a href="#u5BFC_u51FA_WeChat__u7684_u7C7B_u4FE1_u606F" class="headerlink" title="导出 WeChat 的类信息"></a>导出 WeChat 的类信息</h3><p>我们需要使用 <a href="https://github.com/KJCracks/Clutch/releases" target="_blank" rel="external">Clutch</a> 用来破壳。原因是从 App Store 下载的 App 都是经过签名加密的，可执行文件被加上了一层“壳”。</p>
+<p>我们从 GitHub 上下载最新发布的 <code>Clutch</code>，解压后用 <code>sftp</code> 或者 <code>scp</code> 上传到越狱手机的 <code>/usr/bin</code> 目录下。</p>
+<p>如果出现权限问题，执行</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x <span class="regexp">/usr/</span>bin<span class="regexp">/Clutch</span></span><br></pre></td></tr></table></figure>
+<p><img src="" alt="clutch"></p>
+<p>安装成功，让我们来看看手机里安装了那些软件，执行 <code>clutch -i</code></p>
+<p><img src="" alt="clutch_install"></p>
+<p>我们可以使用</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">clutch -b <span class="string">[前面的数字]</span></span><br><span class="line">或者</span><br><span class="line">clutch -d <span class="string">[后面的 bundleID]</span></span><br></pre></td></tr></table></figure>
+<p>例如我们要将 WeChat(<code>84:  WeChat &lt;com.tencent.xin&gt;</code>) 脱壳</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">clutch -<span class="tag">b</span> <span class="number">84</span></span><br><span class="line">或者</span><br><span class="line">clutch -d com<span class="class">.tencent</span><span class="class">.xin</span></span><br></pre></td></tr></table></figure>
+<p>两者的区别是前者只 Dump 二进制文件，后者则是将所有文件打包成 <code>.ipa</code> 文件。<br>我们来看一下结果：</p>
+<p><img src="" alt="dump_wechat"></p>
+<p>我们用 <code>sftp</code> 或者 <code>scp</code> 将 <code>.ipa</code> 文件拷到本地，右键解压缩并执行</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span>-dump-z -H com.tencent.xin-iOS7<span class="number">.0</span>-\(Clutch-<span class="number">2.0</span><span class="number">.3</span>\)/Payload/WeChat.app/WeChat -o WeChatClassInfo</span><br></pre></td></tr></table></figure>
+<p>你会看到：</p>
+<p><img src="" alt="wechat_class_info_error"></p>
+<p>点开看发现什么都没有啊，这不是坑爹呢么！！！</p>
+<p><img src="" alt="wocalei"></p>
+<p>不好意思~ 请忘记刚刚的 <code>class-dump-z</code>, <a href="https://github.com/nygard/class-dump/releases" target="_blank" rel="external">出门左转</a>老老实实下载 <code>class-dump</code>，安装方法和上面的类似复制就好好~<br>来来来我们再来执行一下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span>-dump -H com.tencent.xin-iOS7<span class="number">.0</span>-\(Clutch-<span class="number">2.0</span><span class="number">.3</span>\)/Payload/WeChat.app/WeChat -o WeChatClassInfo</span><br></pre></td></tr></table></figure>
+<p>是不是很刺激发现里面有很多羞羞的东西？ 嘿嘿嘿~</p>
+<p><img src="" alt="wechat_class_info"></p>
+]]></content:encoded>
+      <comments>http://broccolii.github.io/2016/08/12/iOS_class_dump_class_info/#disqus_thread</comments>
+    </item>
     
     <item>
       <title><![CDATA[macOS 执行定时脚本]]></title>
