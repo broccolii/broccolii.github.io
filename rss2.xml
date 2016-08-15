@@ -7,8 +7,51 @@
     <link>http://broccolii.github.io/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     <description><![CDATA[不求深刻,但求简单.]]></description>
-    <pubDate>Mon, 15 Aug 2016 08:51:57 GMT</pubDate>
+    <pubDate>Mon, 15 Aug 2016 12:15:00 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title><![CDATA[iOS 用 debugserver + lldb 进行动态调试]]></title>
+      <link>http://broccolii.github.io/2016/08/15/iOS_debugserver_lldb/</link>
+      <guid>http://broccolii.github.io/2016/08/15/iOS_debugserver_lldb/</guid>
+      <pubDate>Mon, 15 Aug 2016 11:30:13 GMT</pubDate>
+      <description>
+      <![CDATA[<p>因为 Cycript 暂时还不支持 iOS 9.3.3，不过我们可以用 debugserver + lldb 对 App 进行动态调试~</p>
+<h3 id="u73AF_u5883_u51C6_u5907"><a href="#u73AF_u5883_u51C6_u59]]>
+      </description>
+      <content:encoded><![CDATA[<p>因为 Cycript 暂时还不支持 iOS 9.3.3，不过我们可以用 debugserver + lldb 对 App 进行动态调试~</p>
+<h3 id="u73AF_u5883_u51C6_u5907"><a href="#u73AF_u5883_u51C6_u5907" class="headerlink" title="环境准备"></a>环境准备</h3><h4 id="debugserver"><a href="#debugserver" class="headerlink" title="debugserver"></a>debugserver</h4><p>iOS 上并没有安装 debugserver，在设备第一次连接 Xcode 时会安装到 iOS 的 <code>/Developer/usr/bin/</code> 目录下。 debugserver 作为运行在 iOS 上的 lldb 服务端，执行 Mac 上的 lldb 传过来的命令，再把执行结果返回给 Mac 上的 lldb 并显示给用户。</p>
+<p><strong>导出 debugserver</strong></p>
+<p>记得要先连接一次 Xcode 哦~</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp root@[越狱设备 <span class="constant">IP </span>地址]<span class="symbol">:/Developer/usr/bin/debugserver</span> ~<span class="regexp">/debugserver</span></span><br></pre></td></tr></table></figure>
+<p>去除一些 arm 指令集</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lipo -thin <span class="string">[越狱设备的 arm 指令集]</span> ~/debugserver -output ~/debugserver</span><br></pre></td></tr></table></figure>
+<p>详情请看：</p>
+<blockquote>
+<p>armv6 设备： iPhone, iPhone2, iPhone3G, 第一代、第二代 iPod Touch</p>
+<p>armv7 设备： iPhone3GS, iPhone4, iPhone4S iPad, iPad2, iPad3(The New iPad), iPad mini iPod Touch 3G, iPod Touch4</p>
+<p>armv7s设备： iPhone5, iPhone5C, iPad4(iPad with Retina Display)</p>
+<p>arm64 设备： iPhone5S, iPad Air, iPad mini2(iPad mini with Retina Display)</p>
+</blockquote>
+<p><strong>debugserver 添加权限</strong><br>下载 <a href="http://7xibfi.com1.z0.glb.clouddn.com/uploads/default/668/c134605bb19a433f.xml" target="_blank" rel="external">ent.xml</a> 修改命名哦记得~ 放到和 debugserver 同级目录下。</p>
+<p>再下载 <a href="http://joedj.net/ldid" target="_blank" rel="external">ldid</a> 放到 <code>/opt/theos/bin/ldid</code> 目录下，如果没有文件夹，自己手动创建哦~<br>接着愉快的执行一下</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/theos/bin/ldid -Sent.<span class="keyword">xml</span> <span class="title">debugserver</span></span><br></pre></td></tr></table></figure>
+<p>不出意外稍作等待就可以了哟~ 接着用 <code>scp</code> 拷回手机目录 <code>/usr/bin/debugserver</code> 注意不是 <code>/Developer</code> 下哟~</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp ~<span class="regexp">/debugserver root@[越狱设备 IP 地址]:/usr</span><span class="regexp">/bin/debugserver</span></span><br></pre></td></tr></table></figure>
+<p>在用 <code>SSH</code> 连上越狱设备后添加权限</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x <span class="regexp">/usr/</span>bin<span class="regexp">/debugserver</span></span><br></pre></td></tr></table></figure>
+<h4 id="u5728_iOS__u4E0A_u8FD0_u884C_debugserver"><a href="#u5728_iOS__u4E0A_u8FD0_u884C_debugserver" class="headerlink" title="在 iOS 上运行 debugserver"></a>在 iOS 上运行 debugserver</h4><p>开个服务测试测试一下 debugserver 是不是已经安装成功了，在 1234 这个端口上监听 <code>SpringBoard</code>(iOS 的桌面) 这个进程</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">debugserver *:<span class="number">1234</span> -<span class="tag">a</span> <span class="string">"SpringBoard"</span></span><br></pre></td></tr></table></figure>
+<p>出现这个恭喜你成功啦~</p>
+<p><img src="" alt="debugserver_springboard"></p>
+<p>新开一个终端窗口进入 <code>lldb</code>， 并执行 <code>process connect connect://[越狱设备 IP 地址]:1234</code></p>
+<p><img src="" alt="process_connect"></p>
+<p>在刚刚的 debugserver 下多了一行</p>
+<p><img src="" alt="debugserver_springboard_connect"></p>
+<p>这个时候你就已经可以使用 lldb 调试 <code>SpringBoard</code> 啦。<br>这里可能需要学习一下 lldb 的知识，就可以愉快的玩耍啦！~~ 不说啦🙊 我去补习一下 <code>lldb</code> 的命令。</p>
+]]></content:encoded>
+      <comments>http://broccolii.github.io/2016/08/15/iOS_debugserver_lldb/#disqus_thread</comments>
+    </item>
     
     <item>
       <title><![CDATA[iOS 使用 class-dump 分析 App 类信息]]></title>
