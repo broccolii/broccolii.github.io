@@ -7,7 +7,7 @@
     <link>http://broccolii.github.io/</link>
     <atom:link href="/rss2.xml" rel="self" type="application/rss+xml"/>
     <description><![CDATA[不求深刻,但求简单.]]></description>
-    <pubDate>Mon, 15 Aug 2016 12:15:00 GMT</pubDate>
+    <pubDate>Mon, 15 Aug 2016 12:17:57 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -43,11 +43,11 @@
 <h4 id="u5728_iOS__u4E0A_u8FD0_u884C_debugserver"><a href="#u5728_iOS__u4E0A_u8FD0_u884C_debugserver" class="headerlink" title="在 iOS 上运行 debugserver"></a>在 iOS 上运行 debugserver</h4><p>开个服务测试测试一下 debugserver 是不是已经安装成功了，在 1234 这个端口上监听 <code>SpringBoard</code>(iOS 的桌面) 这个进程</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">debugserver *:<span class="number">1234</span> -<span class="tag">a</span> <span class="string">"SpringBoard"</span></span><br></pre></td></tr></table></figure>
 <p>出现这个恭喜你成功啦~</p>
-<p><img src="" alt="debugserver_springboard"></p>
+<p><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_debugserver_lldb/debugserver_springboard.png" alt=""></p>
 <p>新开一个终端窗口进入 <code>lldb</code>， 并执行 <code>process connect connect://[越狱设备 IP 地址]:1234</code></p>
-<p><img src="" alt="process_connect"></p>
+<p><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_debugserver_lldb/process_connect.png" alt=""></p>
 <p>在刚刚的 debugserver 下多了一行</p>
-<p><img src="" alt="debugserver_springboard_connect"></p>
+<p><img src="https://raw.githubusercontent.com/broccolii/broccolii.github.io/master/images/iOS_debugserver_lldb/debugserver_springboard_connect.png" alt=""></p>
 <p>这个时候你就已经可以使用 lldb 调试 <code>SpringBoard</code> 啦。<br>这里可能需要学习一下 lldb 的知识，就可以愉快的玩耍啦！~~ 不说啦🙊 我去补习一下 <code>lldb</code> 的命令。</p>
 ]]></content:encoded>
       <comments>http://broccolii.github.io/2016/08/15/iOS_debugserver_lldb/#disqus_thread</comments>
